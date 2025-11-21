@@ -4,14 +4,11 @@
   padding: 0;
 }
 
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #fff;
-  color: #000;
-}
-
 header {
-  background-color: #fff;
+  background: #8AC03D;
+  color: #000000;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 100px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   position: relative;
 }
@@ -129,6 +126,7 @@ header {
 }
 
 @media (max-width: 768px) {
+
   .desktop-menu,
   .icons {
     display: none;
@@ -148,6 +146,7 @@ header {
     opacity: 0;
     transform: translateY(-10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
