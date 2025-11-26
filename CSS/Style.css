@@ -149,3 +149,8 @@ body {
 @keyframes blink {
     50% { border-color: transparent; }
 }
+
+
+.foto-bajada{
+    object-position: center 30%;
+}
