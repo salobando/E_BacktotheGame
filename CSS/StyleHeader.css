@@ -5,7 +5,7 @@
 }
 
 header {
-  background: #8AC03D;
+  background: linear-gradient(90deg, #202020, #666666);
   color: #000000;
   font-family: "Montserrat", sans-serif;
   font-weight: 100px;
