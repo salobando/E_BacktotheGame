@@ -1,5 +1,5 @@
 footer {
-    background: linear-gradient(90deg, #202020, #666666);
+    background: var(--color-section) !important;
     color: #000000;
     padding: 20px 0 1px;
     font-family: "Montserrat", sans-serif;
