@@ -1,0 +1,117 @@
+/*
+ * Estilos para la página de Contacto
+ * Aplicando el diseño de dos columnas.
+ */
+
+/* Contenedor principal para centrar y aplicar Flexbox */
+.contenedor-principal {
+    max-width: 1000px;
+    margin: 50px auto; 
+    padding: 20px;
+    display: flex; 
+    gap: 80px; 
+    font-family: 'Montserrat', sans-serif;
+    color: white; 
+}
+
+/* Título principal de la página */
+.contacto-titulo {
+    text-align: center;
+    font-size: 3em; 
+    margin-top: 50px;
+    margin-bottom: 40px;
+    font-family: 'Bebas Neue', cursive;
+    color: #4CAF50; 
+}
+
+/* Subtítulos (Póngase en contacto y Soporte) */
+.subtitulo {
+    font-size: 1.5em;
+    margin-bottom: 30px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* --- SECCIÓN FORMULARIO --- */
+.seccion-formulario {
+    flex: 1; 
+    padding-right: 40px; 
+}
+
+.campo label {
+    display: block;
+    font-size: 0.7em;
+    font-weight: 600;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    color: #999; 
+}
+
+.campo input, .campo textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 25px;
+    border: 1px solid white; 
+    border-radius: 0;
+    box-sizing: border-box;
+    background-color: transparent; 
+    color: white; 
+}
+
+.boton-enviar {
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 600;
+    width: 100%; 
+}
+
+/* --- SECCIÓN SOPORTE --- */
+.seccion-soporte {
+    flex-basis: 300px; 
+}
+
+.datos-soporte {
+    margin-top: 30px;
+}
+
+.dato-item {
+    margin-bottom: 30px;
+}
+
+.dato-item i {
+    font-size: 1.5em;
+    margin-right: 15px;
+    color: #4CAF50; /* Iconos en color verde */
+}
+
+.dato-item .etiqueta {
+    display: block;
+    font-weight: bold;
+    font-size: 1em;
+    line-height: 1.2;
+}
+
+.dato-item .valor {
+    margin-left: 35px; 
+    font-size: 1.1em;
+    font-weight: 300;
+    margin-top: 5px;
+}
+
+/* --- Estilos para la sección de Soporte (Ajustes de Enlaces) --- */
+
+.seccion-soporte .dato-item .email-link {
+    color: white; 
+    text-decoration: none; 
+    transition: color 0.2s ease-in-out; 
+}
+
+/* Estilo que se aplica cuando el mouse pasa sobre el enlace */
+.seccion-soporte .dato-item .email-link:hover {
+    color: #66ff66; 
+}
+

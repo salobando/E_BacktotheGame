@@ -5,13 +5,19 @@
 }
 
 header {
-  background: linear-gradient(90deg, #202020, #666666);
-  color: #000000;
+  background: #0f0f11;
+  color: rgba(138, 192, 61, 0.90);
+  font-weight: 500;
   font-family: "Montserrat", sans-serif;
-  font-weight: 100px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  position: relative;
+  /*Esta parte dice las coordenadas donde quedara la nav*/
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
 }
+
 
 .header-container {
   display: flex;
@@ -31,15 +37,15 @@ header {
 }
 
 .desktop-menu a {
-  color: #000;
+  color: rgb(255, 255, 255);
   text-decoration: none;
-  font-weight: 500;
+  font-weight: bold;
   position: relative;
   transition: color 0.3s ease;
 }
 
 .desktop-menu a:hover {
-  color: #2C3930;
+  color: rgba(138, 192, 61, 0.90);
 }
 
 .desktop-menu a::after {
@@ -57,20 +63,18 @@ header {
   width: 100%;
 }
 
-.icons {
-  display: flex;
-  gap: 1rem;
+.icons a {
+    margin: 0 10px;
+    color: white;
+    font-size: 1.5rem;
+    transition: 0.3s;
 }
 
-.icons img {
-  width: 24px;
-  height: 24px;
-  transition: transform 0.3s ease;
+.icons a:hover {
+    color: rgba(138, 192, 61, 0.90);
+    transform: scale(1.1);
 }
 
-.icons img:hover {
-  transform: scale(1.2);
-}
 
 .hamburger {
   display: none;
@@ -81,7 +85,7 @@ header {
 .hamburger span {
   height: 3px;
   width: 25px;
-  background: #000;
+  background: #ffffff;
   margin: 4px 0;
   transition: 0.4s;
 }
@@ -89,7 +93,7 @@ header {
 .mobile-menu {
   display: none;
   flex-direction: column;
-  background-color: #f9f9f9;
+  background-color: #0f0f11;
   width: 100%;
   padding: 1rem 2rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -98,7 +102,7 @@ header {
 }
 
 .mobile-menu a {
-  color: #000;
+  color: #ffffff;
   text-decoration: none;
   margin-bottom: 1rem;
   font-weight: 500;
@@ -106,7 +110,7 @@ header {
 }
 
 .mobile-menu a:hover {
-  color: #2C3930;
+  color: rgba(138, 192, 61, 0.90);
 }
 
 .mobile-icons {
@@ -125,7 +129,7 @@ header {
   transform: scale(1.2);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1028px) {
 
   .desktop-menu,
   .icons {
