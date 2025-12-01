@@ -187,16 +187,10 @@ body {
 }
 
 @keyframes blink {
-<<<<<<< HEAD
     50% { border-color: transparent; }
 }
 
 
 .foto-bajada{
     object-position: center 30%;
-=======
-    50% {
-        border-color: transparent;
-    }
->>>>>>> 0be14935b1530abe1a0d7e4c854b98ad0dc1f706
 }
