@@ -1,0 +1,23 @@
+/* Contenedor general: dos columnas */
+.contenedor {
+    display: flex;
+    justify-content: space-between;   /* izquierda - derecha */
+    align-items: flex-start;          /* ambos arriba */
+    margin-left: 3rem;                /* margen a la izquierda */
+    margin-top: 2rem;
+    margin-right: 3rem;
+}
+
+/* Estilo card izquierda */
+.card-agregar {
+    width: 350px;
+    color: white;
+    border-radius: 15px;
+}
+
+/* Título derecha */
+.productos h1 {
+    text-align: right;
+    font-size: 2rem;
+    margin-top: 0;
+}

@@ -79,6 +79,11 @@ body {
     margin-top: 5px;
 }
 
+#agregarProducto:hover {
+    transform: none !important;
+    background-color: inherit !important;
+}
+
 .bg-dark {
     background-color: var(--color-black) !important;
     border-color: var(--color-section) !important;
