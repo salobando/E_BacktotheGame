@@ -1,233 +1,387 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quiénes Somos - BackToTheGame</title>
     <link rel="stylesheet" href="/CSS/Style.css" />
+    <link rel="stylesheet" href="/CSS/nosotros.css" />
     <link rel="stylesheet" href="/CSS/StyleFooter.css" />
     <link rel="stylesheet" href="/CSS/StyleHeader.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;600&display=swap"
-        rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <!-- Bootstrap Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet" />
-</head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+  </head>
 
-<body>
+  <body>
     <header>
-        <div class="header-container">
-            <div class="logo">Back to the game</div>
+      <div class="header-container">
+        <div class="logo">Back to the game</div>
 
-            <nav class="desktop-menu">
-                <a href="#">Inicio</a>
-                <a href="#">Tienda</a>
-                <a href="#">Accesorios</a>
-                <a href="About.html">Nosotros</a>
-                <a href="contacto.html">Contactenos</a>
-            </nav>
+        <nav class="desktop-menu">
+          <a href="/homepage.html">Inicio</a>
+          <a href="#">Tienda</a>
+          <a href="#">Accesorios</a>
+          <a href="About.html">Nosotros</a>
+          <a href="contacto.html">Contactenos</a>
+        </nav>
 
-            <div class="icons">
-                <a href="#"><i class="bi bi-cart"></i></a>
-                <a href="#"><i class="bi bi-bell"></i></a>
-                <a href="#"><i class="bi bi-person"></i></a>
-            </div>
-
-
-            <div class="hamburger" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+        <div class="icons">
+          <a href="#"><i class="bi bi-cart"></i></a>
+          <a href="#"><i class="bi bi-bell"></i></a>
+          <a href="#"><i class="bi bi-person"></i></a>
         </div>
 
-        <div class="mobile-menu" id="mobileMenu">
-            <a href="#">Inicio</a>
-            <a href="#">Tienda</a>
-            <a href="#">Accesorios</a>
-            <a href="#">Nosotros</a>
-            <div class="mobile-icons">
-                <a href="#"><i class="bi bi-cart"></i></a>
-                <a href="#"><i class="bi bi-bell"></i></a>
-                <a href="#"><i class="bi bi-person"></i></a>
-            </div>
+        <div class="hamburger" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
+      </div>
+
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="#">Inicio</a>
+        <a href="#">Tienda</a>
+        <a href="#">Accesorios</a>
+        <a href="#">Nosotros</a>
+        <div class="mobile-icons">
+          <a href="#"><i class="bi bi-cart"></i></a>
+          <a href="#"><i class="bi bi-bell"></i></a>
+          <a href="#"><i class="bi bi-person"></i></a>
+        </div>
+      </div>
+
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="/homepage.html">Inicio</a>
+        <a href="#">Tienda</a>
+        <a href="#">Accesorios</a>
+        <a href="./About.html">Nosotros</a>
+        <div class="mobile-icons">
+          <a href="#"
+            ><img
+              src="https://cdn-icons-png.flaticon.com/512/1170/1170678.png"
+              alt="Carrito"
+          /></a>
+          <a href="#"
+            ><img
+              src="https://cdn-icons-png.flaticon.com/512/1827/1827312.png"
+              alt="Notificaciones"
+          /></a>
+          <a href="#"
+            ><img
+              src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png"
+              alt="Perfil"
+          /></a>
+        </div>
+      </div>
     </header>
 
     <div class="container my-5">
-        <div class="contenedor_quienes">
-            <img src="/img/consola nintendo.jpg" alt="imgpostre" class="imagen-quienes" />
+      <div class="contenedor_quienes">
+        <img
+          src="/img/consola nintendo.jpg"
+          alt="imgpostre"
+          class="imagen-quienes"
+        />
 
-            <p>
-                Somos un equipo apasionado por el mundo gamer, convencido de que cada
-                juego tiene el poder de unir, inspirar y transformar momentos
-                cotidianos en algo inolvidable. Nacimos con una idea clara: construir
-                un lugar donde todos los gamers expertos, jugadores casuales, familias
-                o curiosos puedan sentirse en casa. Un espacio confiable, moderno y
-                auténtico donde encontrar no solo tecnología, sino historia, comunidad
-                y emoción. <br /><br />
-                En Back To The Game no solo vendemos consolas: creamos experiencias
-                que despiertan emociones, conectan recuerdos y ofrecen nuevas
-                aventuras.
-            </p>
+        <p>
+          Somos un equipo apasionado por el mundo gamer, convencido de que cada
+          juego tiene el poder de unir, inspirar y transformar momentos
+          cotidianos en algo inolvidable. Nacimos con una idea clara: construir
+          un lugar donde todos los gamers expertos, jugadores casuales, familias
+          o curiosos puedan sentirse en casa. Un espacio confiable, moderno y
+          auténtico donde encontrar no solo tecnología, sino historia, comunidad
+          y emoción. <br /><br />
+          En Back To The Game no solo vendemos consolas: creamos experiencias
+          que despiertan emociones, conectan recuerdos y ofrecen nuevas
+          aventuras.
+        </p>
+      </div>
+      <br /><br />
+      <div class="titulos-arcade">
+        <h4>Somos el mundo donde empieza el juego y nunca termina.</h4>
+      </div>
+      <div class="tarjetas_container">
+        <div id="mision" class="tarjeta">
+          <h3>Misión</h3>
+          <p>
+            Ofrecer una experiencia de compra fácil, clara y sin enredos para
+            que las personas vuelvan a disfrutar de esos juegos que marcaron su
+            vida. Un espacio donde se encienda la pasión al ver una consola
+            retro o un juego que no pasa de moda, creando así experiencias
+            inolvidables.
+          </p>
         </div>
-        <br /><br />
-        <div class="titulos-arcade">
-            <h4>Somos el mundo donde empieza el juego y nunca termina.</h4>
+        <div id="vision" class="tarjeta">
+          <h3>Visión</h3>
+          <p>
+            Posicionarnos como el mejor e-commerce reconocidos por ofrecer
+            innovación y el mejor servicio gamer de la industria. Queremos
+            construir un lugar donde la gente se sienta en casa, donde lo
+            inolvidable cobre vida y se pueda conectar con emociones y
+            recuerdos.
+          </p>
         </div>
-        <div class="tarjetas_container">
-            <div id="mision" class="tarjeta">
-                <h3>Misión</h3>
-                <p>
-                    Ofrecer una experiencia de compra fácil, clara y sin enredos para
-                    que las personas vuelvan a disfrutar de esos juegos que marcaron su
-                    vida. Un espacio donde se encienda la pasión al ver una consola
-                    retro o un juego que no pasa de moda, creando así experiencias
-                    inolvidables.
-                </p>
-            </div>
-            <div id="vision" class="tarjeta">
-                <h3>Visión</h3>
-                <p>
-                    Posicionarnos como el mejor e-commerce reconocidos por ofrecer
-                    innovación y el mejor servicio gamer de la industria. Queremos
-                    construir un lugar donde la gente se sienta en casa, donde lo
-                    inolvidable cobre vida y se pueda conectar con emociones y
-                    recuerdos.
-                </p>
-            </div>
-        </div>
+      </div>
+      <div>
+        <h2 class="text-center font-bebas">NOSOTROS</h2>
+        <p>
+          Somos un equipo multidisciplinario de profesionales, unidos por la
+          visión de elevar la experiencia del usuario en el sector gaming.
+          Combinamos la excelencia en el desarrollo tecnológico con un diseño
+          intuitivo y centrado en el jugador, asegurando que cada interacción en
+          BackToTheGame sea fluida, potente y memorable.
+        </p>
+        <hr class="my-5 border-secondary" />
+      </div>
     </div>
 
-    <div>
-        <section class="container my-5">
-            <h2 class="text-center verde-primary font-bebas">NOSOTROS</h2>
-            <p>
-                Somos un equipo multidisciplinario de profesionales, unidos por la
-                visión de elevar la experiencia del usuario en el sector gaming.
-                Combinamos la excelencia en el desarrollo tecnológico con un diseño
-                intuitivo y centrado en el jugador, asegurando que cada interacción en
-                BackToTheGame sea fluida, potente y memorable.
-            </p>
-            <hr class="my-5 border-secondary" />
-        </section>
+    <div class="container mb-5">
+      <div class="text-center mb-5">
+        <h2>INTEGRANTES</h2>
+      </div>
 
-        <section class="container mb-5">
-            <div class="text-center mb-5">
-                <h2 class="display-5 fw-bold verde-primary font-bebas">INTEGRANTES</h2>
+      <div class="row g-4 justify-content-center">
+        <div class="col-12 col-sm-6 col-lg-2 d-flex">
+          <div class="card border-0 shadow-lg w-100 text-center p-2">
+            <div
+              class="ratio ratio-1x1 border border-2 border-section rounded mb-3 overflow-hidden"
+            >
+              <img
+                src="/img/imgNosotros/foto1.png"
+                class="object-fit-cover w-100 h-100"
+                alt="David Mateo Rodriguez"
+              />
             </div>
+          </div>
 
-            <div class="row g-4 justify-content-center">
-
-                <div class="col-12 col-sm-6 col-lg-2 d-flex">
-                    <div class="card border-0 shadow-lg w-100 text-center p-2">
-                        <div class="ratio ratio-1x1 border border-2 border-section rounded mb-3 overflow-hidden">
-                            <img src="/img/foto1.png" class="object-fit-cover w-100 h-100" alt="David Mateo Rodriguez">
-                        </div>
-                        <div class="card-body p-2">
-                            <h4 class="card-title fw-bold verde-primary">David Mateo Rodriguez</h4>
-                            <p class="card-text text-secondary-color mb-0">Desarrollador UX/UI</p>
-                        </div>
-                    </div>
-                </div>                
-
-                <div class="col-12 col-sm-6 col-lg-2 d-flex">
-                    <div class="card border-0 shadow-lg w-100 text-center p-2">
-                        <div class="ratio ratio-1x1 border border-2 border-section rounded mb-3 overflow-hidden">
-                            <img src="/img/foto2.png" class="object-fit-cover w-100 h-100" alt="Danna Sofia Salamanca">
-                        </div>
-                        <div class="card-body p-2">
-                            <h4 class="card-title fw-bold verde-primary">Danna Sofia Salamanca</h4>
-                            <p class="card-text text-secondary-color mb-0">Desarrolladora UI/UX</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-sm-6 col-lg-2 d-flex">
-                    <div class="card border-0 shadow-lg w-100 text-center p-2">
-                        <div class="ratio ratio-1x1 border border-2 border-section rounded mb-3 overflow-hidden">
-                            <img src="/img/foto3.png" class="object-fit-cover w-100 h-100" alt="Rodolfo Ruidiaz">
-                        </div>
-                        <div class="card-body p-2">
-                            <h4 class="card-title fw-bold verde-primary">Rodolfo Junior Ruidiaz</h4>
-                            <p class="card-text text-secondary-color mb-0">Desarrollador UI/UX</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-sm-6 col-lg-2 d-flex">
-                    <div class="card border-0 shadow-lg w-100 text-center p-2">
-                        <div class="ratio ratio-1x1 border border-2 border-section rounded mb-3 overflow-hidden">
-                            <img src="/img/foto4.png" class="object-fit-cover w-100 h-100"
-                                alt="Samuel Alexander Florez">
-                        </div>
-                        <div class="card-body p-2">
-                            <h4 class="card-title fw-bold verde-primary">Sebastian Leon</h4>
-                            <p class="card-text text-secondary-color mb-0">Desarrollador UI/UX</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-sm-6 col-lg-2 d-flex">
-                    <div class="card border-0 shadow-lg w-100 text-center p-2">
-                        <div class="ratio ratio-1x1 border border-2 border-section rounded mb-3 overflow-hidden">
-                            <img src="/img/foto5.png" class="object-fit-cover w-100 h-100" alt="Erika Julieth Niviayo">
-                        </div>
-                        <div class="card-body p-2">
-                            <h4 class="card-title fw-bold verde-primary">Erika Julieth Niviayo</h4>
-                            <p class="card-text text-secondary-color mb-0">Desarrolladora UI/UX</p>
-                        </div>
-                    </div>
-                </div>
+          <div class="col-12 col-sm-6 col-lg-2 d-flex">
+            <div class="card border-0 shadow-lg w-100 text-center p-2">
+              <div
+                class="ratio ratio-1x1 border border-2 border-section rounded mb-3 overflow-hidden"
+              >
+                <img
+                  src="/img/foto2.png"
+                  class="object-fit-cover w-100 h-100"
+                  alt="Danna Sofia Salamanca"
+                />
+              </div>
+              <div class="card-body p-2">
+                <h4 class="card-title fw-bold verde-primary">
+                  Danna Sofia Salamanca
+                </h4>
+                <p class="card-text text-secondary-color mb-0">
+                  Desarrolladora UI/UX
+                </p>
+              </div>
             </div>
-        </section>
+          </div>
 
-
-        <footer>
-            <div class="container">
-                <nav class="footer-nav">
-                    <h3>Corporativo</h3>
-                    <ul>
-                        <li><a href="#">Inicio</a></li>
-                        <li><a href="#">Nosotros</a></li>
-                        <li><a href="#">Catálogo</a></li>
-                        <li><a href="#">Contacto</a></li>
-                    </ul>
-                </nav>
-                <hr />
-                <nav class="footer-nav">
-                    <h3>Colecciones</h3>
-                    <ul>
-                        <li><a href="">Consolas</a></li>
-                        <li><a href="">Controles</a></li>
-                        <li><a href="">Accesorios</a></li>
-                    </ul>
-                </nav>
-                <hr />
-                <nav class="footer-nav">
-                    <h3>Destacados</h3>
-                    <ul>
-                        <li><a href="">Nes</a></li>
-                        <li><a href="">Super Nintendo</a></li>
-                        <li><a href="">Game Boy</a></li>
-                        <li><a href="">Nintendo 64</a></li>
-                    </ul>
-                </nav>
+          <div class="col-12 col-sm-6 col-lg-2 d-flex">
+            <div class="card border-0 shadow-lg w-100 text-center p-2">
+              <div
+                class="ratio ratio-1x1 border border-2 border-section rounded mb-3 overflow-hidden"
+              >
+                <img
+                  src="/img/foto3.png"
+                  class="object-fit-cover w-100 h-100"
+                  alt="Rodolfo Ruidiaz"
+                />
+              </div>
+              <div class="card-body p-2">
+                <h4 class="card-title fw-bold verde-primary">
+                  Rodolfo Junior Ruidiaz
+                </h4>
+                <p class="card-text text-secondary-color mb-0">
+                  Desarrollador UI/UX
+                </p>
+              </div>
             </div>
-            <div class="footer-social">
-                <p>Todos los derechos reservados | © 2025 | BackToTheGame</p>
-                    <div class="icons">
-                        <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-                        <a href="#" aria-label="Youtube"><i class="bi bi-youtube"></i></a>
-                                                 
-                    </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-2 d-flex">
+            <div class="card border-0 shadow-lg w-100 text-center p-2">
+              <div
+                class="ratio ratio-1x1 border border-2 border-section rounded mb-3 overflow-hidden"
+              >
+                <img
+                  src="/img/foto4.png"
+                  class="object-fit-cover w-100 h-100"
+                  alt="Samuel Alexander Florez"
+                />
+              </div>
+              <div class="card-body p-2">
+                <h4 class="card-title fw-bold verde-primary">Sebastian Leon</h4>
+                <p class="card-text text-secondary-color mb-0">
+                  Desarrollador UI/UX
+                </p>
+              </div>
             </div>
-        </footer>
+          </div>
 
-        <script src="/JS/scriptHeader.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+          <div class="col-12 col-sm-6 col-lg-2 d-flex">
+            <div class="card border-0 shadow-lg w-100 text-center p-2">
+              <div
+                class="ratio ratio-1x1 border border-2 border-section rounded mb-3 overflow-hidden"
+              >
+                <img
+                  src="/img/foto5.png"
+                  class="object-fit-cover w-100 h-100"
+                  alt="Erika Julieth Niviayo"
+                />
+              </div>
+              <div class="card-body p-2">
+                <h4 class="card-title fw-bold verde-primary">
+                  Erika Julieth Niviayo
+                </h4>
+                <p class="card-text text-secondary-color mb-0">
+                  Desarrolladora UI/UX
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
 
+        <div class="col-12 col-sm-6 col-lg-2 d-flex">
+          <div class="card border-0 shadow-lg w-100 text-center p-2">
+            <div
+              class="ratio ratio-1x1 border border-2 border-section rounded mb-3 overflow-hidden"
+            >
+              <img
+                src="/img/imgNosotros/foto2.png"
+                class="object-fit-cover w-100 h-100"
+                alt="Danna Sofia Salamanca"
+              />
+            </div>
+            <div class="card-body p-2">
+              <h4 class="card-title fw-bold verde-primary">
+                Danna Sofia Salamanca
+              </h4>
+              <p class="card-text text-secondary-color mb-0">
+                Desarrolladora UI/UX
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-2 d-flex">
+          <div class="card border-0 shadow-lg w-100 text-center p-2">
+            <div
+              class="ratio ratio-1x1 border border-2 border-section rounded mb-3 overflow-hidden"
+            >
+              <img
+                src="/img/imgNosotros/foto3.png"
+                class="object-fit-cover w-100 h-100"
+                alt="Rodolfo Ruidiaz"
+              />
+            </div>
+            <div class="card-body p-2">
+              <h4 class="card-title fw-bold verde-primary">
+                Rodolfo Junior Ruidiaz
+              </h4>
+              <p class="card-text text-secondary-color mb-0">
+                Desarrollador UI/UX
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-2 d-flex">
+          <div class="card border-0 shadow-lg w-100 text-center p-2">
+            <div
+              class="ratio ratio-1x1 border border-2 border-section rounded mb-3 overflow-hidden"
+            >
+              <img
+                src="/img/imgNosotros/foto5.png"
+                class="object-fit-cover w-100 h-100"
+                alt="Erika Julieth Niviayo"
+              />
+            </div>
+            <div class="card-body p-2">
+              <h4 class="card-title fw-bold verde-primary">
+                Erika Julieth Niviayo
+              </h4>
+              <p class="card-text text-secondary-color mb-0">
+                Desarrolladora UI/UX
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-2 d-flex">
+          <div class="card border-0 shadow-lg w-100 text-center p-2">
+            <div
+              class="ratio ratio-1x1 border border-2 border-section rounded mb-3 overflow-hidden"
+            >
+              <img
+                src="/img/imgNosotros/foto4.png"
+                class="object-fit-cover w-100 h-100"
+                alt="Sebastian Leon"
+              />
+            </div>
+            <div class="card-body p-2">
+              <h4 class="card-title fw-bold verde-primary">
+                Sebastian Leon Pimentel
+              </h4>
+              <p class="card-text text-secondary-color mb-0">
+                Desarrollador UI/UX
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container">
+        <nav class="footer-nav">
+          <h3>Corporativo</h3>
+          <ul>
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Nosotros</a></li>
+            <li><a href="#">Catálogo</a></li>
+            <li><a href="#">Contacto</a></li>
+          </ul>
+        </nav>
+        <hr />
+        <nav class="footer-nav">
+          <h3>Colecciones</h3>
+          <ul>
+            <li><a href="">Consolas</a></li>
+            <li><a href="">Controles</a></li>
+            <li><a href="">Accesorios</a></li>
+          </ul>
+        </nav>
+        <hr />
+        <nav class="footer-nav">
+          <h3>Destacados</h3>
+          <ul>
+            <li><a href="">Nes</a></li>
+            <li><a href="">Super Nintendo</a></li>
+            <li><a href="">Game Boy</a></li>
+            <li><a href="">Nintendo 64</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="footer-social">
+        <p>Todos los derechos reservados | © 2025 | BackToTheGame</p>
+        <div class="icons">
+          <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" aria-label="Youtube"><i class="bi bi-youtube"></i></a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="/JS/scriptHeader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>

@@ -6,7 +6,7 @@
 
 header {
   background: #0f0f11;
-  color: rgba(138, 192, 61, 0.90);
+  color: var(--color-verdeclaro) !important;
   font-weight: 500;
   font-family: "Montserrat", sans-serif;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -45,7 +45,7 @@ header {
 }
 
 .desktop-menu a:hover {
-  color: rgba(138, 192, 61, 0.90);
+  color: var(--color-verdeclaro) !important;
 }
 
 .desktop-menu a::after {
@@ -71,7 +71,7 @@ header {
 }
 
 .icons a:hover {
-    color: rgba(138, 192, 61, 0.90);
+    color: var(--color-verdeclaro) !important;
     transform: scale(1.1);
 }
 
@@ -110,7 +110,7 @@ header {
 }
 
 .mobile-menu a:hover {
-  color: rgba(138, 192, 61, 0.90);
+  color: var(--color-verdeclaro) !important;
 }
 
 .mobile-icons {
