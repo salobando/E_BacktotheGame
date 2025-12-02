@@ -61,30 +61,38 @@
         <div class="cardAgregar">
             <h2 class="titulo">Agregar Producto</h2>
 
+            <div id="errorMessages"></div>
+
             <form class="formulario">
                 <div class="grupo">
                     <label for="idProducto">ID Producto</label>
-                    <input type="text" id="idProducto" placeholder="123">
+                    <input type="text" id="idProducto" placeholder="123" required>
                 </div>
 
                 <div class="grupo">
                     <label for="nombreProducto">Nombre Producto</label>
-                    <input type="text" id="nombreProducto" placeholder="Consola Wii">
+                    <input type="text" id="nombreProducto" placeholder="Consola Wii" required>
                 </div>
 
                 <div class="grupo">
                     <label for="precioProducto">Precio Producto</label>
-                    <input type="text" id="precioProducto" placeholder="10">
+                    <input type="text" id="precioProducto" placeholder="10" required>
                 </div>
 
                 <div class="grupo">
                     <label for="cantidadProducto">Cantidad Producto</label>
-                    <input type="text" id="cantidadProducto" placeholder="10">
+                    <input type="text" id="cantidadProducto" placeholder="10" required>
+                </div>
+
+                <div class="grupo">
+                    <label for="imagenProducto">Imagen del Producto</label>
+                    <input type="file" id="imagenProducto" accept="image/*">
+                    <small style="color: #666;">Formatos aceptados: JPG, PNG, GIF</small>
                 </div>
 
                 <div class="grupo">
                     <label for="descripcionProducto">Descripción del Producto</label>
-                    <textarea id="descripcionProducto" placeholder="Escribe la descripción aquí..."></textarea>
+                    <textarea id="descripcionProducto" placeholder="Escribe la descripción aquí..."></textarea required>
                 </div>
 
                 <button type="submit" id="btnAgregar">Añadir</button>
@@ -92,6 +100,10 @@
         </div>
         <div class="prodAgregados">
             <h3>Productos Agregados</h3>
+
+            <div id="contenedorCards" class="row"></div>
+
+
         </div>
     </div>
 
@@ -136,7 +148,7 @@
             </div>
         </div>
     </footer>
-
+    <script src="/JS/admin.js"></script>
     <script src="/JS/scriptHeader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
