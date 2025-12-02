@@ -3,7 +3,8 @@
    ======================================================= */
 :root {
     --color-black: #000000;
-    --color-primary: #8AC03D;
+    --color-primary: rgb(9, 248, 85);
+    --color-verdeclaro: #4CAF50;
     /* Verde principal: Para nombres y títulos */
     --color-section: #2a2a2a;
     /* Gris muy oscuro: Para el fondo de cards y elementos de borde */
@@ -55,6 +56,7 @@ body {
     border: none !important;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     perspective: 1000px;
+     display: flex;
 }
 
 .object-fit-cover {
@@ -77,7 +79,11 @@ body {
 
 .card-text {
     margin-top: 5px;
+    display: flex;
+    padding: 5px;
+    text-align: end;
 }
+
 
 #agregarProducto:hover {
     transform: none !important;
@@ -89,113 +95,3 @@ body {
     border-color: var(--color-section) !important;
 }
 
-/* =======================================================
-   ESTILOS DE QUIENES SOMOS (de tu versión HEAD)
-   ======================================================= */
-
-.quiensomos p {
-    flex-grow: 1;
-    text-align: justify;
-}
-
-.contenedor_quienes {
-    width: 100%;
-    margin: 50px auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-    text-align: center;
-    font-size: 20px;
-    /* Centra el texto dentro del párrafo */
-}
-
-.imagen-quienes {
-    border-radius: 20px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
-    width: 70%;
-    max-width: 800px;
-    height: auto;
-
-}
-
-
-/* Contenedor de tarjetas */
-.tarjetas_container {
-    display: flex;
-    gap: 30px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin: 50px 0;
-}
-
-.tarjeta {
-    background-color: #a1c349;
-    color: #000000;
-    padding: 30px 20px;
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    flex: 1 1 300px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    max-width: 400px;
-}
-
-.tarjeta:hover {
-    transform: translateY(-10px) scale(1.05);
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
-}
-
-.tarjeta h3 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-    color: #000000;
-}
-
-/* Título arcade animado */
-.titulos-arcade {
-    max-width: 1250px;
-    text-align: center;
-    white-space: nowrap;
-    overflow: hidden;
-    border-right: 2px solid #a1c349;
-    animation: typing 4s steps(50, end) forwards, blink 0.7s step-end infinite;
-
-}
-
-.titulos-arcade h4 {
-    font-size: 35px;
-    font-weight: bold;
-
-}
-
-/*Correcion de la descripcions del texto de las tarjetas*/
-.card-text {
-    display: flex;
-    padding: 5px;
-    text-align: end;
-}
-
-.card {
-    display: flex;
-}
-
-
-
-@keyframes typing {
-    from {
-        width: 0;
-    }
-
-    to {
-        width: 100%;
-    }
-}
-
-@keyframes blink {
-    50% { border-color: transparent; }
-}
-
-
-.foto-bajada{
-    object-position: center 30%;
-}

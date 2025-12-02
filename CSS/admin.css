@@ -1,23 +1,72 @@
-/* Contenedor general: dos columnas */
-.contenedor {
+/* Contenedor para centrar la card */
+#contenedor {
     display: flex;
-    justify-content: space-between;   /* izquierda - derecha */
-    align-items: flex-start;          /* ambos arriba */
-    margin-left: 3rem;                /* margen a la izquierda */
-    margin-top: 2rem;
-    margin-right: 3rem;
+    justify-content: start;
+    align-items: flex-start;
+    padding: 40px;
+    gap: 40px;
+    font-family: 'Montserrat', sans-serif;
 }
 
-/* Estilo card izquierda */
-.card-agregar {
-    width: 350px;
-    color: white;
-    border-radius: 15px;
+/* Card */
+.cardAgregar {
+    width: 480px;
+    padding: 25px;
+    border-radius: 12px;
+    border: 3px solid rgba(255, 255, 255, 0.6);
 }
 
-/* Título derecha */
-.productos h1 {
-    text-align: right;
-    font-size: 2rem;
-    margin-top: 0;
+/* Título */
+.titulo {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 22px;
+    color: #ffffff;
+}
+
+/* Formularios */
+.formulario .grupo {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.formulario label {
+    margin-bottom: 5px;
+    color: #ffffff;
+}
+
+.formulario input,
+.formulario textarea {
+    padding: 10px;
+    border: 1px solid #949191;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.formulario textarea {
+    resize: vertical;
+    min-height: 60px;
+}
+
+/* Botón */
+#btnAgregar {
+    width: 100px;
+    padding: 10px;
+    background: rgb(9, 248, 85);
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #13c56c;
+}
+
+.prodAgregados {
+    display: flex;
+    align-self: flex-start;
+    flex-direction: column;
 }
