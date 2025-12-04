@@ -88,7 +88,7 @@ function validationForm(event) {
 
     const card = document.createElement('div');
     card.className = 'col-12 col-sm-6 col-md-4 col-lg-3 mb-4';
-    //card.style = 'width: 18rem; display: inline-block; margin: 12px; padding: 10px; text-align: center; border-radius: 12px; box-shadow: 0 0 18px #1affa3;';
+    card.style = 'width: 18rem; display: inline-block; margin: 12px; padding: 10px; text-align: center; border-radius: 12px; box-shadow: 0 0 18px #1affa3;';
 
     card.innerHTML = `
     <div class="card h-100 text-center" style="border-radius: 12px; box-shadow: 0 0 18px #1affa3;">

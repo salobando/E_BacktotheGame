@@ -1,10 +1,9 @@
 footer {
     background: var(--color-section) !important;
     color: #000000;
-    padding: 20px 0 1px;
+    padding: 15px 0 0;
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 100px;
     font-style: normal;
 }
 
@@ -12,19 +11,19 @@ footer .container {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    max-width: 75%;
+    max-width: 77%;
     margin: auto;
-    padding: 0 10px;
+    padding: 10px 10px;
 }
 
 .footer-nav h3 {
     font-family: "Bebas Neue", sans-serif;
     font-weight: 200;
     font-style: normal;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     font-size: 20px;
-    color:var(--color-verdeclaro) !important;
-    letter-spacing: 1px;
+    color: var(--color-verdeclaro) !important;
+    letter-spacing: 2px;
 }
 
 footer ul {
@@ -39,7 +38,6 @@ footer li {
 
 footer a {
     text-decoration: none;
-    font-weight: bold;
     color: #ffffff;
     transition: 0.3s ease;
 }
@@ -49,22 +47,60 @@ footer a:hover {
     padding-left: 3px;
 }
 
-.footer-social {
-    display: flex;        
-    margin: 40px;
-    color: #ffffff;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    max-width: 90%;
+.footer-copyright {
+    width: 100%;
+    text-align: center;
+    display: block;
+    margin-top: 25px;
+    color: #ffffff;    
+    opacity: 0.8;
 }
 
-.footer-social .icons {
-    color: white;/* color de los iconos */
-    font-size: 2rem;/* tamaño de los iconos */
-    margin: 0 20px;
-    text-decoration: none;
-    text-align: right;
+
+.container-columnas {
+    display: flex;
+    gap: 40px;    /* espacio entre los títulos */
 }
+
+.footer-descripcion {
+    max-width: 230px;
+    flex: 10;
+    text-align: center;
+}
+
+.footer-descripcion img {
+    width: 90px;
+    height: 90px;
+    margin-bottom: 15px;    
+    display: block;
+    margin: 0 auto;
+}
+
+.footer-descripcion p {
+    font-size: 14px;
+    color: #ffffff;
+}
+
+.icon-circle {
+    width: 40px; 
+    height: 40px;
+    display: inline-flex; 
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #ffffff20; /* un fondo semitransparente */
+    color: white; 
+    font-size: 20px;
+    margin: 5px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.icon-circle:hover {
+    background-color: white;
+    color: #000;
+}
+
 
 @media (max-width: 768px) {
     footer .container {
@@ -75,4 +111,9 @@ footer a:hover {
     footer a:hover {
         padding-left: 0;
     }
+}
+
+footer img {
+    width: 100px;
+    height: 100px;
 }

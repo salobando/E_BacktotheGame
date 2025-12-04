@@ -3,13 +3,16 @@
    ======================================================= */
 :root {
     --color-black: #000000;
-    --color-primary: rgb(9, 248, 85);
-    --color-verdeclaro: #4CAF50;
-    /* Verde principal: Para nombres y títulos */
-    --color-section: #2a2a2a;
+    /* Verde principal: títulos Importantes */
+    --color-primary: #25d366;
+    /* Verde principal: títulos */
+    --color-verdeclaro: #25d366;
+    /* Verde Fluorescente: Para destacar */
+    --color-resaltar: #09F855;
     /* Gris muy oscuro: Para el fondo de cards y elementos de borde */
-    --color-secondary: #B3B3A3;
+    --color-section: #2a2a2a;
     /* Gris claro: Para párrafos y roles */
+    --color-secondary: #B3B3A3;
 }
 
 /* =======================================================
@@ -56,7 +59,7 @@ body {
     border: none !important;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     perspective: 1000px;
-     display: flex;
+    display: flex;
 }
 
 .object-fit-cover {
@@ -94,4 +97,3 @@ body {
     background-color: var(--color-black) !important;
     border-color: var(--color-section) !important;
 }
-
