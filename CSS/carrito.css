@@ -1,0 +1,41 @@
+
+
+.item-carrito {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+}
+
+.item-carrito h3 {
+    margin: 0;
+}
+.item-carrito p {
+    margin: 0;
+}
+
+.img-lista {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.cantidad-control {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.cantidad-control button {
+    width: 25px;
+    height: 25px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.cantidad-control .cantidad {
+    min-width: 20px;
+    text-align: center;
+    display: inline-block;
+}
