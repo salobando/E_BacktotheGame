@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito</title>
+    <link rel="stylesheet" href="/CSS/StyleCarrito.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- SWEET ALERT BONITO -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+
+<header class="carrito-header">
+    <h1>Carrito de Compras</h1>
+</header>
+
+<div class="carrito-container">
+
+    <!-- LISTA DE ITEMS DEL CARRITO -->
+    <div class="carrito-items" id="carrito-items"></div>
+
+    <!-- RESUMEN -->
+    <div class="carrito-resumen">
+    <h3>Resumen de la orden</h3>
+
+    <p>Subtotal: <span id="subtotal">$0</span></p>
+    <p>Descuento: <span id="descuentos">$0</span></p>
+    <hr>
+    <h2>Total: <span id="total">$0</span></h2>
+
+    <!-- NUEVO BOTÓN SEGUIR COMPRANDO -->
+    <button class="btn-continuar" onclick="seguirComprando()">Seguir comprando</button>
+
+    <!-- NUEVO BOTÓN FINALIZAR COMPRA -->
+    <button class="btn-finalizar" onclick="finalizarCompra()">Finalizar compra</button>
+</div>
+
+
+<script src="/JS/carrito.js"></script>
+
+</body>
+</html>
