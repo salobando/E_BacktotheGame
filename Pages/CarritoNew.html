@@ -16,25 +16,44 @@
 <body>
 
   <header>
-    <div class="header-container">
-      <div class="logo-group">
-        <img src="/img/Logo.png" alt="LogoBackToTheGame" class="imgLogo">
-        <div class="logo">Back to the game</div>
+      <div class="header-container">
+        <div class="logo-group">
+          <img src="/img/Logo.png" alt="LogoBackToTheGame" class="imgLogo" />
+          <div class="logo">Back to the game</div>
+        </div>
+
+        <nav class="desktop-menu">
+          <a href="/homepage.html">Inicio</a>
+          <a href="/Pages/tienda.html">Tienda</a>
+          <a href="/Pages/About.html">Nosotros</a>
+          <a href="/Pages/contacto.html">Contáctenos</a>
+        </nav>
+
+        <div class="icons">
+          <a href="#"><i class="bi bi-cart"></i></a>
+          <a href="#"><i class="bi bi-bell"></i></a>
+          <a href="/Pages/registro.html"><i class="bi bi-person"></i></a>
+        </div>
+
+        <div class="hamburger" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
 
-      <nav class="desktop-menu">
+      <div class="mobile-menu" id="mobileMenu">
         <a href="/homepage.html">Inicio</a>
         <a href="/Pages/tienda.html">Tienda</a>
         <a href="/Pages/About.html">Nosotros</a>
         <a href="/Pages/contacto.html">Contáctenos</a>
-      </nav>
-
-      <div class="icons">
-        <a href="/Pages/CarritoNew.html" class="carrito-icono"><i class="bi bi-cart"></i>
-          <span id="cart-count" class="cart-count">0</span></a>
+        <div class="mobile-icons">
+          <a href="#"><i class="bi bi-cart"></i></a>
+          <a href="#"><i class="bi bi-bell"></i></a>
+          <a href="/Pages/registro.html"><i class="bi bi-person"></i></a>
+        </div>
       </div>
-    </div>
-  </header>
+    </header>
 
   <main class="carrito-wrap">
     <h2 class="carrito-title">🛒 Tu Carrito</h2>
