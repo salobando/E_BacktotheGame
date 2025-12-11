@@ -97,3 +97,51 @@ body {
     background-color: var(--color-black) !important;
     border-color: var(--color-section) !important;
 }
+
+
+@media (max-width: 992px) {
+    .header-container nav {
+        /* Oculta la navegación normal */
+        display: none; 
+    }
+    
+    .hamburger {
+        /* Muestra el botón de hamburguesa */
+        display: block; 
+    }
+    /* Añade lógica JavaScript para mostrar/ocultar el menú al hacer clic en la hamburguesa */
+}
+
+/* Media Query para Teléfonos y Tabletas (Ej: hasta 768px) */
+@media (max-width: 768px) {
+
+    /* 1. Apilar las dos secciones */
+    .main-contenedor-principal {
+        flex-direction: column; /* Cambia de horizontal a vertical */
+        padding: 20px; /* Añade relleno general */
+    }
+
+    /* 2. Asegurar que las secciones internas ocupen el 100% del ancho */
+    .seccion-formulario, 
+    .seccion-soporte {
+        width: 100% !important; /* Fuerza el ancho completo */
+        border-right: none !important; /* Quita el divisor vertical */
+        padding: 20px 0 !important; /* Ajusta el padding vertical/horizontal */
+    }
+
+    /* 3. Estilos específicos para Formulario y Asistencia */
+    .seccion-formulario {
+        margin-bottom: 20px;
+    }
+}
+
+/* =======================================================
+   CORRECCIÓN: Arreglo de flujo después de la sección Header/Spiderman
+   ======================================================= */
+.contenedor-principal {
+    clear: both; /* Fuerza al elemento a iniciar una nueva línea */
+    margin-top: 40px; /* Espacio de separación entre el header de Spiderman y el formulario */
+    
+    /* Nota: El resto de reglas de flexbox para el formulario ya están dentro del @media (max-width: 768px). 
+       No las duplicamos aquí, solo corregimos el flujo. */
+}
