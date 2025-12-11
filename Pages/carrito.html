@@ -1,130 +1,64 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tu Carrito</title>
-    <link rel="stylesheet" href="/CSS/Style.css" /><!-- Estilo General -->
-    <link rel="stylesheet" href="/CSS/carrito.css" /><!-- Estilo Nosotros-->
-    <link rel="stylesheet" href="/CSS/StyleFooter.css" /><!-- Estilo Footer-->
-    <link rel="stylesheet" href="/CSS/StyleHeader.css" /><!-- Estilo Header-->
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <!-- Tipografía -->
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;600&display=swap"
-        rel="stylesheet" />
-    <!-- Bootstrap Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Carrito - BackToTheGame</title>
+
+  <link rel="stylesheet" href="/CSS/StyleHeader.css">
+  <link rel="stylesheet" href="/CSS/StyleFooter.css">
+  <link rel="stylesheet" href="/CSS/carrito.css">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-
 <body>
-    <header>
-        <div class="header-container">
-            <div class="logo-group">
-                <img src="/img/Logo.png" alt="LogoBackToTheGame" class="imgLogo">
-                <div class="logo">Back to the game</div>
-            </div>
 
-            <nav class="desktop-menu">
-                <a href="/homepage.html">Inicio</a>
-                <a href="/Pages/tienda.html">Tienda</a>
-                <a href="/Pages/About.html">Nosotros</a>
-                <a href="/Pages/contacto.html">Contáctenos</a>
-            </nav>
+  <header>
+    <div class="header-container">
+      <div class="logo-group">
+        <img src="/img/Logo.png" alt="LogoBackToTheGame" class="imgLogo">
+        <div class="logo">Back to the game</div>
+      </div>
 
-            <div class="icons">
-                <a href="/Pages/Carrito.html" class="carrito-icono"><i class="bi bi-cart"></i>
-                    <span id="cart-count" class="cart-count">0</span></a>
-                <a href="#"><i class="bi bi-bell"></i></a>
-                <a href="#"><i class="bi bi-person"></i></a>
-            </div>
+      <nav class="desktop-menu">
+        <a href="/homepage.html">Inicio</a>
+        <a href="/Pages/tienda.html">Tienda</a>
+        <a href="/Pages/About.html">Nosotros</a>
+        <a href="/Pages/contacto.html">Contáctenos</a>
+      </nav>
 
-            <div class="hamburger" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-
-        <div class="mobile-menu" id="mobileMenu">
-            <a href="/homepage.html">Inicio</a>
-            <a href="/Pages/tienda.html">Tienda</a>
-            <a href="/Pages/About.html">Nosotros</a>
-            <a href="/Pages/contacto.html">Contáctenos</a>
-            <div class="mobile-icons">
-                <a href="#"><i class="bi bi-cart"></i></a>
-                <a href="#"><i class="bi bi-bell"></i></a>
-                <a href="#"><i class="bi bi-person"></i></a>
-            </div>
-        </div>
-    </header>
-
-    <h2>Tus Productos</h2>
-    <div id="listaProductos" class="mostrar-productos">
-        <div class="btns">
-          <button type="button" class="btn buy">Comprar</button>
-          <button type="button" class="btn add">Agregar</button>
-        </div>
-      
+      <div class="icons">
+        <a href="/Pages/Carrito.html" class="carrito-icono"><i class="bi bi-cart"></i>
+          <span id="cart-count" class="cart-count">0</span></a>
+      </div>
     </div>
+  </header>
 
-    <footer>
-        <div class="container">
-            <div class="footer-descripcion">
-                <img src="/img/Logo.png" alt="LogoBackToTheGame">
-                <p>Somos el mundo donde empieza el juego y nunca termina.</p>
-            </div>
-            <div class="container-columnas">
-                <nav class="footer-nav">
-                    <h3>Corporativo</h3>
-                    <ul>
-                        <li><a href="/homepage.html">Inicio</a></li>
-                        <li><a href="/Pages/About.html">Nosotros</a></li>
-                        <li><a href="/Pages/tienda.html">Tienda</a></li>
-                        <li><a href="/Pages/contacto.html">Contacto</a></li>
-                    </ul>
-                </nav>
-                <hr />
-                <nav class="footer-nav">
-                    <h3>Colecciones</h3>
-                    <ul>
-                        <li><a href="">Consolas</a></li>
-                        <li><a href="">Accesorios</a></li>
-                        <li><a href="">Videojuegos</a></li>
-                        <li><a href="">Otros</a></li>
-                    </ul>
-                </nav>
-                <hr />
-                <nav class="footer-nav">
-                    <h3>Noticias</h3>
-                    <ul>
-                        <li><a href="">Próximos <br>
-                                Lanzamientos</a></li>
-                        <li><a href="">Destacados</a></li>
-                        <li><a href="">Comentarios</a></li>
-                    </ul>
-                </nav>
-                <hr />
-                <nav class="footer-nav">
-                    <h3>Síguenos</h3>
-                    <a href="https://github.com/salobando/BackToTheGame.git" class="icon-circle" aria-label="GitHub"><i
-                            class="bi bi-github"></i></a>
-                    <a href="#" class="icon-circle" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-                    <br>
-                    <a href="#" class="icon-circle" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-                    <a href="#" class="icon-circle" aria-label="Youtube"><i class="bi bi-youtube"></i></a>
-                </nav>
-            </div>
+  <main class="carrito-wrap">
+    <h2 class="carrito-title">🛒 Tu Carrito</h2>
 
-            <div class="footer-copyright">
-                <p> © 2025 Back To The Game. Todos los derechos reservados</p>
-            </div>
+    <section class="carrito-grid">
+      <div id="lista-carrito" class="lista-carrito"></div>
+
+      <aside class="aside-resumen">
+        <div class="resumen-card">
+          <h3>Resumen de la compra</h3>
+          <div class="resumen-line"><span>Subtotal</span><span id="subtotal">$0</span></div>
+          <div class="resumen-line"><span>Envío</span><span id="envio">$0</span></div>
+          <hr>
+          <div class="resumen-line total"><span>Total</span><span id="total">$0</span></div>
+          <button id="btnProcesar" class="btn-procesar">Procesar pago</button>
         </div>
-    </footer>
+      </aside>
+    </section>
+  </main>
 
-    <script src="/JS/carrito.js"></script>
-    <script src="/JS/actualizarcarrito.js"></script>
+  <footer>
+    <div class="container"><p>© 2025 BackToTheGame</p></div>
+  </footer>
+
+  <script src="/JS/actualizarcarrito.js"></script>
+  <script src="/JS/carrito.js"></script>
 </body>
-
 </html>
