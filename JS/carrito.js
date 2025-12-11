@@ -1,124 +1,120 @@
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 document.addEventListener("DOMContentLoaded", () => {
-    mostrarCarrito();
-    calcularTotales();
+  const listaEl = document.getElementById("lista-carrito");
+  const subtotalEl = document.getElementById("subtotal");
+  const envioEl = document.getElementById("envio");
+  const totalEl = document.getElementById("total");
+  const btnProcesar = document.getElementById("btnProcesar");
+
+  function obtenerCarrito() { return JSON.parse(localStorage.getItem("carrito")) || []; }
+  function guardarCarrito(carrito){ localStorage.setItem("carrito", JSON.stringify(carrito)); if (window.actualizarContador) actualizarContador(); }
+
+  function calcularTotales(carrito) {
+    const subtotal = carrito.reduce((s,p) => s + (Number(p.precio) || 0) * Number(p.cantidad || 0), 0);
+    const envio = subtotal > 0 ? 10000 : 0;
+    return { subtotal, envio, total: subtotal + envio };
+  }
+
+  function formatMoney(n){ return "$" + Number(n).toLocaleString(); }
+
+  function render() {
+    const carrito = obtenerCarrito();
+    listaEl.innerHTML = "";
+    if (!carrito || carrito.length === 0) {
+      listaEl.innerHTML = `<div class="empty"><p>Tu carrito está vacío</p><p><a href="/Pages/tienda.html">Volver a la tienda</a></p></div>`;
+      const t = {subtotal:0, envio:0, total:0};
+      subtotalEl.textContent = formatMoney(t.subtotal);
+      envioEl.textContent = formatMoney(t.envio);
+      totalEl.textContent = formatMoney(t.total);
+      return;
+    }
+
+    carrito.forEach((p,i) => {
+      const item = document.createElement("div");
+      item.className = "item-card";
+      item.innerHTML = `
+        <img src="${p.imagen || ''}" alt="${p.nombre}">
+        <div class="item-info">
+          <h4 class="item-name">${p.nombre}</h4>
+          <p class="item-desc">${p.descripcion || ''}</p>
+          <div class="item-price">Precio: <strong>${formatMoney(p.precio || 0)}</strong></div>
+        </div>
+        <div class="item-actions">
+          <div class="qty-controls">
+            <button class="qty-minus" data-i="${i}">-</button>
+            <input type="number" class="qty-input" min="1" value="${p.cantidad}" data-i="${i}">
+            <button class="qty-plus" data-i="${i}">+</button>
+          </div>
+          <div class="subtotal-item">Subtotal: <strong>${formatMoney((p.precio||0) * (p.cantidad||0))}</strong></div>
+          <button class="btn-delete" data-i="${i}">Eliminar</button>
+        </div>
+      `;
+      listaEl.appendChild(item);
+    });
+
+    const totals = calcularTotales(carrito);
+    subtotalEl.textContent = formatMoney(totals.subtotal);
+    envioEl.textContent = formatMoney(totals.envio);
+    totalEl.textContent = formatMoney(totals.total);
+  }
+
+  // Delegated clicks
+  listaEl.addEventListener("click", e => {
+    const i = e.target.dataset.i;
+    let carrito = obtenerCarrito();
+    if (e.target.classList.contains("qty-plus")) {
+      carrito[i].cantidad = Number(carrito[i].cantidad) + 1;
+      guardarCarrito(carrito); render();
+    } else if (e.target.classList.contains("qty-minus")) {
+      if (carrito[i].cantidad > 1) {
+        carrito[i].cantidad = Number(carrito[i].cantidad) - 1;
+        guardarCarrito(carrito); render();
+      } else {
+        if (confirm(`Eliminar ${carrito[i].nombre} del carrito?`)) {
+          carrito.splice(i,1); guardarCarrito(carrito); render();
+        }
+      }
+    } else if (e.target.classList.contains("btn-delete")) {
+      if (confirm("¿Eliminar este producto?")) {
+        carrito.splice(i,1); guardarCarrito(carrito); render();
+      }
+    }
+  });
+
+  // input change validation
+  listaEl.addEventListener("change", e => {
+    if (e.target.classList.contains("qty-input")) {
+      const i = e.target.dataset.i;
+      let val = Number(e.target.value);
+      if (!Number.isInteger(val) || val <= 0) { alert("Cantidad inválida. Usa un número entero mayor a 0."); e.target.value = 1; val = 1; }
+      const carrito = obtenerCarrito();
+      carrito[i].cantidad = val;
+      guardarCarrito(carrito); render();
+    }
+  });
+
+  // Procesar pago
+  btnProcesar.addEventListener("click", () => {
+    const carrito = obtenerCarrito();
+    if (!carrito || carrito.length === 0) { alert("El carrito está vacío."); return; }
+    const totals = calcularTotales(carrito);
+    if (!confirm(`Total a pagar: ${formatMoney(totals.total)}. Confirmar pago?`)) return;
+
+    // Simular pago
+    localStorage.removeItem("carrito");
+    if (window.actualizarContador) actualizarContador();
+    if (window.Swal) {
+      Swal.fire({ icon:"success", title:"Gracias por su compra!", timer:1500, showConfirmButton:false });
+      setTimeout(()=> location.href = "/Pages/tienda.html", 1500);
+    } else {
+      alert("¡Gracias por su compra!");
+      location.href = "/Pages/tienda.html";
+    }
+  });
+
+  render();
 });
 
-function mostrarCarrito() {
-    const cont = document.getElementById("carrito-items");
-    cont.innerHTML = "";
-
-    if (carrito.length === 0) {
-        cont.innerHTML = `<h2>Carrito vacío 😢</h2>`;
-        return;
-    }
-
-    carrito.forEach((item, i) => {
-        cont.innerHTML += `
-        <div class="item-carrito">
-
-            <div class="item-info">
-                <img src="${item.imagen}">
-                <div>
-                    <p class="item-nombre">${item.nombre}</p>
-                    <p class="item-precio">$${item.precio.toLocaleString()}</p>
-                </div>
-            </div>
-
-            <div class="cantidad-box">
-                <button onclick="cambiarCantidad(${i}, -1)">-</button>
-                <span>${item.cantidad}</span>
-                <button onclick="cambiarCantidad(${i}, 1)">+</button>
-            </div>
-
-            <i class="bi bi-trash eliminar-btn" onclick="eliminarProducto(${i})"></i>
-        </div>
-        `;
-    });
-}
-
-// Cambiar cantidad
-function cambiarCantidad(i, valor) {
-    carrito[i].cantidad += valor;
-
-    if (carrito[i].cantidad < 1) {
-        Swal.fire({
-            icon: "warning",
-            title: "La cantidad mínima es 1",
-            timer: 1500
-        });
-        carrito[i].cantidad = 1;
-    }
-
-    guardar();
-}
-
-// Eliminar
-function eliminarProducto(i) {
-    Swal.fire({
-        title: "¿Eliminar producto?",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonText: "Sí",
-        cancelButtonText: "No"
-    }).then(res => {
-        if (res.isConfirmed) {
-            carrito.splice(i, 1);
-            guardar();
-        }
-    });
-}
-
-// Guardar cambios
-function guardar() {
-    localStorage.setItem("carrito", JSON.stringify(carrito));
-    mostrarCarrito();
-    calcularTotales();
-}
-
-// Totales
-function calcularTotales() {
-    let subtotal = 0;
-
-    carrito.forEach(p => subtotal += p.precio * p.cantidad);
-
-    let descuento = subtotal * 0.10;
-    let total = subtotal - descuento;
-
-    document.getElementById("subtotal").textContent = "$" + subtotal.toLocaleString();
-    document.getElementById("descuentos").textContent = "$" + descuento.toLocaleString();
-    document.getElementById("total").textContent = "$" + total.toLocaleString();
-}
-// BOTÓN: SEGUIR COMPRANDO
-function seguirComprando() {
-    window.location.href = "/Pages/tienda.html";
-}
-
-// BOTÓN: FINALIZAR COMPRA
-function finalizarCompra() {
-
-    if (carrito.length === 0) {
-        Swal.fire({
-            icon: "warning",
-            title: "El carrito está vacío",
-            text: "Agrega productos antes de finalizar la compra"
-        });
-        return;
-    }
-
-    Swal.fire({
-        icon: "success",
-        title: "¡Gracias por su compra!",
-        text: "Su pedido ha sido procesado con éxito 🎉",
-        confirmButtonText: "Aceptar"
-    });
-
-    // Vaciar carrito después de la compra
-    carrito = [];
-    guardar();
-}
-
-document.getElementById("contadorCarrito")
 
 
