@@ -1,36 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tienda</title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tienda</title>
+    <link rel="stylesheet" href="/CSS/StyleTienda.css" />
+    <link rel="stylesheet" href="/CSS/Style.css" />
+    <link rel="stylesheet" href="/CSS/StyleFooter.css" />
+    <link rel="stylesheet" href="/CSS/StyleHeader.css" />
 
-  <link rel="stylesheet" href="/CSS/StyleTienda.css">
-  <link rel="stylesheet" href="/CSS/Style.css">
-  <link rel="stylesheet" href="/CSS/StyleFooter.css">
-  <link rel="stylesheet" href="/CSS/StyleHeader.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;600&display=swap"
+      rel="stylesheet"
+    />
 
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;600&display=swap"
-    rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+  </head>
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-</head>
+  <body>
+    <!-- ================= HEADER ================= -->
+    <header>
+      <div class="header-container">
+        <div class="logo-group">
+          <img src="/img/Logo.png" alt="LogoBackToTheGame" class="imgLogo" />
+          <div class="logo">Back to the game</div>
+        </div>
 
-<body>
+        <nav class="desktop-menu">
+          <a href="/homepage.html">Inicio</a>
+          <a href="/Pages/tienda.html" class="active">Tienda</a>
+          <a href="/Pages/About.html">Nosotros</a>
+          <a href="/Pages/contacto.html">Contáctenos</a>
+        </nav>
 
-  <!-- ================= HEADER ================= -->
-  <header>
-    <div class="header-container">
-      <div class="logo-group">
-        <img src="/img/Logo.png" alt="LogoBackToTheGame" class="imgLogo">
-        <div class="logo">Back to the game</div>
+        <div class="icons">
+          <a href="/Pages/CarritoNew.html" class="carrito-icono">
+            <i class="bi bi-cart"></i>
+            <span id="cart-count" class="cart-count">0</span>
+          </a>
+          <a href="#"><i class="bi bi-bell"></i></a>
+          <a href="#"><i class="bi bi-person"></i></a>
+        </div>
+
+        <div class="hamburger" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
 
-      <nav class="desktop-menu">
+      <div class="mobile-menu" id="mobileMenu">
         <a href="/homepage.html">Inicio</a>
-        <a href="/Pages/tienda.html" class="active">Tienda</a>
+        <a href="/Pages/tienda.html">Tienda</a>
         <a href="/Pages/About.html">Nosotros</a>
         <a href="/Pages/contacto.html">Contáctenos</a>
       </nav>
@@ -43,11 +72,232 @@
         <a href="#"><i class="bi bi-bell"></i></a>
         <a href="/Pages/registro.html"><i class="bi bi-person"></i></a>
       </div>
+    </header>
 
-      <div class="hamburger" onclick="toggleMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
+    <!-- ================= SECCIÓN TIENDA ================= -->
+    <section class="destacados-section">
+      <h2 class="title-destacados">Bienvenidos a nuestra tienda</h2>
+
+      <div class="cards-grid" id="consolas">
+        <!-- ======== PRODUCTOS ======== -->
+        <div class="card-compras animate-card">
+          <div class="img-box">
+            <img src="/IMG/CONSOLANITENDO.png" alt="ConsolaNintendo" />
+          </div>
+          <h3 class="title-card">
+            Nintendo Nes | cartuchos | años 80 | entretenimiento familiar
+          </h3>
+          <span class="precio-prod">$169.900</span>
+
+          <div class="btns">
+            <button type="button" class="btn add">Agregar</button>
+          </div>
+        </div>
+
+        <div class="card-compras animate-card">
+          <div class="img-box">
+            <img src="/img/GameBoy.png" alt="GameBoy" />
+          </div>
+          <h3 class="title-card">
+            Nintendo GameBoy | Consola portatil | Cartuchos | Años 80 Portatil.
+          </h3>
+          <span class="precio-prod">$120.000</span>
+
+          <div class="btns">
+            <button type="button" class="btn add">Agregar</button>
+          </div>
+        </div>
+
+        <div class="card-compras animate-card">
+          <div class="img-box">
+            <img src="/img/Xboxnegro.png" alt="Xbox negra" />
+          </div>
+          <h3 class="title-card">
+            Microsoft Xbox one | Consola de Videojuegos | Juegos Online
+          </h3>
+          <span class="precio-prod">$250.000</span>
+
+          <div class="btns">
+            <button type="button" class="btn add">Agregar</button>
+          </div>
+        </div>
+
+        <div class="card-compras animate-card">
+          <div class="img-box">
+            <img src="/img/Maquina-removebg-preview.png" alt="Maquina arcade" />
+          </div>
+          <h3 class="title-card">
+            Arcade Bubble Bobble | Juego Arcade | Clasico retro | Multijugador
+          </h3>
+          <span class="precio-prod">$300.000</span>
+
+          <div class="btns">
+            <button type="button" class="btn add">Agregar</button>
+          </div>
+        </div>
+
+        <div class="card-compras animate-card">
+          <div class="img-box">
+            <img
+              src="/img/Playstation2-removebg-preview.png"
+              alt="ConsolaRemove"
+            />
+          </div>
+          <h3 class="title-card">
+            Sony | Playstation 2 | Disco HDD | CD | Guitar Hero | Adaptador de
+            red
+          </h3>
+          <span class="precio-prod">$169.900</span>
+          <div class="btns">
+            <button type="button" class="btn add">Agregar</button>
+          </div>
+        </div>
+
+        <div class="card-compras animate-card">
+          <div class="img-box">
+            <img src="/img/Playstation1.png" alt="Maquina arcade" />
+          </div>
+          <h3 class="title-card">
+            Sony | Playstation 1 | CD | 1era consola con graficos 3D | Juegos
+            Clasicos
+          </h3>
+          <span class="precio-prod">$300.000</span>
+
+          <div class="btns">
+            <button type="button" class="btn add">Agregar</button>
+          </div>
+        </div>
+
+        <div class="card-compras animate-card">
+          <div class="img-box">
+            <img
+              src="/img/Playstation3-removebg-preview.png"
+              alt="Maquina arcade"
+            />
+          </div>
+          <h3 class="title-card">
+            Sony | Playstation 3 | Blu-Ray disc | Retrocompatibilidad
+          </h3>
+          <span class="precio-prod">$300.000</span>
+
+          <div class="btns">
+            <button type="button" class="btn add">Agregar</button>
+          </div>
+        </div>
+
+        <div class="card-compras animate-card">
+          <div class="img-box">
+            <img src="/img/xbox.png" alt="Maquina arcade" />
+          </div>
+          <h3 class="title-card">
+            Xbox Series S | 120 FPS | Almacenamient expansible | Xbox Game Pass
+          </h3>
+          <span class="precio-prod">$300.000</span>
+
+          <div class="btns">
+            <button type="button" class="btn add">Agregar</button>
+          </div>
+        </div>
+
+        <div class="card-compras animate-card">
+          <div class="img-box">
+            <img src="/img/Atari.jpeg" alt="Maquina arcade" />
+          </div>
+          <h3 class="title-card">
+            Atari 2600 | Señal analogica | Cartuchos | sencillez pixelart |
+            Graficos por líneas
+          </h3>
+          <span class="precio-prod">$300.000</span>
+
+          <div class="btns">
+            <button type="button" class="btn add">Agregar</button>
+          </div>
+        </div>
+
+        <div class="card-compras animate-card">
+          <div class="img-box">
+            <img
+              src="/img/Arcade_Street_fighter-removebg-preview.png"
+              alt="Maquina arcade"
+            />
+          </div>
+          <h3 class="title-card">
+            Street Fighter | Capcom | Botones de 6 golpes | Varios modos de
+            juego
+          </h3>
+          <span class="precio-prod">$300.000</span>
+
+          <div class="btns">
+            <button type="button" class="btn add">Agregar</button>
+          </div>
+        </div>
+
+        <!-- AGREGO LOS DEMÁS PRODUCTOS EXACTAMENTE COMO LOS TENÍAS -->
+        <!-- (mantengo imágenes, orden, nombres y botones) -->
+
+        <div class="card-compras animate-card">
+          <div class="img-box">
+            <img src="/img/Consolaremove.png" alt="Consola Remove" />
+          </div>
+          <h3 class="title-card">CONSOLA REMOVE</h3>
+          <span class="precio-prod">$180000</span>
+
+          <div class="btns">
+            <button type="button" class="btn buy">Comprar</button>
+            <button type="button" class="btn add">Agregar</button>
+          </div>
+        </div>
+
+        <div class="card-compras animate-card">
+          <div class="img-box">
+            <img src="/img/Playstation1.png" alt="PlayStation 1" />
+          </div>
+          <h3 class="title-card">PLAYSTATION 1</h3>
+          <span class="precio-prod">$140000</span>
+
+          <div class="btns">
+            <button type="button" class="btn buy">Comprar</button>
+            <button type="button" class="btn add">Agregar</button>
+          </div>
+        </div>
+
+        <!-- Repito estructura para las Xbox -->
+        <div class="card-compras animate-card">
+          <div class="img-box">
+            <img src="/img/xbox.png" alt="Xbox" />
+          </div>
+          <h3 class="title-card">XBOXssssssssssssssssssssssssssss</h3>
+          <span class="precio-prod">$230000</span>
+
+          <div class="btns">
+            <button type="button" class="btn buy">Comprar</button>
+            <button type="button" class="btn add">Agregar</button>
+          </div>
+        </div>
+
+        <!-- Puedes dejar tus duplicados si quieres -->
+      </div>
+    </section>
+
+    <!-- ================= MODAL (SE MANTIENE IGUAL) ================= -->
+    <div id="modalCarrito" class="modal-overlay">
+      <div class="modal-content">
+        <span id="cerrarModal" class="close-btn">&times;</span>
+
+        <h3>Producto agregado a tu Carrito</h3>
+
+        <div class="modal-prod">
+          <img id="modalImg" src="" alt="Producto" />
+          <div>
+            <h4 id="modalTitulo"></h4>
+            <p id="modalPrecio"></p>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button id="seguirComprando">Seguir comprando</button>
+          <a href="/Pages/CarritoNew.html" class="irCarrito">Ir al carrito</a>
+        </div>
       </div>
     </div>
 
@@ -260,9 +510,9 @@
         </div>
       </div>
     </footer>
-  <script src="/JS/tienda.js"></script>
-  <script src="/JS/actualizarcarrito.js"></script>
-  <script src="/JS/scriptHeader.js"></script>
-  <script src="/JS/carrito.js"></script>
-</body>
+    <script src="/JS/tienda.js"></script>
+    <script src="/JS/actualizarcarrito.js"></script>
+    <script src="/JS/scriptHeader.js"></script>
+    <script src="/JS/carrito.js"></script>
+  </body>
 </html>

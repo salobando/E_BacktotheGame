@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css/StyleHeader.css">
     <link rel="stylesheet" href="../css/StyleFooter.css">
     <link rel="stylesheet" href="../css/Style.css">
-    <link rel="stylesheet" href="../css/contacto.css">
+    <link rel="stylesheet" href="../css/login.css">
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600;700&display=swap"
@@ -20,50 +20,49 @@
 
 <body>
     <header>
-        <div class="header-container">
-            <div class="logo-group">
-                <img src="/img/Logo.png" alt="LogoBackToTheGame" class="imgLogo" />
-                <div class="logo">Back to the game</div>
-            </div>
-
-
-            <nav class="desktop-menu">
-                <a href="/homepage.html">Inicio</a>
-                <a href="/Pages/tienda.html">Tienda</a>
-                <a href="/Pages/About.html">Nosotros</a>
-                <a href="/Pages/contacto.html">Contáctenos</a>
-            </nav>
-
-            <div class="icons">
-                <a href="#"><i class="bi bi-cart"></i></a>
-                <a href="#"><i class="bi bi-bell"></i></a>
-                <a href="#"><i class="bi bi-person"></i></a>
-            </div>
-
-            <div class="hamburger" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+      <div class="header-container">
+        <div class="logo-group">
+          <img src="/img/Logo.png" alt="LogoBackToTheGame" class="imgLogo" />
+          <div class="logo">Back to the game</div>
         </div>
 
-        <div class="mobile-menu" id="mobileMenu">
-            <a href="/homepage.html">Inicio</a>
-            <a href="/Pages/tienda.html">Tienda</a>
-            <a href="/Pages/About.html">Nosotros</a>
-            <a href="/Pages/contacto.html">Contáctenos</a>
-            <div class="mobile-icons">
-                <a href="#"><i class="bi bi-cart"></i></a>
-                <a href="#"><i class="bi bi-bell"></i></a>
-                <a href="#"><i class="bi bi-person"></i></a>
-            </div>
+        <nav class="desktop-menu">
+          <a href="/homepage.html">Inicio</a>
+          <a href="/Pages/tienda.html">Tienda</a>
+          <a href="/Pages/About.html">Nosotros</a>
+          <a href="/Pages/contacto.html">Contáctenos</a>
+        </nav>
+
+        <div class="icons">
+          <a href="#"><i class="bi bi-cart"></i></a>
+          <a href="#"><i class="bi bi-bell"></i></a>
+          <a href="/Pages/registro.html"><i class="bi bi-person"></i></a>
         </div>
+
+        <div class="hamburger" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="/homepage.html">Inicio</a>
+        <a href="/Pages/tienda.html">Tienda</a>
+        <a href="/Pages/About.html">Nosotros</a>
+        <a href="/Pages/contacto.html">Contáctenos</a>
+        <div class="mobile-icons">
+          <a href="#"><i class="bi bi-cart"></i></a>
+          <a href="#"><i class="bi bi-bell"></i></a>
+          <a href="/Pages/registro.html"><i class="bi bi-person"></i></a>
+        </div>
+      </div>
     </header>
 
     <main class="contenedor-principal">
 
-        <section class="seccion-formulario" style="border-right: 1px solid #333; padding-right: 80px;">
-            <h1 class="contacto-titulo">Iniciar Sesión</h1>
+        <section class="seccion-formulario" >
+            <h1 class="contacto-titulo">Inicia Sesión</h1>
 
             <form id="formularioRegistro">
 
@@ -83,7 +82,8 @@
                 <button type="submit" class="boton-enviar">Iniciar Sesión</button>
             </form>
 
-            <p style="color: #999; margin-bottom: 30px;">¿Olvidaste tu contraseña?</p>
+            <p>¿Olvidaste tu contraseña?</p>
+            <p>¿Aún no tienes cuenta? <a href="/Pages/registro.html">Regístrate</a></p>
         </section>
 
     </main>
@@ -144,6 +144,7 @@
         </div>
     </footer>
 
+    <script src="/JS/login.js"></script>
     <script src="/JS/scriptHeader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

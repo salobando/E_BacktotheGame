@@ -154,7 +154,7 @@ body {
 
 /* CARD */
 .card-compras {
-    background-color: white !important;
+    background-color: #0d1b2a !important;
     border-radius: 18px;
     padding: 18px;
     box-shadow: 0 4px 18px rgb(9, 248, 85) !important;
@@ -220,10 +220,18 @@ body {
     animation: fadeIn 1.2s ease;
 }
 
+.precio-prod {
+    display: flex;
+    justify-content: space-around;
+    margin: 15px;
+    padding: 5px;
+    color: #fff;
+}
+
 /* BUTTONS */
 .btns {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .btn {
