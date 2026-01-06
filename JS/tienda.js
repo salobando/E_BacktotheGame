@@ -69,5 +69,43 @@ document.addEventListener("DOMContentLoaded", () => {
   if (cerrar) cerrar.onclick = () => document.getElementById("modalCarrito").style.display = "none";
   const seguir = document.getElementById("seguirComprando");
   if (seguir) seguir.onclick = () => document.getElementById("modalCarrito").style.display = "none";
+
+
+    // AGREGANDO CARD A TIENDA 
+
+    const contenedor = document.getElementById("consolas");
+    let productos = JSON.parse(localStorage.getItem("productos")) || [];
+
+    // FILTRAMOS SOLO LOS PUBLICADOS
+    const publicados = productos.filter(p => p.añadido === true);
+
+    publicados.forEach(prod => {
+        crearCardTienda(prod);
+    });
+
+      function crearCardTienda(prod) {
+      const card = document.createElement("div");
+      card.className = "card-compras animate-card";
+      card.dataset.id = prod.id;
+
+      card.innerHTML = `
+      <div class="img-box">
+        <img src="${prod.imagen}" alt="${prod.nombre}">
+      </div>
+
+      <h3 class="title-card">${prod.nombre}</h3>
+      <span class="precio-prod">$${Number(prod.precio).toLocaleString()}</span>
+
+     <div class="btns">
+      <button type="button" class="btn buy">Comprar</button>
+      <button type="button" class="btn add">Agregar</button>
+     </div>
+  `;
+
+
+    document.getElementById("consolas").appendChild(card);
+  }
+
+    
 });
 
