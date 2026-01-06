@@ -70,3 +70,43 @@
     align-self: flex-start;
     flex-direction: column;
 }
+
+.card-admin {
+  background-color: #0b0b0b;
+  border-radius: 16px;
+  box-shadow: 0 0 18px #1affa3;
+  border: none;
+}
+
+/* Texto blanco */
+.card-admin .card-title,
+.card-admin .card-text,
+.card-admin p,
+.card-admin span {
+  color: #ffffff;
+}
+
+/* Precio destacado */
+.card-admin .precio {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #1affa3;
+}
+
+/* Imagen */
+.card-admin img {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 10px;
+}
+
+/* Botones */
+.card-admin .btn-success {
+  background-color: #00c853;
+  border: none;
+}
+
+.card-admin .btn-danger {
+  background-color: #d32f2f;
+  border: none;
+}

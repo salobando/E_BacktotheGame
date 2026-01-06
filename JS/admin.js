@@ -131,13 +131,13 @@ function crearCardDesdeLocalStorage(produc) {
     card.style = 'width: 18rem; display: inline-block; margin: 12px; padding: 10px; text-align: center; border-radius: 12px; box-shadow: 0 0 18px #1affa3;';
 
     card.innerHTML = `
-    <div class="card h-100 text-center" style="border-radius: 12px; box-shadow: 0 0 18px #1affa3;">
+    <div class="card card-admin h-100 text-center">
         <img src="${produc.imagen}" class="card-img-top" alt="${produc.nombre}"
              style="height:180px; object-fit:contain; background:#fff;">
         <div class="card-body">
             <h5 class="card-title">${produc.nombre}</h5>
             <p class="card-text"><strong>ID:</strong> ${produc.id}</p>
-            <p class="card-text"><strong>Precio:</strong> $${produc.precio}</p>
+            <span class="card-text"><strong>Precio:</strong> $${produc.precio}</span>
             <p class="card-text"><strong>Cantidad:</strong> ${produc.cantidad}</p>
             <p class="card-text">${produc.descripcion}</p>
 
