@@ -47,6 +47,7 @@ formulario.addEventListener("submit", function (e) {
          // Guardar sesión 
         localStorage.setItem("usuarioNombre", usuarioRegistrado.nombre);
         localStorage.setItem("usuarioEmail", usuarioRegistrado.email);
+        localStorage.setItem("usuarioPassword", usuarioRegistrado.password);
 
         // Redirigir
         window.location.href = "/Pages/CarritoNew.html";
