@@ -79,8 +79,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // FILTRAMOS SOLO LOS PUBLICADOS
     const publicados = productos.filter(p => p.añadido === true);
 
-    publicados.forEach(prod => {
-        crearCardTienda(prod);
+    publicados.forEach(prod => { crearCardTienda(prod);
+
     });
 
       function crearCardTienda(prod) {
@@ -104,6 +104,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     document.getElementById("consolas").appendChild(card);
+
+
+//    contenedor.appendChild(card);
+
+  // este nos dice que ayuda a reforzar la animacion 
+ // card.classList.remove("animate-card");
+ // void card.offsetWidth; // fuerza reflow
+  //card.classList.add("animate-card");
   }
 
     
