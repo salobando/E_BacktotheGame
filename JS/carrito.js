@@ -117,4 +117,14 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+//Para mensaje de bienvenida
+const nombreUsuario = localStorage.getItem("usuarioNombre");
+const mensajeBienvenida = document.getElementById("mensajeBienvenida");
+const spanNombre = document.getElementById("nombreUsuario");
 
+// Mostrar solo si está logueado
+if (nombreUsuario) {
+    spanNombre.textContent = nombreUsuario;
+    mensajeBienvenida.style.display = "block";
+}
+  
