@@ -157,7 +157,6 @@ body {
     background-color: #0d1b2a !important;
     border-radius: 18px;
     padding: 18px;
-    box-shadow: 0 4px 18px rgb(9, 248, 85) !important;
     transition: transform 0.4s ease, box-shadow 0.4s ease;
     cursor: pointer;
     overflow: hidden;

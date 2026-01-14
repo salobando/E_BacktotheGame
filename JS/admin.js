@@ -41,7 +41,7 @@ function validationForm(event) {
     if (!idProducto.value.trim()) {
         showError('El ID del producto es requerido');
         return;
-    } else if (!esSoloNumeros(idProducto.value.trim())) { 
+    } else if (!esSoloNumeros(idProducto.value.trim())) {
         showError('El ID debe contener solo números');
         return;
     }
@@ -52,7 +52,7 @@ function validationForm(event) {
     } else if (nombreProducto.value.length < 3) {
         showError('El nombre debe tener al menos 3 caracteres');
         return;
-    } else if (!esSoloLetras(nombreProducto.value.trim())) { 
+    } else if (!esSoloLetras(nombreProducto.value.trim())) {
         showError('El nombre solo puede contener letras y espacios');
         return;
     }
@@ -61,14 +61,14 @@ function validationForm(event) {
     //  showError('El precio del producto es requerido');
     //    return;
     //} else if (!esPrecioValido(precioProducto.value.trim())) { 
-     //   showError('El precio debe ser un número');
+    //   showError('El precio debe ser un número');
     //    return;
     //}
 
     if (!cantidadProducto.value.trim()) {
         showError('La cantidad del producto es requerida');
         return;
-    } else if (!esCantidadValida(cantidadProducto.value.trim())) { 
+    } else if (!esCantidadValida(cantidadProducto.value.trim())) {
         showError('La cantidad debe ser un número');
         return;
     }
@@ -159,7 +159,8 @@ function crearCardDesdeLocalStorage(produc) {
     });
 
     /// Event AGRAGAR
-    card.querySelector(".publicar-btn").addEventListener("click", () => {publicarProducto(produc.id);
+    card.querySelector(".publicar-btn").addEventListener("click", () => {
+        publicarProducto(produc.id);
     });
 }
 
@@ -183,7 +184,7 @@ function publicarProducto(id) {
 
 /// Funcion para eliminar el producto
 function eliminarProducto(id) {
-    
+
     productosGuardados = productosGuardados.filter(prod => prod.id !== id);
 
     localStorage.setItem('productos', JSON.stringify(productosGuardados));
