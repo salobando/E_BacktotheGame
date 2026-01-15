@@ -110,3 +110,10 @@
   background-color: #d32f2f;
   border: none;
 }
+
+.card-admin .card-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 3; 
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

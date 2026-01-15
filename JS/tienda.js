@@ -97,7 +97,6 @@ document.addEventListener("DOMContentLoaded", () => {
       <span class="precio-prod">$${Number(prod.precio).toLocaleString()}</span>
 
      <div class="btns">
-      <button type="button" class="btn buy">Comprar</button>
       <button type="button" class="btn add">Agregar</button>
      </div>
   `;
