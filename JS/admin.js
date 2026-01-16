@@ -91,20 +91,39 @@ function validationForm(event) {
     const imagenInput = document.getElementById('imagenProducto');
     let imagenSrc = "/img/default.jpg";
 
+
     if (imagenInput.files.length > 0) {
-        imagenSrc = URL.createObjectURL(imagenInput.files[0]);
+    const file = imagenInput.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function () {
+
+        imagenSrc = reader.result;
+
+        guardarProducto(imagenSrc);
+    };
+
+    reader.readAsDataURL(file);
+    } else {
+    guardarProducto(imagenSrc);
     }
 
+}
+
+    function guardarProducto(imagenSrc) {
+
+    const { idProducto, nombreProducto, precioProducto, cantidadProducto, descripcionProducto } = adminForm.elements;
 
     const nuevoProducto = {
         id: idProducto.value,
         nombre: nombreProducto.value,
-        precio: precioProducto.value,
+        precio: Number(precioProducto.value),
         cantidad: cantidadProducto.value,
         descripcion: descripcionProducto.value,
-        imagen: imagenSrc,
-        añadir: false
+        imagen: imagenSrc, 
+        añadido: false
     };
+
 
     /// Guardar en LocalStorage
     productosGuardados.push(nuevoProducto);

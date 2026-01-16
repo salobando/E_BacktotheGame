@@ -64,15 +64,15 @@ header {
 }
 
 .icons a {
-    margin: 0 10px;
-    color: white;
-    font-size: 1.5rem;
-    transition: 0.3s;
+  margin: 0 10px;
+  color: white;
+  font-size: 1.5rem;
+  transition: 0.3s;
 }
 
 .icons a:hover {
-    color: var(--color-verdeclaro) !important;
-    transform: scale(1.1);
+  color: var(--color-verdeclaro) !important;
+  transform: scale(1.1);
 }
 
 
@@ -129,9 +129,9 @@ header {
   transform: scale(1.2);
 }
 
-.imgLogo{
-    width: 40px;
-    height: 40px;
+.imgLogo {
+  width: 40px;
+  height: 40px;
 }
 
 .logo-group {

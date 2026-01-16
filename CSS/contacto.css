@@ -28,8 +28,10 @@
 
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Alinea el contenido arriba */
-    padding-top: 230px; /* Empuja el contenido 50px hacia abajo */
+    align-items: flex-start;
+    /* Alinea el contenido arriba */
+    padding-top: 230px;
+    /* Empuja el contenido 50px hacia abajo */
 
 }
 
