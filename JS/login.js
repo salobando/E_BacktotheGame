@@ -39,8 +39,15 @@ formulario.addEventListener("submit", function (e) {
         password: "123456"
     };
 
+    const adminRegistrado = {
+        nombre: "Administrador",
+        email: "admin@gmail.com",
+        password: "admin123"
+    
+    };
+
     //  Validar credenciales
-    if (email === usuarioRegistrado.email && password === usuarioRegistrado.password) {
+    if(email === usuarioRegistrado.email && password === usuarioRegistrado.password) {
         // mensajeError.style.color = "#4CAF50";
         // mensajeError.textContent = "Inicio de sesión exitoso ✔";
 
@@ -52,7 +59,19 @@ formulario.addEventListener("submit", function (e) {
         // Redirigir
         window.location.href = "/Pages/CarritoNew.html";
       
+    } else if(email === adminRegistrado.email && password === adminRegistrado.password) {
+
+        // mensajeError.style.color = "#4CAF50";
+        // mensajeError.textContent = "Inicio de sesión exitoso ✔";
+
+        // Guardar sesión
+        localStorage.setItem("usuarioNombre", adminRegistrado.nombre);
+        localStorage.setItem("usuarioEmail", adminRegistrado.email);
+        localStorage.setItem("usuarioRol", "admin");
+
+        // Redirigir
+        window.location.href = "/Pages/admin.html";
     } else {
-        mensajeError.textContent = "Correo o contraseña incorrectos.";
+        mensajeError.textContent = "Correo o contraseña incorrecta";
     }
 });
