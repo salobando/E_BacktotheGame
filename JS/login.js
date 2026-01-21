@@ -34,8 +34,8 @@ formulario.addEventListener("submit", function (e) {
 
     //  usuario registrado
     const usuarioRegistrado = {
-        nombre: "Usuario 1",
-        email: "usuario@gmail.com",
+        nombre: "Danna",
+        email: "ds.salamanca2016@gmail.com",
         password: "123456"
     };
 
