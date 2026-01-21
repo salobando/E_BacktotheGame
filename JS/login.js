@@ -1,3 +1,4 @@
+console.log("--- ARCHIVO JS CARGADO CORRECTAMENTE ---");
 const formulario = document.getElementById("formularioRegistro");
 const emailInput = document.getElementById("emailUsuario");
 const passwordInput = document.getElementById("passwordUsuario");
@@ -32,46 +33,38 @@ formulario.addEventListener("submit", function (e) {
         return;
     }
 
-    //  usuario registrado
-    const usuarioRegistrado = {
-        nombre: "Danna",
-        email: "ds.salamanca2016@gmail.com",
-        password: "123456"
+    // --- NUEVA LÓGICA DE UNIÓN CON EL BACKEND ---
+    const datosLogin = {
+        email: email, // Cambiamos 'username' por 'email' para que coincida con tu clase Usuario en Java
+        password: password
     };
 
-    const adminRegistrado = {
-        nombre: "Administrador",
-        email: "admin@gmail.com",
-        password: "admin123"
+    // Petición al servidor de Java (IntelliJ)
+    fetch("http://localhost:8081/auth/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(datosLogin)
+    })
+    .then(response => {
+        console.log("Status del servidor:", response.status); 
+        if (!response.ok) {
+            throw new Error("Credenciales incorrectas. Verifica tu correo y contraseña.");
+        }
+        return response.text();
+    })
+    .then(token => {
+        console.log("Token recibido:", token); // <--- AGREGA ESTO
+        
+        // Si el token llega vacío, tampoco deberíamos dejarlo pasar
+        if (!token || token.trim() === "") {
+             throw new Error("El servidor no devolvió un permiso válido.");
+        }
 
-    };
-
-    //  Validar credenciales
-    if (email === usuarioRegistrado.email && password === usuarioRegistrado.password) {
-        // mensajeError.style.color = "#4CAF50";
-        // mensajeError.textContent = "Inicio de sesión exitoso ✔";
-
-        // Guardar sesión 
-        localStorage.setItem("usuarioNombre", usuarioRegistrado.nombre);
-        localStorage.setItem("usuarioEmail", usuarioRegistrado.email);
-        localStorage.setItem("usuarioPassword", usuarioRegistrado.password);
-
-        // Redirigir
+    localStorage.setItem("token", token);
+        localStorage.setItem("usuarioNombre", email.split('@')[0]);
+        alert("¡Bienvenido! Sesión iniciada.");
         window.location.href = "/Pages/CarritoNew.html";
-
-    } else if (email === adminRegistrado.email && password === adminRegistrado.password) {
-
-        // mensajeError.style.color = "#4CAF50";
-        // mensajeError.textContent = "Inicio de sesión exitoso ✔";
-
-        // Guardar sesión
-        localStorage.setItem("usuarioNombre", adminRegistrado.nombre);
-        localStorage.setItem("usuarioEmail", adminRegistrado.email);
-        localStorage.setItem("usuarioRol", "admin");
-
-        // Redirigir
-        window.location.href = "/Pages/admin.html";
-    } else {
-        mensajeError.textContent = "Correo o contraseña incorrecta";
-    }
+});
 });

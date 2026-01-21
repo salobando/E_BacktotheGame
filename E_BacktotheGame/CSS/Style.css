@@ -1,0 +1,155 @@
+/* =======================================================
+   VARIABLES DE COLOR (Basadas en la paleta de BackToTheGame)
+   ======================================================= */
+:root {
+    --color-black: #000000;
+    /* Verde principal: títulos Importantes */
+    --color-primary: #25d366;
+    /* Verde principal: títulos */
+    --color-verdeclaro: #25d366;
+    /* Verde Fluorescente: Para destacar */
+    --color-resaltar: #09F855;
+    /* Gris muy oscuro: Para el fondo de cards y elementos de borde */
+    --color-section: #2a2a2a;
+    /* Gris claro: Para párrafos y roles */
+    --color-secondary: #B3B3A3;
+}
+
+/* =======================================================
+   1. ESTILOS GLOBALES Y TIPOGRAFÍA
+   ======================================================= */
+body {
+    margin: 100px;
+    font-family: 'Montserrat', sans-serif;
+    /* Mantenemos el fondo negro y el texto gris claro de la rama de Eri */
+    background-color: var(--color-black) !important;
+    color: var(--color-secondary) !important;
+    text-align: justify !important;
+    line-height: 1.6;
+    padding-top: 80px;
+}
+
+.font-bebas {
+    font-family: 'Bebas Neue', cursive;
+    letter-spacing: 2px;
+}
+
+.font-montserrat {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+}
+
+.verde-primary {
+    color: var(--color-primary) !important;
+}
+
+.text-secondary-color {
+    color: var(--color-secondary) !important;
+}
+
+.border-section {
+    border-color: var(--color-section) !important;
+}
+
+/* =======================================================
+   ESTILOS TARJETAS (de rama-de-eri)
+   ======================================================= */
+.card {
+    background-color: var(--color-section) !important;
+    border: none !important;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    perspective: 1000px;
+    display: flex;
+}
+
+.object-fit-cover {
+    object-fit: cover;
+}
+
+.ratio {
+    transition: transform 0.4s ease;
+}
+
+.card:hover {
+    transform: scale(1.10);
+    box-shadow: 0 10px 30px rgba(138, 192, 61, 0.4);
+    z-index: 10;
+}
+
+.card:hover .ratio {
+    transform: rotateY(3deg);
+}
+
+.card-text {
+    margin-top: 5px;
+    display: flex;
+    padding: 5px;
+    text-align: end;
+}
+
+
+#agregarProducto:hover {
+    transform: none !important;
+    background-color: inherit !important;
+}
+
+.bg-dark {
+    background-color: var(--color-black) !important;
+    border-color: var(--color-section) !important;
+}
+
+
+@media (max-width: 992px) {
+    .header-container nav {
+        /* Oculta la navegación normal */
+        display: none;
+    }
+
+    .hamburger {
+        /* Muestra el botón de hamburguesa */
+        display: block;
+    }
+
+    /* Añade lógica JavaScript para mostrar/ocultar el menú al hacer clic en la hamburguesa */
+}
+
+/* Media Query para Teléfonos y Tabletas (Ej: hasta 768px) */
+@media (max-width: 768px) {
+
+    /* 1. Apilar las dos secciones */
+    .main-contenedor-principal {
+        flex-direction: column;
+        /* Cambia de horizontal a vertical */
+        padding: 20px;
+        /* Añade relleno general */
+    }
+
+    /* 2. Asegurar que las secciones internas ocupen el 100% del ancho */
+    .seccion-formulario,
+    .seccion-soporte {
+        width: 100% !important;
+        /* Fuerza el ancho completo */
+        border-right: none !important;
+        /* Quita el divisor vertical */
+        padding: 20px 0 !important;
+        /* Ajusta el padding vertical/horizontal */
+    }
+
+    /* 3. Estilos específicos para Formulario y Asistencia */
+    .seccion-formulario {
+        margin-bottom: 20px;
+    }
+}
+
+/* =======================================================
+   CORRECCIÓN: Arreglo de flujo después de la sección Header/Spiderman
+   ======================================================= */
+.contenedor-principal {
+    clear: both;
+    /* Fuerza al elemento a iniciar una nueva línea */
+    margin-top: 40px;
+    /* Espacio de separación entre el header de Spiderman y el formulario */
+
+    /* Nota: El resto de reglas de flexbox para el formulario ya están dentro del @media (max-width: 768px). 
+       No las duplicamos aquí, solo corregimos el flujo. */
+}

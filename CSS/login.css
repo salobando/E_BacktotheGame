@@ -84,36 +84,10 @@
     color: #4CAF50;
 }
 
-@media (max-width: 768px) {
-    .seccion-formulario {
-        padding: 40px 30px;
-        /* Reduce padding en tablet */
-        width: 90%;
-    }
-
-    .contacto-titulo {
-        font-size: 28px;
-    }
-}
-
+/* responsive */
 @media (max-width: 480px) {
     .seccion-formulario {
-        padding: 30px 20px;
-        /* Menos padding en móviles */
         width: 100%;
-    }
-
-    .contacto-titulo {
-        font-size: 24px;
-    }
-
-    .campo input {
-        padding: 12px;
-        font-size: 14px;
-    }
-
-    .boton-enviar {
-        padding: 12px;
-        font-size: 16px;
+        padding: 35px 30px;
     }
 }
