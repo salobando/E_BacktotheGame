@@ -1,238 +1,463 @@
+/* ==========================
+   Variables de colores
+=========================== */
 :root {
-  --neon: #00ff88;
-  --neon-dark: #00cc6a;
-  --muted: #9aa6b2;
-  --txt: #e6eef8;
+  --bg-body: #0b0c10;        /* Fondo oscuro tipo terminal */
+  --bg-card: #1f1f1f;        /* Fondo de tarjetas */
+  --txt: #3be08f;          /* Verde neón original */
+  --accent: #3be08f;         /* Verde acento */
+  --secondary: #0f0f0f;      /* Bordes y sombras */
+  --red: #ff3333;            /* Para eliminar / errores */
 }
 
+/* ==========================
+   Reset Base
+=========================== */
 * {
-  box-sizing: border-box
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif; /* Conservamos la tipografía original */
 }
 
 body {
-  background: linear-gradient(180deg, #02040a, #071021);
+  background-color: #0b0c10;
   color: var(--txt);
   font-family: "Montserrat", sans-serif;
-  margin: 0;
+  overflow-x: hidden;
+  position: relative;
 }
 
-/* Wrapper */
+
+/* ==========================
+   Wrapper
+=========================== */
 .carrito-wrap {
-  max-width: 1100px;
-  margin: 90px auto;
+  max-width: 1200px;
+  margin: 50px auto;
   padding: 16px;
 }
 
+/* ==========================
+   Título carrito con glow
+=========================== */
 .carrito-title {
-  text-align: center;
-  color: var(--neon);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--accent);
+  text-shadow: 0 0 6px var(--accent), 0 0 12px var(--accent);
   margin-bottom: 20px;
 }
 
-/* Layout */
-.carrito-grid {
-  display: grid;
-  grid-template-columns: 1fr 340px;
-  gap: 20px;
-  align-items: start;
+.carrito-title svg {
+  width: 32px;
+  height: 32px;
+  fill: var(--accent);
+  filter: drop-shadow(0 0 6px var(--accent));
 }
 
+/* ==========================
+   Grid carrito
+=========================== */
+.carrito-grid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 20px;
+}
+
+/* Lista carrito */
 .lista-carrito {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 }
 
-/* Card */
+/* Animación tarjetas */
+@keyframes floatIn {
+  0% {opacity:0; transform: translateY(20px);}
+  100% {opacity:1; transform: translateY(0);}
+}
+
 .item-card {
   display: flex;
-  gap: 12px;
+  gap: 16px;
   align-items: center;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
-  border-radius: 12px;
-  padding: 14px;
-  border: 1px solid rgba(0, 255, 136, 0.12);
+  background-color: var(--bg-card);
+  border-radius: 6px;
+  padding: 16px;
+  border: 1px solid var(--secondary);
+  animation: floatIn 0.5s ease forwards;
+  opacity: 0;
+  box-shadow: 0 0 8px var(--accent);
 }
 
 .item-card img {
-  width: 110px;
+  width: 100px;
   height: 80px;
   object-fit: contain;
-  border-radius: 8px;
-  border: 2px solid var(--neon);
+  border-radius: 4px;
+  border: 1px solid var(--accent);
+  filter: drop-shadow(0 0 4px var(--accent));
 }
 
-.item-info {
-  flex: 1;
-}
+/* Info producto */
+.item-info { flex:1; }
+.item-name { font-size:18px; font-weight:600; color:var(--txt);}
+.item-desc { font-size:14px; color:#66ff66; margin:4px 0;}
+.item-price, .subtotal-item { font-weight:600; color:var(--txt); }
 
-.item-name {
-  margin: 0;
-  font-weight: 700;
-  color: var(--neon);
-}
-
-.item-desc {
-  margin: 6px 0;
-  color: var(--muted);
-  font-size: 14px
-}
-
-.item-price {
-  font-weight: 700;
-  color: var(--txt);
-  margin-top: 4px
-}
-
-/* Actions */
+/* Acciones */
 .item-actions {
-  display: flex;
+  display:flex;
   flex-direction: column;
-  align-items: flex-end;
-  gap: 8px;
-  min-width: 170px;
+  gap:10px;
+  min-width:170px;
+  align-items:flex-end;
 }
 
-.qty-controls {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
+.qty-controls { display:flex; align-items:center; gap:8px; }
 .qty-controls button {
-  background: var(--neon);
-  border: none;
-  padding: 6px 10px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 700;
+  background-color: var(--bg-card);
+  border:1px solid var(--accent);
+  color: var(--txt);
+  padding:6px 12px;
+  border-radius:4px;
+  cursor:pointer;
+  font-weight:600;
+  text-shadow: 0 0 3px var(--accent);
 }
-
+.qty-controls button:hover { 
+  background-color: var(--accent); 
+  color:#000;
+  text-shadow: none;
+}
 .qty-controls input {
-  width: 56px;
-  text-align: center;
-  background: #061018;
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  color: var(--txt);
-  padding: 6px;
-  border-radius: 8px;
+  width:50px;
+  text-align:center;
+  background-color: var(--bg-card);
+  border:1px solid var(--accent);
+  color:var(--txt);
+  border-radius:4px;
 }
 
-.subtotal-item {
-  color: var(--txt);
-  margin-top: 6px;
-  font-weight: 700;
-}
-
+/* Botón eliminar */
 .btn-delete {
-  background: #ff5555;
-  color: white;
-  border: none;
-  padding: 6px 10px;
-  border-radius: 8px;
-  cursor: pointer;
+  background-color: var(--red);
+  color:#fff;
+  border:none;
+  padding:6px 14px;
+  border-radius:4px;
+  cursor:pointer;
+  font-weight:600;
+  box-shadow: 0 0 6px var(--red);
+}
+.btn-delete:hover { 
+  background-color:#ff5555;
+  box-shadow: 0 0 12px var(--red);
 }
 
-/* Resumen */
-.aside-resumen {
-  position: sticky;
-  top: 120px;
-}
-
+/* ==========================
+   Resumen carrito
+=========================== */
+.aside-resumen { position:sticky; top:100px; }
 .resumen-card {
-  background: linear-gradient(180deg, #071421, #06121a);
-  padding: 18px;
-  border-radius: 12px;
-  border: 1px solid rgba(0, 255, 136, 0.08);
+  background-color: var(--bg-card);
+  padding:24px;
+  border-radius:6px;
+  border:1px solid var(--secondary);
+  box-shadow: 0 0 8px var(--accent);
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+.resumen-card h3 { color: var(--accent); font-size:20px; text-shadow:0 0 6px var(--accent);}
+.resumen-line { display:flex; justify-content:space-between; color:var(--txt); font-weight:600; font-size:16px; }
+.resumen-line.total { font-size:18px; font-weight:700; }
+
+/* Botones resumen */
+.btn-procesar, .btn-eliminar-todo {
+  width:100%;
+  padding:12px;
+  border-radius:6px;
+  font-weight:700;
+  border:none;
+  cursor:pointer;
+  font-size:15px;
+  margin-top:8px;
+  text-shadow: 0 0 4px var(--accent);
+}
+.btn-procesar { 
+  background-color: var(--bg-card);
+  border: 1px solid var(--accent);
+  color: var(--txt);
+}
+.btn-procesar:hover { 
+  background-color: var(--accent);
+  color:#000;
+  box-shadow: 0 0 12px var(--accent);
+}
+.btn-eliminar-todo { 
+  background-color: var(--bg-card);
+  border: 1px solid var(--red);
+  color: var(--txt);
+}
+.btn-eliminar-todo:hover { 
+  background-color: var(--red);
+  box-shadow:0 0 12px var(--red);
+  color:#000;
 }
 
-.resumen-card h3 {
-  color: var(--neon);
-  margin-top: 0
+/* Botón volver a tienda */
+.btn-volver-tienda {
+  display:inline-block;
+  padding:12px 26px;
+  font-weight:700;
+  color:var(--txt);
+  background-color: var(--bg-card);
+  border:1px solid var(--accent);
+  border-radius:6px;
+  text-decoration:none;
+  text-shadow:0 0 4px var(--accent);
+  transition:all 0.3s ease;
+}
+.btn-volver-tienda:hover { 
+  background-color: var(--accent);
+  color:#000;
+  box-shadow:0 0 12px var(--accent);
 }
 
-.resumen-line {
-  display: flex;
-  justify-content: space-between;
-  padding: 6px 0;
-  color: var(--txt)
+/* ==========================
+   Métodos de pago con iconos
+=========================== */
+.metodos-pago {
+  display:flex;
+  justify-content: space-around;
+  margin-top:12px;
+  gap:12px;
 }
 
-.resumen-line.total {
-  font-size: 20px;
-  font-weight: 800
+.metodos-pago img {
+  height:48px;        /* tamaño destacado */
+  width:auto;
+  border:2px solid var(--accent);
+  border-radius:6px;
+  padding:4px;
+  filter: drop-shadow(0 0 6px var(--accent));
+  transition: all 0.3s ease;
 }
 
-.btn-procesar {
-  width: 100%;
-  margin-top: 12px;
-  padding: 12px;
-  border-radius: 12px;
-  border: none;
-  background: linear-gradient(90deg, var(--neon), var(--neon-dark));
-  color: #041014;
-  font-weight: 800;
-  cursor: pointer;
+.metodos-pago img:hover { 
+  filter: drop-shadow(0 0 12px var(--accent)) brightness(1.2);
+  transform: scale(1.1);
 }
 
-/* Empty */
+/* Carrito vacío */
 .empty {
-  padding: 36px;
-  text-align: center;
-  border: 1px dashed rgba(255, 255, 255, 0.04);
-  border-radius: 10px;
-  color: var(--muted);
+  padding:36px;
+  text-align:center;
+  border:2px dashed var(--accent);
+  border-radius:12px;
+  color:var(--txt);
+  font-size:16px;
 }
 
 /* Responsive */
-@media (max-width:980px) {
-  .carrito-grid {
-    grid-template-columns: 1fr 300px;
-  }
+@media (max-width:980px){ .carrito-grid{grid-template-columns:1fr 300px;} }
+@media (max-width:760px){ .carrito-grid{grid-template-columns:1fr;} .aside-resumen{position:static;} }
+
+
+
+/* =========================
+   Fondo video juegos retro
+========================= */
+.fondo-videojuegos {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  background: radial-gradient(circle at center, #0b0c10 0%, #050607 100%);
 }
 
-@media (max-width:760px) {
-  .carrito-wrap {
-    margin: 60px 12px
-  }
-
-  .carrito-grid {
-    grid-template-columns: 1fr
-  }
-
-  .aside-resumen {
-    position: static
-  }
-
-  .item-card {
-    flex-direction: row;
-    align-items: center
-  }
-
-  .item-info {
-    order: 3;
-    width: 100%
-  }
-
-  .item-actions {
-    order: 4;
-    align-items: center;
-    width: 100%
-  }
+/* Sprites pixelados */
+.sprite.pixel {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background-color: #3be08f;
+  border-radius: 2px;
+  opacity: 0.9;
+  animation: spriteMove linear infinite;
 }
 
-.swal2-dark-popup {
-  border: 2px solid #00c46a;
-  border-radius: 15px !important;
-  box-shadow: 0 0 15px #00ff8891;
+/* Diferentes tipos de sprites */
+.sprite.consola { left: 10%; animation-duration: 8s; }
+.sprite.control { left: 30%; animation-duration: 6s; }
+.sprite.moneda { left: 50%; animation-duration: 5s; }
+.sprite.vida { left: 70%; animation-duration: 7s; }
+.sprite.estrella { left: 85%; animation-duration: 6.5s; }
+
+/* Animación de caída flotante y parpadeo */
+@keyframes spriteMove {
+  0% { transform: translateY(-20px) scale(1); opacity:0; }
+  10% { opacity:0.8; }
+  50% { transform: translateY(50vh) scale(1.2); }
+  100% { transform: translateY(110vh) scale(1); opacity:0; }
 }
 
-.swal2-title-custom {
-  font-size: 22px !important;
-  font-weight: bold;
+/* Rayitas horizontales tipo pista de juego */
+.fondo-videojuegos::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(59,224,143,0.03),
+    rgba(59,224,143,0.03) 2px,
+    transparent 2px,
+    transparent 6px
+  );
+  animation: moveLines 2s linear infinite;
+  z-index: 1;
 }
 
-.swal2-text-custom {
-  font-size: 16px;
-  opacity: 0.8;
+@keyframes moveLines {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 16px; }
 }
+
+/* Scanlines CRT */
+.scanlines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(0,0,0,0.05),
+    rgba(0,0,0,0.05) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+/* Fondo retro arcade ultra-pro */
+.retro-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #111;
+  overflow: hidden;
+  z-index: -1;
+}
+
+/* Formas flotantes */
+.retro-background .shape {
+  position: absolute;
+  opacity: 0.5;
+  border-radius: 50%;
+  animation-name: float;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+/* Círculos */
+.retro-background .circle {
+  background: #39ff14;
+  box-shadow: 0 0 15px #39ff14;
+}
+
+/* Cuadrados */
+.retro-background .square {
+  background: #ff3c38;
+  box-shadow: 0 0 15px #ff3c38;
+}
+
+/* Triángulos */
+.retro-background .triangle {
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 30px solid #1e90ff;
+  background: none;
+  box-shadow: 0 0 15px #1e90ff;
+}
+
+/* Cruces */
+.retro-background .cross {
+  width: 20px;
+  height: 20px;
+  background: #ffdd00;
+  position: relative;
+}
+.retro-background .cross::before,
+.retro-background .cross::after {
+  content: '';
+  position: absolute;
+  background: #ffdd00;
+}
+.retro-background .cross::before {
+  left: 50%;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  transform: translateX(-50%);
+}
+.retro-background .cross::after {
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  transform: translateY(-50%);
+}
+
+/* Animación principal */
+@keyframes float {
+  0%   { transform: translateY(0) rotate(0deg); }
+  50%  { transform: translateY(300px) rotate(180deg); }
+  100% { transform: translateY(0) rotate(360deg); }
+}
+
+/* Posición, tamaño y velocidad aleatoria para cada forma */
+.retro-background .shape:nth-child(1)  { top: 5%;  left: 10%; width: 20px; height: 20px; animation-duration: 5s; }
+.retro-background .shape:nth-child(2)  { top: 20%; left: 80%; width: 25px; height: 25px; animation-duration: 7s; }
+.retro-background .shape:nth-child(3)  { top: 35%; left: 40%; width: 15px; height: 15px; animation-duration: 4s; }
+.retro-background .shape:nth-child(4)  { top: 60%; left: 20%; width: 30px; height: 30px; animation-duration: 6s; }
+.retro-background .shape:nth-child(5)  { top: 10%; left: 60%; width: 20px; height: 20px; animation-duration: 5.5s; }
+.retro-background .shape:nth-child(6)  { top: 25%; left: 30%; width: 18px; height: 18px; animation-duration: 6.5s; }
+.retro-background .shape:nth-child(7)  { top: 50%; left: 50%; width: 22px; height: 22px; animation-duration: 4.5s; }
+.retro-background .shape:nth-child(8)  { top: 70%; left: 70%; width: 28px; height: 28px; animation-duration: 5.2s; }
+.retro-background .shape:nth-child(9)  { top: 15%; left: 15%; width: 24px; height: 24px; animation-duration: 6.1s; }
+.retro-background .shape:nth-child(10) { top: 40%; left: 90%; width: 16px; height: 16px; animation-duration: 7.2s; }
+.retro-background .shape:nth-child(11) { top: 30%; left: 25%; width: 21px; height: 21px; animation-duration: 5.8s; }
+.retro-background .shape:nth-child(12) { top: 55%; left: 35%; width: 26px; height: 26px; animation-duration: 6.7s; }
+.retro-background .shape:nth-child(13) { top: 65%; left: 15%; width: 19px; height: 19px; animation-duration: 4.9s; }
+.retro-background .shape:nth-child(14) { top: 80%; left: 40%; width: 22px; height: 22px; animation-duration: 5.3s; }
+.retro-background .shape:nth-child(15) { top: 12%; left: 70%; width: 17px; height: 17px; animation-duration: 6.0s; }
+.retro-background .shape:nth-child(16) { top: 28%; left: 50%; width: 23px; height: 23px; animation-duration: 5.1s; }
+.retro-background .shape:nth-child(17) { top: 45%; left: 65%; width: 21px; height: 21px; animation-duration: 6.2s; }
+.retro-background .shape:nth-child(18) { top: 60%; left: 80%; width: 24px; height: 24px; animation-duration: 7.0s; }
+.retro-background .shape:nth-child(19) { top: 35%; left: 70%; width: 20px; height: 20px; animation-duration: 5.4s; }
+.retro-background .shape:nth-child(20) { top: 50%; left: 20%; width: 18px; height: 18px; animation-duration: 6.8s; }
+.retro-background .shape:nth-child(21) { top: 70%; left: 10%; width: 28px; height: 28px; animation-duration: 4.7s; }
+.retro-background .shape:nth-child(22) { top: 15%; left: 40%; width: 16px; height: 16px; animation-duration: 5.9s; }
+.retro-background .shape:nth-child(23) { top: 35%; left: 90%; width: 22px; height: 22px; animation-duration: 6.3s; }
+.retro-background .shape:nth-child(24) { top: 60%; left: 50%; width: 19px; height: 19px; animation-duration: 5.5s; }
+.retro-background .shape:nth-child(25) { top: 25%; left: 65%; width: 20px; height: 20px; animation-duration: 7.1s; }
+.retro-background .shape:nth-child(26) { top: 45%; left: 80%; width: 21px; height: 21px; animation-duration: 4.8s; }
+.retro-background .shape:nth-child(27) { top: 70%; left: 40%; width: 23px; height: 23px; animation-duration: 5.6s; }
+.retro-background .shape:nth-child(28) { top: 10%; left: 90%; width: 17px; height: 17px; animation-duration: 6.4s; }
+.retro-background .shape:nth-child(29) { top: 55%; left: 10%; width: 25px; height: 25px; animation-duration: 5.7s; }
+.retro-background .shape:nth-child(30) { top: 80%; left: 70%; width: 22px; height: 22px; animation-duration: 6.6s; }
