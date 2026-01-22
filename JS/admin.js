@@ -11,9 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     productosGuardados.forEach(prod => crearCardDesdeLocalStorage(prod));
 });
 
-
 adminForm.addEventListener('submit', validationForm);
-
 
 function esSoloNumeros(valor) {
     return /^[0-9]+$/.test(valor);
@@ -23,28 +21,23 @@ function esSoloLetras(valor) {
     return /^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s]+$/.test(valor);
 }
 
-//function esPrecioValido(valor) {
-//    return /^[0-9]+(\.[0-9]{1,2})?$/.test(valor) && parseFloat(valor) > 0;
-//}
-
 function esCantidadValida(valor) {
     return /^[0-9]+$/.test(valor) && parseInt(valor) > 0;
 }
 
+/// Validar que la URL sea de imagen
+function esUrlImagen(url) {
+    return /\.(jpg|jpeg|png|gif|webp)$/i.test(url);
+}
 
 function validationForm(event) {
     event.preventDefault();
 
-    const { idProducto, nombreProducto, precioProducto, cantidadProducto, descripcionProducto } = adminForm.elements;
-    errorMessages.innerHTML = "";
+    const { nombreProducto, precioProducto, cantidadProducto, descripcionProducto } = adminForm.elements;
+    const categoriaProducto = document.getElementById("categoriaProducto");
+    const imagenInput = document.getElementById("imagenProducto");
 
-    if (!idProducto.value.trim()) {
-        showError('El ID del producto es requerido');
-        return;
-    } else if (!esSoloNumeros(idProducto.value.trim())) {
-        showError('El ID debe contener solo números');
-        return;
-    }
+    errorMessages.innerHTML = "";
 
     if (!nombreProducto.value.trim()) {
         showError('El nombre del producto es requerido');
@@ -53,23 +46,23 @@ function validationForm(event) {
         showError('El nombre debe tener al menos 3 caracteres');
         return;
     } else if (!esSoloLetras(nombreProducto.value.trim())) {
-        showError('El nombre solo puede contener letras y espacios');
+        showError('El nombre solo puede contener letras y números');
         return;
     }
 
-    //if (!precioProducto.value.trim()) {
-    //  showError('El precio del producto es requerido');
-    //    return;
-    //} else if (!esPrecioValido(precioProducto.value.trim())) { 
-    //   showError('El precio debe ser un número');
-    //    return;
-    //}
+    if (!precioProducto.value.trim()) {
+        showError('El precio del producto es requerido');
+        return;
+    } else if (!esSoloNumeros(precioProducto.value.trim())) {
+        showError('El precio debe ser un número');
+        return;
+    }
 
     if (!cantidadProducto.value.trim()) {
         showError('La cantidad del producto es requerida');
         return;
     } else if (!esCantidadValida(cantidadProducto.value.trim())) {
-        showError('La cantidad debe ser un número');
+        showError('La cantidad debe ser un número válido');
         return;
     }
 
@@ -78,75 +71,93 @@ function validationForm(event) {
         return;
     }
 
-    // validamos id duplicads
-    const existe = productosGuardados.some(prod => prod.id === idProducto.value);
-
-    if (existe) {
-        alert(" Este producto ya está agregado con ese ID");
+    if (!categoriaProducto.value) {
+        showError('Debe seleccionar una categoría');
         return;
     }
 
-
-    // Imagen
-    const imagenInput = document.getElementById('imagenProducto');
-    let imagenSrc = "/img/default.jpg";
-
-
-    if (imagenInput.files.length > 0) {
-    const file = imagenInput.files[0];
-    const reader = new FileReader();
-
-    reader.onload = function () {
-
-        imagenSrc = reader.result;
-
-        guardarProducto(imagenSrc);
-    };
-
-    reader.readAsDataURL(file);
-    } else {
-    guardarProducto(imagenSrc);
+    /// Validación de imagen por URL
+    if (!imagenInput.value.trim()) {
+        showError("La URL de la imagen es obligatoria");
+        return;
     }
 
+    if (!esUrlImagen(imagenInput.value.trim())) {
+        showError("La URL debe terminar en .jpg, .png, .gif o .webp");
+        return;
+    }
+
+    // Imagen (URL)
+    guardarProducto(imagenInput.value.trim());
 }
 
-    function guardarProducto(imagenSrc) {
+function guardarProducto(imagenSrc) {
 
-    const { idProducto, nombreProducto, precioProducto, cantidadProducto, descripcionProducto } = adminForm.elements;
+    const { nombreProducto, precioProducto, cantidadProducto, descripcionProducto } = adminForm.elements;
+    const categoriaProducto = document.getElementById("categoriaProducto");
 
     const nuevoProducto = {
-        id: idProducto.value,
-        nombre: nombreProducto.value,
+        id: Date.now(), // ID temporal solo para frontend
+        nombre: nombreProducto.value.trim(),
         precio: Number(precioProducto.value),
         cantidad: cantidadProducto.value,
-        descripcion: descripcionProducto.value,
-        imagen: imagenSrc, 
+        descripcion: descripcionProducto.value.trim(),
+        imagen: imagenSrc,
         añadido: false
     };
 
-
-    /// Guardar en LocalStorage
+    /// Guardar en LocalStorage (opcional / solo visual)
     productosGuardados.push(nuevoProducto);
     localStorage.setItem('productos', JSON.stringify(productosGuardados));
 
     /// Crear la card visual
     crearCardDesdeLocalStorage(nuevoProducto);
 
+    /// se crea el producto directo a la bd
+    fetch("http://localhost:8080/producto/crear", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            nombre: nombreProducto.value.trim(),
+            descripcion: descripcionProducto.value.trim(),
+            precio: Number(precioProducto.value),
+            stock: Number(cantidadProducto.value),
+            imagen: imagenSrc,
+            categoria: {
+                idCategoria: Number(categoriaProducto.value)
+            }
+        })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Error al guardar en backend");
+        }
+        return response.text();
+    })
+    .then(data => {
+        console.log("Producto guardado en BD:", data);
+    })
+    .catch(error => {
+        console.error("Error:", error);
+    });
+
+    // hasta acaaaa
+
     alert('Producto agregado con éxito');
     adminForm.reset();
 }
-
 
 function showError(error) {
     errorMessages.innerHTML = `<p>${error}</p>`;
 }
 
-
 function crearCardDesdeLocalStorage(produc) {
 
     const card = document.createElement('div');
     card.className = 'col-12 col-sm-6 col-md-4 col-lg-3 mb-4';
-    card.dataset.id = produc.id; // ID del producto
+    card.dataset.id = produc.id;
     card.style = 'width: 18rem; display: inline-block; margin: 12px; padding: 10px; text-align: center; border-radius: 12px; box-shadow: 0 0 18px #1affa3;';
 
     card.innerHTML = `
@@ -155,7 +166,6 @@ function crearCardDesdeLocalStorage(produc) {
              style="height:180px; object-fit:contain; background:#fff;">
         <div class="card-body">
             <h5 class="card-title">${produc.nombre}</h5>
-            <p class="card-text"><strong>ID:</strong> ${produc.id}</p>
             <span class="card-text"><strong>Precio:</strong> $${produc.precio}</span>
             <p class="card-text"><strong>Cantidad:</strong> ${produc.cantidad}</p>
             <p class="card-text">${produc.descripcion}</p>
@@ -177,14 +187,13 @@ function crearCardDesdeLocalStorage(produc) {
         eliminarProducto(produc.id);
     });
 
-    /// Event AGRAGAR
+    /// Event AGREGAR
     card.querySelector(".publicar-btn").addEventListener("click", () => {
         publicarProducto(produc.id);
     });
 }
 
 /// Funcion para agregar el producto
-
 function publicarProducto(id) {
     let productos = JSON.parse(localStorage.getItem("productos")) || [];
 
@@ -199,18 +208,12 @@ function publicarProducto(id) {
     alert("Producto enviado a tienda");
 }
 
-
-
 /// Funcion para eliminar el producto
 function eliminarProducto(id) {
 
     productosGuardados = productosGuardados.filter(prod => prod.id !== id);
-
     localStorage.setItem('productos', JSON.stringify(productosGuardados));
 
     const card = document.querySelector(`[data-id="${id}"]`);
     if (card) card.remove();
 }
-
-
-
