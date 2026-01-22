@@ -3,10 +3,10 @@ const form = document.getElementById('formularioRegistro');
 const mensajeError = document.getElementById('mensajeError');
 
 // Escuchar el evento de envío (submit) del formulario
-form.addEventListener('submit', function(event) {
+form.addEventListener('submit', function (event) {
     // 1. Evitar que el formulario se envíe por defecto (para que JS maneje la validación)
-    event.preventDefault(); 
-    
+    event.preventDefault();
+
     // Obtener y limpiar los valores de los campos
     const nombre = document.getElementById('nombre').value.trim();
     const apellido = document.getElementById('apellido').value.trim();
@@ -16,15 +16,15 @@ form.addEventListener('submit', function(event) {
 
     // Resetear mensajes de error
     mensajeError.textContent = '';
-    
+
     // 2. Ejecutar la Función JavaScript para Validaciones
     if (!validarFormulario(nombre, apellido, telefono, email, password)) {
         // Si la validación falla, la función interna ya habrá puesto el mensaje en pantalla.
-        return; 
+        return;
     }
 
     // Si la validación es exitosa:
-    
+
     // Unir Nombre y Apellido para cumplir con el requisito de "Nombre completo"
     const nombreCompleto = `${nombre} ${apellido}`;
 
@@ -40,18 +40,18 @@ form.addEventListener('submit', function(event) {
     try {
         // Convertir el objeto JavaScript a una cadena JSON
         const usuarioJSON = JSON.stringify(nuevoUsuario);
-        
+
         // Guardar la cadena JSON en localStorage bajo la clave 'usuarioRegistrado'
         localStorage.setItem('usuarioRegistrado', usuarioJSON);
 
         // Mostrar mensaje de éxito
         mensajeError.style.color = '#4CAF50'; // Color de éxito (verde)
         mensajeError.textContent = '¡Registro exitoso! Puedes iniciar sesión ahora.';
-        
+
         console.log("Datos de usuario guardados en localStorage:", nuevoUsuario);
-        
+
         // Limpiar el formulario después del éxito
-        form.reset(); 
+        form.reset();
 
         // Opcional: Redirigir al login después de un breve retraso
         // setTimeout(() => {
@@ -73,13 +73,13 @@ form.addEventListener('submit', function(event) {
  * @returns {boolean} True si el formulario es válido, False si no lo es.
  */
 function validarFormulario(nombre, apellido, telefono, email, password) {
-    
+
     // Validación 1: Campos de Nombre/Apellido vacíos
     if (nombre === '' || apellido === '') {
         mensajeError.textContent = 'Por favor, ingrese su nombre y apellido.';
         return false;
     }
-    
+
     // Validación 2: Campos obligatorios restantes vacíos
     if (telefono === '' || email === '' || password === '') {
         mensajeError.textContent = 'Por favor, complete todos los campos requeridos (Teléfono, Correo y Contraseña).';
@@ -96,7 +96,7 @@ function validarFormulario(nombre, apellido, telefono, email, password) {
 
     // Validación 4: Teléfono (Solo números y longitud mínima/máxima razonable)
     // Permite de 7 a 15 dígitos numéricos.
-    const telefonoRegex = /^[0-9]{7,15}$/; 
+    const telefonoRegex = /^[0-9]{7,15}$/;
     if (!telefonoRegex.test(telefono)) {
         mensajeError.textContent = 'El número de teléfono debe contener solo dígitos y tener entre 7 y 15 caracteres.';
         return false;
@@ -107,7 +107,7 @@ function validarFormulario(nombre, apellido, telefono, email, password) {
         mensajeError.textContent = 'La contraseña debe tener al menos 6 caracteres.';
         return false;
     }
-    
+
     // Si todas las validaciones pasan
     return true;
 }

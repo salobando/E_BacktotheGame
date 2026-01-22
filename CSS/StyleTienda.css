@@ -32,23 +32,24 @@
 
 /* GRID BASE */
 .cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 25px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
     padding: 0 30px 30px;
 }
 
 /* CARD */
 .card-compras {
-    background-color: #0d1b2a !important;
+    background: rgba(33, 37, 41, 0.45);
     border-radius: 18px;
     padding: 18px;
+    width: 250px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
     transition: transform 0.4s ease, box-shadow 0.4s ease;
-    cursor: pointer;
-    overflow: hidden;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeUp 0.6s ease forwards;
+    box-shadow: 9px 11px 0px -4px rgba(59, 224, 143, 0.34);
+    -webkit-box-shadow: 9px 11px 0px -4px rgba(59, 224, 143, 0.34);
+    -moz-box-shadow: 9px 11px 0px -4px rgba(59, 224, 143, 0.34);
 }
 
 .card-compras:nth-child(1) {
@@ -93,27 +94,24 @@
 
 
 .card-compras:hover {
-    transform: translateY(-8px) scale(1.05) !important;
-    box-shadow: 0 12px 28px rgba(22, 22, 22, 0.25) !important;
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
 }
 
 /* IMAGE */
 .img-box {
     width: 100%;
-    height: 150px;
+    aspect-ratio: 1 / 1;
     background: #f3f3f3;
     border-radius: 12px;
     overflow: hidden;
     margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .img-box img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     transition: transform 0.6s ease;
 }
 
@@ -475,24 +473,29 @@
     background: rgba(0, 0, 0, 0.6);
     z-index: 999999 !important;
     /* por encima de todo */
-    display: none;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 20px;
+    display: none;
 }
 
-/* Caja del modal */
+/* Caja del modal de la compra */
 .modal-content {
-    background: white !important;
+    background: #004346 !important;
+    display: flex;
+    flex-direction: column;
     filter: none;
     padding: 25px;
     width: 100%;
-    max-width: 600px;
+    max-width: 400px;
     border-radius: 15px;
     padding: 25px;
     animation: fadeIn 0.3s ease;
     position: relative;
 }
+
 
 /* Botón de cerrar */
 .close-btn {
@@ -506,12 +509,13 @@
 /* Producto */
 .modal-prod {
     display: flex;
-    gap: 15px;
+    flex-direction: column;
+    align-items: center;
     margin-top: 10px;
 }
 
 .modal-prod img {
-    width: 70px;
+    width: 150px;
     border-radius: 5px;
 }
 
@@ -519,6 +523,18 @@
     margin-top: 20px;
     display: flex;
     justify-content: space-between;
+}
+
+#modalCarrito h3 {
+    text-align: center;
+}
+
+
+#modalPrecio,
+#modalTitulo {
+    padding-top: 15px;
+    text-align: center;
+    color: #fff;
 }
 
 .irCarrito {

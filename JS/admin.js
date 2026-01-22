@@ -130,18 +130,18 @@ function guardarProducto(imagenSrc) {
             }
         })
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error("Error al guardar en backend");
-        }
-        return response.text();
-    })
-    .then(data => {
-        console.log("Producto guardado en BD:", data);
-    })
-    .catch(error => {
-        console.error("Error:", error);
-    });
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Error al guardar en backend");
+            }
+            return response.text();
+        })
+        .then(data => {
+            console.log("Producto guardado en BD:", data);
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
 
     // hasta acaaaa
 

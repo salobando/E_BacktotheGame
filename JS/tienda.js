@@ -71,24 +71,25 @@ document.addEventListener("DOMContentLoaded", () => {
   if (seguir) seguir.onclick = () => document.getElementById("modalCarrito").style.display = "none";
 
 
-    // AGREGANDO CARD A TIENDA 
+  // AGREGANDO CARD A TIENDA 
 
-    const contenedor = document.getElementById("consolas");
-    let productos = JSON.parse(localStorage.getItem("productos")) || [];
+  const contenedor = document.getElementById("consolas");
+  let productos = JSON.parse(localStorage.getItem("productos")) || [];
 
-    // FILTRAMOS SOLO LOS PUBLICADOS
-    const publicados = productos.filter(p => p.añadido === true);
+  // FILTRAMOS SOLO LOS PUBLICADOS
+  const publicados = productos.filter(p => p.añadido === true);
 
-    publicados.forEach(prod => { crearCardTienda(prod);
+  publicados.forEach(prod => {
+    crearCardTienda(prod);
 
-    });
+  });
 
-      function crearCardTienda(prod) {
-      const card = document.createElement("div");
-      card.className = "card-compras animate-card";
-      card.dataset.id = prod.id;
+  function crearCardTienda(prod) {
+    const card = document.createElement("div");
+    card.className = "card-compras animate-card";
+    card.dataset.id = prod.id;
 
-      card.innerHTML = `
+    card.innerHTML = `
       <div class="img-box">
         <img src="${prod.imagen}" alt="${prod.nombre}">
       </div>
@@ -105,14 +106,14 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("consolas").appendChild(card);
 
 
-//    contenedor.appendChild(card);
+    //    contenedor.appendChild(card);
 
-  // este nos dice que ayuda a reforzar la animacion 
- // card.classList.remove("animate-card");
- // void card.offsetWidth; // fuerza reflow
-  //card.classList.add("animate-card");
+    // este nos dice que ayuda a reforzar la animacion 
+    // card.classList.remove("animate-card");
+    // void card.offsetWidth; // fuerza reflow
+    //card.classList.add("animate-card");
   }
 
-    
+
 });
 
