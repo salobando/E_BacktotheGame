@@ -61,6 +61,7 @@
         </div>
       </div>
 
+
       <div class="mobile-menu" id="mobileMenu">
         <a href="/homepage.html">Inicio</a>
         <a href="/Pages/tienda.html">Tienda</a>
@@ -82,10 +83,12 @@
         <div id="errorMessages"></div>
 
         <form class="formulario">
-          <div class="grupo">
+         <!-- ID de html <div class="grupo">
             <label for="idProducto">ID Producto</label>
             <input type="text" id="idProducto" placeholder="123" required />
           </div>
+
+           -->
 
           <div class="grupo">
             <label for="nombreProducto">Nombre Producto</label>
@@ -99,13 +102,13 @@
 
           <div class="grupo">
             <label for="precioProducto">Precio Producto</label>
-            <input type="text" id="precioProducto" placeholder="10" required />
+            <input type="number" id="precioProducto" placeholder="10" required />
           </div>
 
           <div class="grupo">
-            <label for="cantidadProducto">Cantidad Producto</label>
+            <label for="cantidadProducto">Stock</label>
             <input
-              type="text"
+              type="number"
               id="cantidadProducto"
               placeholder="10"
               required
@@ -113,18 +116,26 @@
           </div>
 
           <div class="grupo">
-            <label for="imagenProducto">Imagen del Producto</label>
-            <input type="file" id="imagenProducto" accept="image/*" />
-            <small style="color: #666">Formatos aceptados: JPG, PNG, GIF</small>
+              <label for="categoriaProducto">Categoría</label>
+              <select id="categoriaProducto" required>
+              <option value="">Seleccione una categoría</option>
+              <option value="1">Consolas modernas</option>
+              <option value="2">Consolas retro</option>
+              </select>
           </div>
+
+          <!-- imagen--> 
+
+          <div class="grupo">
+            <label for="imagenProducto">URL de la imagen</label>
+            <input type="url" id="imagenProducto" required/>
+          </div>
+
 
           <div class="grupo">
             <label for="descripcionProducto">Descripción del Producto</label>
             <textarea
-              id="descripcionProducto"
-              placeholder="Escribe la descripción aquí..."
-              equired
-            ></textarea>
+              id="descripcionProducto" placeholder="Escribe la descripción aquí..." required></textarea>
           </div>
 
           <button type="submit" id="btnAgregar">Añadir</button>
