@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", () => {
 
   function parsePrice(text) {
@@ -17,77 +16,78 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function agregarProductoObjeto(prod) {
     const carrito = obtenerCarrito();
-    const idx = carrito.findIndex(p => p.nombre === prod.nombre);
-    if (idx >= 0) carrito[idx].cantidad = Number(carrito[idx].cantidad) + Number(prod.cantidad || 1);
-    else carrito.push(prod);
+    const idx = carrito.findIndex(p => p.idProducto === prod.idProducto);
+
+    if (idx >= 0) {
+      carrito[idx].cantidad += 1;
+    } else {
+      carrito.push({ ...prod, cantidad: 1 });
+    }
+
     guardarCarrito(carrito);
   }
 
+  // ============================
+  // EVENTOS DE BOTONES (AGREGAR)
+  // ============================
   document.addEventListener("click", (e) => {
     const addBtn = e.target.closest(".add");
-    const buyBtn = e.target.closest(".buy");
-    const btn = addBtn || buyBtn;
-    if (!btn) return;
+    if (!addBtn) return;
 
-    const card = btn.closest(".card-compras");
+    const card = addBtn.closest(".card-compras");
     if (!card) return;
 
-    const nombre = (card.querySelector(".title-card") || {}).textContent?.trim() || "Producto";
-    const img = (card.querySelector(".img-box img") || {}).src || "";
-    const precio = parsePrice((card.querySelector(".precio-prod") || {}).textContent || "");
-    const desc = (card.querySelector(".desc-card") || {}).textContent?.trim() || "";
+    const idProducto = Number(card.dataset.id);
+    const nombre = card.querySelector(".title-card")?.textContent || "";
+    const img = card.querySelector("img")?.src || "";
+    const precio = parsePrice(card.querySelector(".precio-prod")?.textContent || "");
 
-    const producto = { nombre, imagen: img, precio, descripcion: desc, cantidad: 1 };
+    const producto = { idProducto, nombre, imagen: img, precio };
+
     agregarProductoObjeto(producto);
 
-    if (addBtn) {
-      const modal = document.getElementById("modalCarrito");
-      if (modal) {
-        const titulo = document.getElementById("modalTitulo");
-        const modalImg = document.getElementById("modalImg");
-        const modalPrecio = document.getElementById("modalPrecio");
-        if (titulo) titulo.textContent = nombre;
-        if (modalImg) modalImg.src = img;
-        if (modalPrecio) modalPrecio.textContent = precio ? "$" + precio.toLocaleString() : "";
-        modal.style.display = "flex";
-      } else {
-        if (window.Swal) Swal.fire({ icon: "success", title: nombre + " agregado", timer: 1200, showConfirmButton: false });
-        else alert(nombre + " agregado al carrito");
-      }
-    }
-
-    if (buyBtn) {
-
-
-      ////// redirigir al carrito (ya se agregó)
-      window.location.href = "/Pages/Carrito.html";
+    // ======= MODAL =======
+    const modal = document.getElementById("modalCarrito");
+    if (modal) {
+      document.getElementById("modalTitulo").textContent = nombre;
+      document.getElementById("modalImg").src = img;
+      document.getElementById("modalPrecio").textContent = "$" + precio.toLocaleString();
+      modal.style.display = "flex";
     }
   });
 
-  ////////// Cerrar modal
+  // ========= CERRAR MODAL =========
   const cerrar = document.getElementById("cerrarModal");
   if (cerrar) cerrar.onclick = () => document.getElementById("modalCarrito").style.display = "none";
   const seguir = document.getElementById("seguirComprando");
   if (seguir) seguir.onclick = () => document.getElementById("modalCarrito").style.display = "none";
 
-
-  // AGREGANDO CARD A TIENDA 
+  // ====================================
+  // 🔥 CARGAR PRODUCTOS DESDE BACKEND
+  // ====================================
 
   const contenedor = document.getElementById("consolas");
-  let productos = JSON.parse(localStorage.getItem("productos")) || [];
 
-  // FILTRAMOS SOLO LOS PUBLICADOS
-  const publicados = productos.filter(p => p.añadido === true);
+  // LIMPIAMOS LOS PRODUCTOS ESTÁTICOS
+  contenedor.innerHTML = "";
 
-  publicados.forEach(prod => {
-    crearCardTienda(prod);
+  fetch("http://localhost:8080/producto")
+    .then(response => {
+      if (!response.ok) throw new Error("Error al cargar productos");
+      return response.json();
+    })
+    .then(productos => {
+      productos.forEach(prod => crearCardTienda(prod));
+    })
+    .catch(error => console.error(error));
 
-  });
-
+  // ===============================
+  // CREAR CARD DESDE BACKEND
+  // ===============================
   function crearCardTienda(prod) {
     const card = document.createElement("div");
     card.className = "card-compras animate-card";
-    card.dataset.id = prod.id;
+    card.dataset.id = prod.idProducto;
 
     card.innerHTML = `
       <div class="img-box">
@@ -97,23 +97,12 @@ document.addEventListener("DOMContentLoaded", () => {
       <h3 class="title-card">${prod.nombre}</h3>
       <span class="precio-prod">$${Number(prod.precio).toLocaleString()}</span>
 
-     <div class="btns">
-      <button type="button" class="btn add">Agregar</button>
-     </div>
-  `;
+      <div class="btns">
+        <button type="button" class="btn add">Agregar</button>
+      </div>
+    `;
 
-
-    document.getElementById("consolas").appendChild(card);
-
-
-    //    contenedor.appendChild(card);
-
-    // este nos dice que ayuda a reforzar la animacion 
-    // card.classList.remove("animate-card");
-    // void card.offsetWidth; // fuerza reflow
-    //card.classList.add("animate-card");
+    contenedor.appendChild(card);
   }
 
-
 });
-
