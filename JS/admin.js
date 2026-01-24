@@ -1,17 +1,24 @@
 /// Validacion de errores en el formulario del admin
 
-const adminForm = document.querySelector('.formulario');
+const adminForm = document.getElementById("formAgregarProducto");
+const adminFormEdi = document.getElementById("formEditarProducto");
 const errorMessages = document.querySelector('#errorMessages');
 const contenedorCards = document.querySelector('#contenedorCards');
 
-/// Cargamos productos desde LocalStorage al iniciar
-let productosGuardados = JSON.parse(localStorage.getItem('productos')) || [];
+adminForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    guardarProducto(imagenSrc);
+}, { once: true });
 
-document.addEventListener("DOMContentLoaded", () => {
-    productosGuardados.forEach(prod => crearCardDesdeLocalStorage(prod));
+adminFormEdi.addEventListener("submit", function (e) {
+    e.preventDefault();
+    guardarEdicionProducto();
 });
 
+
 adminForm.addEventListener('submit', validationForm);
+
+cargarTotalesCards();
 
 function esSoloNumeros(valor) {
     return /^[0-9]+$/.test(valor);
@@ -96,22 +103,6 @@ function guardarProducto(imagenSrc) {
     const { nombreProducto, precioProducto, cantidadProducto, descripcionProducto } = adminForm.elements;
     const categoriaProducto = document.getElementById("categoriaProducto");
 
-    const nuevoProducto = {
-        id: Date.now(), // ID temporal solo para frontend
-        nombre: nombreProducto.value.trim(),
-        precio: Number(precioProducto.value),
-        cantidad: cantidadProducto.value,
-        descripcion: descripcionProducto.value.trim(),
-        imagen: imagenSrc,
-        añadido: false
-    };
-
-    /// Guardar en LocalStorage (opcional / solo visual)
-    productosGuardados.push(nuevoProducto);
-    localStorage.setItem('productos', JSON.stringify(productosGuardados));
-
-    /// Crear la card visual
-    crearCardDesdeLocalStorage(nuevoProducto);
 
     /// se crea el producto directo a la bd
     fetch("http://localhost:8080/producto/crear", {
@@ -137,83 +128,241 @@ function guardarProducto(imagenSrc) {
             return response.text();
         })
         .then(data => {
-            console.log("Producto guardado en BD:", data);
+            Swal.fire({
+                icon: 'success', title: '¡Listo!',
+                text: 'Producto agregado con éxito',
+                timer: 2000, showConfirmButton: false
+            });
+            adminForm.reset();
+
+            // cerrar modal
+            bootstrap.Modal
+                .getInstance(document.getElementById("modalAgregarProducto"))
+                .hide();
+            //cargar productos bd
+            cargarProductosDesdeBD();
         })
         .catch(error => {
             console.error("Error:", error);
         });
 
-    // hasta acaaaa
-
-    alert('Producto agregado con éxito');
-    adminForm.reset();
 }
 
 function showError(error) {
     errorMessages.innerHTML = `<p>${error}</p>`;
 }
 
-function crearCardDesdeLocalStorage(produc) {
+function guardarEdicionProducto() {
 
-    const card = document.createElement('div');
-    card.className = 'col-12 col-sm-6 col-md-4 col-lg-3 mb-4';
-    card.dataset.id = produc.id;
-    card.style = 'width: 18rem; display: inline-block; margin: 12px; padding: 10px; text-align: center; border-radius: 12px; box-shadow: 0 0 18px #1affa3;';
+    const id = document.getElementById("idProducto").value;
 
-    card.innerHTML = `
-    <div class="card card-admin h-100 text-center">
-        <img src="${produc.imagen}" class="card-img-top" alt="${produc.nombre}"
-             style="height:180px; object-fit:contain; background:#fff;">
-        <div class="card-body">
-            <h5 class="card-title">${produc.nombre}</h5>
-            <span class="card-text"><strong>Precio:</strong> $${produc.precio}</span>
-            <p class="card-text"><strong>Cantidad:</strong> ${produc.cantidad}</p>
-            <p class="card-text">${produc.descripcion}</p>
-
-            <button class="btn btn-success btn-sm publicar-btn" data-id="${produc.id}">
-                Añadir a tienda
-            </button>
-
-            <button class="btn btn-danger btn-sm eliminar-btn" data-id="${produc.id}">
-                Eliminar
-            </button>
-        </div>
-    </div>`;
-
-    contenedorCards.appendChild(card);
-
-    /// Event eliminar
-    card.querySelector(".eliminar-btn").addEventListener("click", () => {
-        eliminarProducto(produc.id);
-    });
-
-    /// Event AGREGAR
-    card.querySelector(".publicar-btn").addEventListener("click", () => {
-        publicarProducto(produc.id);
-    });
-}
-
-/// Funcion para agregar el producto
-function publicarProducto(id) {
-    let productos = JSON.parse(localStorage.getItem("productos")) || [];
-
-    productos = productos.map(p => {
-        if (p.id === id) {
-            p.añadido = true;
+    const producto = {
+        nombre: document.getElementById("nombre").value,
+        stock: document.getElementById("stock").value,
+        descripcion: document.getElementById("descripcion").value,
+        precio: document.getElementById("precio").value,
+        categoria: {
+            idCategoria: Number(document.getElementById("categoria").value)
         }
-        return p;
+    };
+
+
+    fetch(`http://localhost:8080/producto/editar/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(producto)
+    })
+        .then(response => {
+            if (!response.ok) throw new Error("Error al editar");
+            //return response.json();
+        })
+        .then(() => {
+            Swal.fire("Actualizado", "Producto editado correctamente", "success");
+
+            //cerrar modal
+            const modal = bootstrap.Modal.getInstance(
+                document.getElementById("modalEditarProducto")
+            );
+            if (modal) modal.hide();
+
+            cargarProductosDesdeBD();
+        })
+        .catch(error => console.error(error));
+}
+
+
+//mostrar cada seccion
+function mostrar(seccion) {
+    document.querySelectorAll(".seccion").forEach(s => s.style.display = "none");
+    document.getElementById(seccion).style.display = "block";
+
+    if (seccion === "productos") {
+        cargarProductosDesdeBD();
+    }
+}
+
+
+//listar todos los productos de la BD
+const tablaProductosBD = document.getElementById("tablaProductosBD");
+
+function cargarProductosDesdeBD() {
+    fetch("http://localhost:8080/producto")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Error al cargar productos");
+            }
+            return response.json();
+        })
+        .then(productos => {
+            tablaProductosBD.innerHTML = "";
+            productos.forEach(p => crearFilaProducto(p, p.categoria));
+        })
+        .catch(error => console.error(error));
+}
+
+function crearFilaProducto(p) {
+    const fila = document.createElement("tr");
+
+    fila.innerHTML = `
+    <td>${p.idProducto}</td>
+    <td>${p.nombre}</td>
+    <td>${p.stock}</td>
+    <td>${p.descripcion}</td>
+    <td>$${p.precio}</td>    
+    <td>
+      <button 
+        class="btn btn-verde-claro btn-sm"
+        onclick="editarProductoBD(${p.idProducto})">
+        Editar
+      </button>
+
+      <button 
+        class="btn btn-danger btn-sm"
+        onclick="eliminarProductoBD(${p.idProducto})">
+        Eliminar
+      </button>
+    </td>
+  `;
+
+    tablaProductosBD.appendChild(fila);
+}
+
+//ELIMINAR PRODUCTO DE LA BD
+function eliminarProductoBD(id) {
+    Swal.fire({
+        title: '¿Eliminar producto?',
+        text: 'Esta acción no se puede deshacer',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar',
+        confirmButtonColor: '#d33'
+    }).then((result) => {
+        if (!result.isConfirmed) return;
+
+        fetch(`http://localhost:8080/producto/borrar/${id}`, {
+            method: "DELETE"
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("No se pudo eliminar");
+                }
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Eliminado',
+                    text: 'Producto eliminado correctamente',
+                    timer: 1500,
+                    showConfirmButton: false
+                });
+
+                cargarProductosDesdeBD(); // refresca tabla
+            })
+            .catch(error => {
+                console.error(error);
+
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'No se pudo eliminar el producto'
+                });
+            });
+    });
+}
+
+
+//EDITAR PRODUCTO DE LA BD
+function editarProductoBD(id) {
+
+    fetch(`http://localhost:8080/producto/${id}`)
+        .then(response => response.json())
+        .then(p => {
+            document.getElementById("idProducto").value = p.idProducto;
+            document.getElementById("nombre").value = p.nombre;
+            document.getElementById("stock").value = p.stock;
+            document.getElementById("descripcion").value = p.descripcion;
+            document.getElementById("precio").value = p.precio;
+            document.getElementById("categoria").value = p.idCategoria;
+
+            const modal = new bootstrap.Modal(
+                document.getElementById("modalEditarProducto")
+            );
+            modal.show();
+        })
+        .catch(error => console.error(error));
+}
+
+// Exportar a Excel
+document.getElementById("exportExcel").addEventListener("click", function () {
+    // Obtener tabla
+    const tabla = document.getElementById("tablaProductosBD");
+    const wb = XLSX.utils.table_to_book(tabla, { sheet: "Productos" });
+    XLSX.writeFile(wb, "productos.xlsx");
+});
+
+
+// Exportar a PDF
+document.getElementById("exportPDF").addEventListener("click", function () {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    // Título
+    doc.setFontSize(16);
+    doc.text("Lista de Productos", 14, 20);
+
+    // Tabla (ignora última columna)
+    doc.autoTable({
+        startY: 25,
+        html: "#tablaProductosBD",
+        columnStyles: {
+            [document.querySelectorAll("#tablaProductosBD thead th").length - 1]: { cellWidth: 0, fontSize: 0 }
+        }
     });
 
-    localStorage.setItem("productos", JSON.stringify(productos));
-    alert("Producto enviado a tienda");
+    doc.save("productos.pdf");
+});
+
+function cargarTotalesCards() {
+
+    fetch("http://localhost:8080/producto/contar/categoria/1")
+        .then(res => res.json())
+        .then(total => {
+            document.getElementById("totalRetro").textContent = total;
+        });
+
+    fetch("http://localhost:8080/producto/contar/categoria/2")
+        .then(res => res.json())
+        .then(total => {
+            document.getElementById("totalModerna").textContent = total;
+        });
+
+    fetch("http://localhost:8080/producto/contar/categoria/5")
+        .then(res => res.json())
+        .then(total => {
+            document.getElementById("accesorios").textContent = total;
+        });
+
 }
 
-/// Funcion para eliminar el producto
-function eliminarProducto(id) {
-
-    productosGuardados = productosGuardados.filter(prod => prod.id !== id);
-    localStorage.setItem('productos', JSON.stringify(productosGuardados));
-
-    const card = document.querySelector(`[data-id="${id}"]`);
-    if (card) card.remove();
-}
