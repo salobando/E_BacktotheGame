@@ -10,14 +10,14 @@ function alerta(msg) {
 
 // BASE DE DATOS PRODUCTOS EXACTOS DE TU TIENDA
 const productosDB = {
-    "Nintendo":               { precio: 350000, imagen: "/IMG/CONSOLANITENDO.png" },
-    "GAMEBOY":                { precio: 200000, imagen: "/img/GameBoy.png" },
-    "PlAYSTATION":            { precio: 500000, imagen: "/img/Xboxnegro.png" },
-    "MAQUINA":                { precio: 420000, imagen: "/img/Maquina.jpg" },
-    "CONSOLA REMOVE":         { precio: 150000, imagen: "/img/Consolaremove.png" },
-    "PLAYSTATION 1":          { precio: 250000, imagen: "/img/Playstation1.png" },
-    "PLAYSTATION":            { precio: 400000, imagen: "/img/Playstation4.png" },
-    "XBOX":                   { precio: 600000, imagen: "/img/xbox.png" }
+    "Nintendo": { precio: 350000, imagen: "/IMG/CONSOLANITENDO.png" },
+    "GAMEBOY": { precio: 200000, imagen: "/img/GameBoy.png" },
+    "PlAYSTATION": { precio: 500000, imagen: "/img/Xboxnegro.png" },
+    "MAQUINA": { precio: 420000, imagen: "/img/Maquina.jpg" },
+    "CONSOLA REMOVE": { precio: 150000, imagen: "/img/Consolaremove.png" },
+    "PLAYSTATION 1": { precio: 250000, imagen: "/img/Playstation1.png" },
+    "PLAYSTATION": { precio: 400000, imagen: "/img/Playstation4.png" },
+    "XBOX": { precio: 600000, imagen: "/img/xbox.png" }
 };
 
 // AGREGAR AL CARRITO

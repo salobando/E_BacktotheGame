@@ -32,23 +32,24 @@
 
 /* GRID BASE */
 .cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 25px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
     padding: 0 30px 30px;
 }
 
 /* CARD */
 .card-compras {
-    background-color: #0d1b2a !important;
+    background: rgba(50, 53, 58, 0.45);
     border-radius: 18px;
     padding: 18px;
+    width: 250px;
+    border: 1px solid rgba(104, 103, 103, 0.473);
     transition: transform 0.4s ease, box-shadow 0.4s ease;
-    cursor: pointer;
-    overflow: hidden;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeUp 0.6s ease forwards;
+    /* box-shadow: 9px 11px 0px -4px rgba(59, 224, 143, 0.34);
+    -webkit-box-shadow: 9px 11px 0px -4px rgba(59, 224, 143, 0.34);
+    -moz-box-shadow: 9px 11px 0px -4px rgba(59, 224, 143, 0.34); */
 }
 
 .card-compras:nth-child(1) {
@@ -93,27 +94,24 @@
 
 
 .card-compras:hover {
-    transform: translateY(-8px) scale(1.05) !important;
-    box-shadow: 0 12px 28px rgba(22, 22, 22, 0.25) !important;
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
 }
 
 /* IMAGE */
 .img-box {
     width: 100%;
-    height: 150px;
-    background: #f3f3f3;
+    aspect-ratio: 1 / 1;
+    background: rgba(50, 53, 58, 0.45);
     border-radius: 12px;
     overflow: hidden;
     margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .img-box img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     transition: transform 0.6s ease;
 }
 
@@ -128,6 +126,7 @@
     font-size: 18px;
     font-weight: 600;
     animation: fadeIn 1.2s ease;
+    color: #fff;
 }
 
 .precio-prod {
@@ -465,82 +464,255 @@
     }
 }
 
-/* Fondo oscuro */
+
+/* ======================================================
+   MODAL CARRITO
+ */
+
+/* OVERLAY */
 .modal-overlay {
-    position: fixed !important;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.6);
-    z-index: 999999 !important;
-    /* por encima de todo */
-    display: none;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    z-index: 9999;
+    display: flex;
+    justify-content: flex-end;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
 }
 
-/* Caja del modal */
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/*MODAL CONTENIDO*/
 .modal-content {
-    background: white !important;
-    filter: none;
-    padding: 25px;
+    background: radial-gradient(circle at top,
+            #1e293b 0%,
+            #0f172a 65%);
+    color: #e5e7eb;
     width: 100%;
-    max-width: 600px;
-    border-radius: 15px;
-    padding: 25px;
-    animation: fadeIn 0.3s ease;
-    position: relative;
+    max-width: 420px;
+    height: 100%;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.4s ease;
+    box-shadow: -18px 0 55px rgba(0, 0, 0, 0.9);
+    border-radius: 22px 0 0 22px;
+    overflow-y: auto;
 }
 
-/* Botón de cerrar */
+.modal-overlay.active .modal-content {
+    transform: translateX(0);
+}
+
+/* SCROLL */
+.modal-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: #2563eb;
+    border-radius: 10px;
+}
+
+/* ==HEADER ==*/
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+}
+
+.modal-header h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
 .close-btn {
-    position: absolute;
-    right: 15px;
-    top: 10px;
-    font-size: 22px;
+    font-size: 26px;
     cursor: pointer;
+    color: #9ca3af;
+    transition: color 0.2s, transform 0.2s;
 }
 
-/* Producto */
+.close-btn:hover {
+    color: #ef4444;
+    transform: rotate(90deg) scale(1.1);
+}
+
+/* == PRODUCTO == */
 .modal-prod {
     display: flex;
-    gap: 15px;
-    margin-top: 10px;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid #1f2937;
+    animation: fadeUp 0.4s ease both;
 }
 
 .modal-prod img {
-    width: 70px;
-    border-radius: 5px;
+    width: 82px;
+    border-radius: 14px;
+    object-fit: cover;
+    border: 2px solid #1f2937;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
 }
 
-.modal-actions {
-    margin-top: 20px;
+/* ==INFO == */
+.modal-info h4 {
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+    color: #ffffff;
+}
+
+.modal-info p {
+    font-size: 0.9rem;
+    color: #9ca3af;
+}
+
+#modalPrecio {
+    font-weight: 700;
+    color: #38bdf8;
+}
+
+/* == CONTROLES == */
+.modal-controls {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-top: 12px;
 }
 
-.irCarrito {
-    padding: 10px 20px;
-    background: var(--color-black);
-    color: #fff;
-    border-radius: 5px;
-    text-decoration: none;
-}
-
-#seguirComprando {
-    background: none;
+.qty-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
     border: none;
-    color: var(--color-verdeclaro);
+    background: #1f2937;
+    color: #ffffff;
+    font-size: 18px;
     cursor: pointer;
-    font-size: 16px;
+    transition: background 0.2s, transform 0.2s;
 }
 
-@keyframes fadeIn {
+.qty-btn:hover {
+    background: #2563eb;
+    transform: scale(1.1);
+}
+
+#modalCantidad {
+    min-width: 32px;
+    text-align: center;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+/* ==ELIMINAR == */
+.delete-btn {
+    background: #ef4444;
+    border: none;
+    color: #ffffff;
+    font-size: 15px;
+    cursor: pointer;
+    padding: 10px 16px;
+    border-radius: 14px;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.delete-btn:hover {
+    background: #dc2626;
+    transform: translateY(-2px);
+}
+
+/* ==SUBTOTAL == */
+.modal-subtotal {
+    margin-top: 18px;
+    font-weight: 700;
+    font-size: 1.3rem;
+    text-align: right;
+    color: #ffffff;
+}
+
+/* ==ACCIONES == */
+.modal-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 26px;
+}
+
+/* BOTONES BASE */
+.btn-seguir,
+.btn-vaciar,
+.irCarrito {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px;
+    font-weight: 700;
+    border-radius: 16px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+/* ICONOS SVG */
+button svg,
+a svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+}
+
+/* VACÍAR */
+.btn-vaciar {
+    background: #b91c1c;
+    color: #ffffff;
+}
+
+.btn-vaciar:hover {
+    background: #991b1b;
+    transform: translateY(-2px);
+}
+
+/* SEGUIR */
+.btn-seguir {
+    background: #2563eb;
+    color: #ffffff;
+}
+
+.btn-seguir:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+/* IR AL CARRITO */
+.irCarrito {
+    background: #16a34a;
+    color: #ffffff;
+    box-shadow: 0 0 0 rgba(22, 163, 74, 0);
+}
+
+.irCarrito:hover {
+    background: #15803d;
+    transform: translateY(-2px);
+    box-shadow: 0 0 25px rgba(22, 163, 74, 0.6);
+}
+
+/* ==ANIMACIONES == */
+@keyframes fadeUp {
     from {
         opacity: 0;
-        transform: translateY(-10px);
+        transform: translateY(10px);
     }
 
     to {
@@ -548,6 +720,24 @@
         transform: translateY(0);
     }
 }
+
+/* == MOBILE == */
+@media (max-width: 480px) {
+    .modal-content {
+        max-width: 100%;
+        border-radius: 0;
+        padding: 22px;
+    }
+
+    .modal-header h3 {
+        font-size: 1.3rem;
+    }
+
+    .modal-prod img {
+        width: 70px;
+    }
+}
+
 
 /* contador carrito*/
 .cart-count {
@@ -565,4 +755,70 @@
 
 .carrito-icono {
     position: relative;
+}
+
+/*cards principales marcas*/
+.marcas {
+    padding-top: 5px 20px 0;
+}
+
+.game-card {
+    position: relative;
+    width: 200px;
+    height: 240px;
+    overflow: hidden;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.game-card:hover {
+    transform: scale(1.05);
+}
+
+.main-img {
+    border-radius: 15px;
+    width: 60%;
+    height: 60%;
+    object-fit: cover;
+}
+
+/* Imagen que aparece al lado */
+.hover-img {
+    position: absolute;
+    top: 50%;
+    right: -100px;
+    transform: translateY(-70%);
+    width: 50%;
+    height: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease, right 0.3s ease;
+    pointer-events: none;
+}
+
+.game-card:hover .hover-img {
+    opacity: 1;
+    right: -20px;
+}
+
+/* Marca inferior */
+.brand {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 6px 16px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.xbox {
+    background: #107c10;
+}
+
+.playstation {
+    background: #003087;
+}
+
+.nintendo {
+    background: #e60012;
 }

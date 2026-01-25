@@ -43,23 +43,23 @@ formulario.addEventListener("submit", function (e) {
         nombre: "Administrador",
         email: "admin@gmail.com",
         password: "admin123"
-    
+
     };
 
     //  Validar credenciales
-    if(email === usuarioRegistrado.email && password === usuarioRegistrado.password) {
+    if (email === usuarioRegistrado.email && password === usuarioRegistrado.password) {
         // mensajeError.style.color = "#4CAF50";
         // mensajeError.textContent = "Inicio de sesión exitoso ✔";
 
-         // Guardar sesión 
+        // Guardar sesión 
         localStorage.setItem("usuarioNombre", usuarioRegistrado.nombre);
         localStorage.setItem("usuarioEmail", usuarioRegistrado.email);
         localStorage.setItem("usuarioPassword", usuarioRegistrado.password);
 
         // Redirigir
         window.location.href = "/Pages/CarritoNew.html";
-      
-    } else if(email === adminRegistrado.email && password === adminRegistrado.password) {
+
+    } else if (email === adminRegistrado.email && password === adminRegistrado.password) {
 
         // mensajeError.style.color = "#4CAF50";
         // mensajeError.textContent = "Inicio de sesión exitoso ✔";

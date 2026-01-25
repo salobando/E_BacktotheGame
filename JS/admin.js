@@ -1,19 +1,25 @@
 /// Validacion de errores en el formulario del admin
 
-const adminForm = document.querySelector('.formulario');
+const adminForm = document.getElementById("formAgregarProducto");
+const adminFormEdi = document.getElementById("formEditarProducto");
 const errorMessages = document.querySelector('#errorMessages');
 const contenedorCards = document.querySelector('#contenedorCards');
 
-/// Cargamos productos desde LocalStorage al iniciar
-let productosGuardados = JSON.parse(localStorage.getItem('productos')) || [];
+adminForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    guardarProducto(imagenSrc);
+}, { once: true });
 
-document.addEventListener("DOMContentLoaded", () => {
-    productosGuardados.forEach(prod => crearCardDesdeLocalStorage(prod));
+adminFormEdi.addEventListener("submit", function (e) {
+    e.preventDefault();
+    guardarEdicionProducto();
 });
 
 
 adminForm.addEventListener('submit', validationForm);
 
+cargarTotalesCards();
+cargarGrafica();
 
 function esSoloNumeros(valor) {
     return /^[0-9]+$/.test(valor);
@@ -23,28 +29,23 @@ function esSoloLetras(valor) {
     return /^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s]+$/.test(valor);
 }
 
-//function esPrecioValido(valor) {
-//    return /^[0-9]+(\.[0-9]{1,2})?$/.test(valor) && parseFloat(valor) > 0;
-//}
-
 function esCantidadValida(valor) {
     return /^[0-9]+$/.test(valor) && parseInt(valor) > 0;
 }
 
+/// Validar que la URL sea de imagen
+function esUrlImagen(url) {
+    return /\.(jpg|jpeg|png|gif|webp)$/i.test(url);
+}
 
 function validationForm(event) {
     event.preventDefault();
 
-    const { idProducto, nombreProducto, precioProducto, cantidadProducto, descripcionProducto } = adminForm.elements;
-    errorMessages.innerHTML = "";
+    const { nombreProducto, precioProducto, cantidadProducto, descripcionProducto } = adminForm.elements;
+    const categoriaProducto = document.getElementById("categoriaProducto");
+    const imagenInput = document.getElementById("imagenProducto");
 
-    if (!idProducto.value.trim()) {
-        showError('El ID del producto es requerido');
-        return;
-    } else if (!esSoloNumeros(idProducto.value.trim())) {
-        showError('El ID debe contener solo números');
-        return;
-    }
+    errorMessages.innerHTML = "";
 
     if (!nombreProducto.value.trim()) {
         showError('El nombre del producto es requerido');
@@ -53,23 +54,23 @@ function validationForm(event) {
         showError('El nombre debe tener al menos 3 caracteres');
         return;
     } else if (!esSoloLetras(nombreProducto.value.trim())) {
-        showError('El nombre solo puede contener letras y espacios');
+        showError('El nombre solo puede contener letras y números');
         return;
     }
 
-    //if (!precioProducto.value.trim()) {
-    //  showError('El precio del producto es requerido');
-    //    return;
-    //} else if (!esPrecioValido(precioProducto.value.trim())) { 
-    //   showError('El precio debe ser un número');
-    //    return;
-    //}
+    if (!precioProducto.value.trim()) {
+        showError('El precio del producto es requerido');
+        return;
+    } else if (!esSoloNumeros(precioProducto.value.trim())) {
+        showError('El precio debe ser un número');
+        return;
+    }
 
     if (!cantidadProducto.value.trim()) {
         showError('La cantidad del producto es requerida');
         return;
     } else if (!esCantidadValida(cantidadProducto.value.trim())) {
-        showError('La cantidad debe ser un número');
+        showError('La cantidad debe ser un número válido');
         return;
     }
 
@@ -78,139 +79,365 @@ function validationForm(event) {
         return;
     }
 
-    // validamos id duplicads
-    const existe = productosGuardados.some(prod => prod.id === idProducto.value);
-
-    if (existe) {
-        alert(" Este producto ya está agregado con ese ID");
+    if (!categoriaProducto.value) {
+        showError('Debe seleccionar una categoría');
         return;
     }
 
-
-    // Imagen
-    const imagenInput = document.getElementById('imagenProducto');
-    let imagenSrc = "/img/default.jpg";
-
-
-    if (imagenInput.files.length > 0) {
-    const file = imagenInput.files[0];
-    const reader = new FileReader();
-
-    reader.onload = function () {
-
-        imagenSrc = reader.result;
-
-        guardarProducto(imagenSrc);
-    };
-
-    reader.readAsDataURL(file);
-    } else {
-    guardarProducto(imagenSrc);
+    /// Validación de imagen por URL
+    if (!imagenInput.value.trim()) {
+        showError("La URL de la imagen es obligatoria");
+        return;
     }
 
+    if (!esUrlImagen(imagenInput.value.trim())) {
+        showError("La URL debe terminar en .jpg, .png, .gif o .webp");
+        return;
+    }
+
+    // Imagen (URL)
+    guardarProducto(imagenInput.value.trim());
 }
 
-    function guardarProducto(imagenSrc) {
+function guardarProducto(imagenSrc) {
 
-    const { idProducto, nombreProducto, precioProducto, cantidadProducto, descripcionProducto } = adminForm.elements;
-
-    const nuevoProducto = {
-        id: idProducto.value,
-        nombre: nombreProducto.value,
-        precio: Number(precioProducto.value),
-        cantidad: cantidadProducto.value,
-        descripcion: descripcionProducto.value,
-        imagen: imagenSrc, 
-        añadido: false
-    };
+    const { nombreProducto, precioProducto, cantidadProducto, descripcionProducto } = adminForm.elements;
+    const categoriaProducto = document.getElementById("categoriaProducto");
 
 
-    /// Guardar en LocalStorage
-    productosGuardados.push(nuevoProducto);
-    localStorage.setItem('productos', JSON.stringify(productosGuardados));
+    /// se crea el producto directo a la bd
+    fetch("http://localhost:8080/producto/crear", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            nombre: nombreProducto.value.trim(),
+            descripcion: descripcionProducto.value.trim(),
+            precio: Number(precioProducto.value),
+            stock: Number(cantidadProducto.value),
+            imagen: imagenSrc,
+            categoria: {
+                idCategoria: Number(categoriaProducto.value)
+            }
+        })
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Error al guardar en backend");
+            }
+            return response.text();
+        })
+        .then(data => {
+            Swal.fire({
+                icon: 'success', title: '¡Listo!',
+                text: 'Producto agregado con éxito',
+                timer: 2000, showConfirmButton: false
+            });
+            adminForm.reset();
 
-    /// Crear la card visual
-    crearCardDesdeLocalStorage(nuevoProducto);
+            // cerrar modal
+            bootstrap.Modal
+                .getInstance(document.getElementById("modalAgregarProducto"))
+                .hide();
+            //cargar productos bd
+            cargarProductosDesdeBD();
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
 
-    alert('Producto agregado con éxito');
-    adminForm.reset();
 }
-
 
 function showError(error) {
     errorMessages.innerHTML = `<p>${error}</p>`;
 }
 
+function guardarEdicionProducto() {
 
-function crearCardDesdeLocalStorage(produc) {
+    const id = document.getElementById("idProducto").value;
 
-    const card = document.createElement('div');
-    card.className = 'col-12 col-sm-6 col-md-4 col-lg-3 mb-4';
-    card.dataset.id = produc.id; // ID del producto
-    card.style = 'width: 18rem; display: inline-block; margin: 12px; padding: 10px; text-align: center; border-radius: 12px; box-shadow: 0 0 18px #1affa3;';
-
-    card.innerHTML = `
-    <div class="card card-admin h-100 text-center">
-        <img src="${produc.imagen}" class="card-img-top" alt="${produc.nombre}"
-             style="height:180px; object-fit:contain; background:#fff;">
-        <div class="card-body">
-            <h5 class="card-title">${produc.nombre}</h5>
-            <p class="card-text"><strong>ID:</strong> ${produc.id}</p>
-            <span class="card-text"><strong>Precio:</strong> $${produc.precio}</span>
-            <p class="card-text"><strong>Cantidad:</strong> ${produc.cantidad}</p>
-            <p class="card-text">${produc.descripcion}</p>
-
-            <button class="btn btn-success btn-sm publicar-btn" data-id="${produc.id}">
-                Añadir a tienda
-            </button>
-
-            <button class="btn btn-danger btn-sm eliminar-btn" data-id="${produc.id}">
-                Eliminar
-            </button>
-        </div>
-    </div>`;
-
-    contenedorCards.appendChild(card);
-
-    /// Event eliminar
-    card.querySelector(".eliminar-btn").addEventListener("click", () => {
-        eliminarProducto(produc.id);
-    });
-
-    /// Event AGRAGAR
-    card.querySelector(".publicar-btn").addEventListener("click", () => {
-        publicarProducto(produc.id);
-    });
-}
-
-/// Funcion para agregar el producto
-
-function publicarProducto(id) {
-    let productos = JSON.parse(localStorage.getItem("productos")) || [];
-
-    productos = productos.map(p => {
-        if (p.id === id) {
-            p.añadido = true;
+    const producto = {
+        nombre: document.getElementById("nombre").value,
+        stock: document.getElementById("stock").value,
+        descripcion: document.getElementById("descripcion").value,
+        precio: document.getElementById("precio").value,
+        categoria: {
+            idCategoria: Number(document.getElementById("categoria").value)
         }
-        return p;
+    };
+
+
+    fetch(`http://localhost:8080/producto/editar/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(producto)
+    })
+        .then(response => {
+            if (!response.ok) throw new Error("Error al editar");
+            //return response.json();
+        })
+        .then(() => {
+            Swal.fire("Actualizado", "Producto editado correctamente", "success");
+
+            //cerrar modal
+            const modal = bootstrap.Modal.getInstance(
+                document.getElementById("modalEditarProducto")
+            );
+            if (modal) modal.hide();
+
+            cargarProductosDesdeBD();
+        })
+        .catch(error => console.error(error));
+}
+
+
+//mostrar cada seccion
+function mostrar(seccion) {
+    document.querySelectorAll(".seccion").forEach(s => s.style.display = "none");
+    document.getElementById(seccion).style.display = "block";
+
+    if (seccion === "productos") {
+        cargarProductosDesdeBD();
+    }
+}
+
+
+//listar todos los productos de la BD
+const tablaProductosBD = document.getElementById("tablaProductosBD");
+
+function cargarProductosDesdeBD() {
+    fetch("http://localhost:8080/producto")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Error al cargar productos");
+            }
+            return response.json();
+        })
+        .then(productos => {
+            tablaProductosBD.innerHTML = "";
+            productos.forEach(p => crearFilaProducto(p, p.categoria));
+        })
+        .catch(error => console.error(error));
+}
+
+function crearFilaProducto(p) {
+    const fila = document.createElement("tr");
+
+    fila.innerHTML = `
+    <td>${p.idProducto}</td>
+    <td>${p.nombre}</td>
+    <td>${p.stock}</td>
+    <td>${p.descripcion}</td>
+    <td>$${p.precio}</td>    
+    <td>
+      <button 
+        class="btn btn-verde-claro btn-sm"
+        onclick="editarProductoBD(${p.idProducto})">
+        Editar
+      </button>
+
+      <button 
+        class="btn btn-danger btn-sm"
+        onclick="eliminarProductoBD(${p.idProducto})">
+        Eliminar
+      </button>
+    </td>
+  `;
+
+    tablaProductosBD.appendChild(fila);
+}
+
+//ELIMINAR PRODUCTO DE LA BD
+function eliminarProductoBD(id) {
+    Swal.fire({
+        title: '¿Eliminar producto?',
+        text: 'Esta acción no se puede deshacer',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar',
+        confirmButtonColor: '#d33'
+    }).then((result) => {
+        if (!result.isConfirmed) return;
+
+        fetch(`http://localhost:8080/producto/borrar/${id}`, {
+            method: "DELETE"
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("No se pudo eliminar");
+                }
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Eliminado',
+                    text: 'Producto eliminado correctamente',
+                    timer: 1500,
+                    showConfirmButton: false
+                });
+
+                cargarProductosDesdeBD(); // refresca tabla
+            })
+            .catch(error => {
+                console.error(error);
+
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'No se pudo eliminar el producto'
+                });
+            });
+    });
+}
+
+
+//EDITAR PRODUCTO DE LA BD
+function editarProductoBD(id) {
+
+    fetch(`http://localhost:8080/producto/${id}`)
+        .then(response => response.json())
+        .then(p => {
+            document.getElementById("idProducto").value = p.idProducto;
+            document.getElementById("nombre").value = p.nombre;
+            document.getElementById("stock").value = p.stock;
+            document.getElementById("descripcion").value = p.descripcion;
+            document.getElementById("precio").value = p.precio;
+            document.getElementById("categoria").value = p.idCategoria;
+
+            const modal = new bootstrap.Modal(
+                document.getElementById("modalEditarProducto")
+            );
+            modal.show();
+        })
+        .catch(error => console.error(error));
+}
+
+// Exportar a Excel
+document.getElementById("exportExcel").addEventListener("click", function () {
+    // Obtener tabla
+    const tabla = document.getElementById("tablaProductosBD");
+    const wb = XLSX.utils.table_to_book(tabla, { sheet: "Productos" });
+    XLSX.writeFile(wb, "productos.xlsx");
+});
+
+
+// Exportar a PDF
+document.getElementById("exportPDF").addEventListener("click", function () {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    // Título
+    doc.setFontSize(16);
+    doc.text("Lista de Productos", 14, 20);
+
+    // Tabla (ignora última columna)
+    doc.autoTable({
+        startY: 25,
+        html: "#tablaProductosBD",
+        columnStyles: {
+            [document.querySelectorAll("#tablaProductosBD thead th").length - 1]: { cellWidth: 0, fontSize: 0 }
+        }
     });
 
-    localStorage.setItem("productos", JSON.stringify(productos));
-    alert("Producto enviado a tienda");
+    doc.save("productos.pdf");
+});
+
+function cargarTotalesCards() {
+
+    fetch("http://localhost:8080/producto/contar/categoria/1")
+        .then(res => res.json())
+        .then(total => {
+            document.getElementById("totalRetro").textContent = total;
+        });
+
+    fetch("http://localhost:8080/producto/contar/categoria/2")
+        .then(res => res.json())
+        .then(total => {
+            document.getElementById("totalModerna").textContent = total;
+        });
+
+    fetch("http://localhost:8080/producto/contar/categoria/5")
+        .then(res => res.json())
+        .then(total => {
+            document.getElementById("accesorios").textContent = total;
+        });
+
+    fetch("http://localhost:8080/producto/contar/categoria/3")
+        .then(res => res.json())
+        .then(total => {
+            document.getElementById("videojuegos").textContent = total;
+        });
+
+    fetch("http://localhost:8080/producto/contar/categoria/4")
+        .then(res => res.json())
+        .then(total => {
+            document.getElementById("videojuegos").textContent = total;
+        });
+
 }
 
 
+function cargarGrafica() {
+    fetch("http://localhost:8080/orden/productosTop")
+        .then(response => response.json())
+        .then(data => {
+            console.log("Datos recibidos:", data);
+            // Extraer datos
+            const nombres = data.map(p => p.nombreProducto);
+            const cantidades = data.map(p => p.totalVendido);
 
-/// Funcion para eliminar el producto
-function eliminarProducto(id) {
+            // Crear gráfica
+            const ctx = document.getElementById("graficaProductos").getContext("2d");
 
-    productosGuardados = productosGuardados.filter(prod => prod.id !== id);
+            new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: nombres,
+                    datasets: [{
+                        label: "Cantidad vendida",
+                        data: cantidades,
+                        backgroundColor: "rgba(25, 221, 100, 0.7)",
+                        borderColor: "rgb(54, 235, 69)",
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            ticks: {
+                                color: "#ffffff" // 👈 números eje Y
+                            },
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: "Unidades vendidas",
+                                color: "#ffffff"
+                            },
+                            grid: {
+                                color: "rgba(74, 247, 74, 0.1)"
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                color: "#ffffff" // 👈 números eje Y
+                            },
+                            title: {
+                                display: true,
+                                text: "Productos",
+                                color: "#ffffff"
+                            },
+                            grid: { color: "rgba(255,255,255,0.08)" }
+                        }
+                    }
+                }
+            });
+        })
+        .catch(error => {
+            console.error("Error al cargar la gráfica:", error);
+        });
 
-    localStorage.setItem('productos', JSON.stringify(productosGuardados));
-
-    const card = document.querySelector(`[data-id="${id}"]`);
-    if (card) card.remove();
 }
-
-
-
