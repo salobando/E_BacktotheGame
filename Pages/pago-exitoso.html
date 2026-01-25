@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiénes Somos - BackToTheGame</title>
+  <link rel="stylesheet" href="/CSS/Style.css" /><!-- Estilo General -->
+  <link rel="stylesheet" href="/CSS/StyleHeader.css" /><!-- Estilo Header-->
+  <link rel="stylesheet" href="/CSS/StyleFooter.css" /><!-- Estilo Footer-->
+  <link rel="stylesheet" href="/CSS/HomePage.css" /><!-- Estilo Página Principal-->
+   <link rel="stylesheet" href="/CSS/pagoexitoso.css" />
+  <link rel="icon" href="/img/Back_to_the_game-removebg-preview.ico" type="image/x-icon">
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Tipografía -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;600&display=swap"
+    rel="stylesheet" />
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+</head>
+<body>
+  <div class="bg-success"></div>
+   <header>
+    <div class="header-container">
+      <div class="logo-group">
+          <img src="/img/Logo.png" alt="LogoBackToTheGame" class="imgLogo" />
+          <div class="logo">Back to the game</div>
+        </div>
+      <nav class="desktop-menu">
+        <a href="/homepage.html">Inicio</a>
+        <a href="/Pages/tienda.html">Tienda</a>
+        <a href="/Pages/About.html">Nosotros</a>
+        <a href="/Pages/contacto.html">Contáctenos</a>
+      </nav>
+      <div class="icons">
+        <a href="#"><i class="bi bi-cart"></i></a>
+        <a href="/Pages/Login.html"><i class="bi bi-person"></i></a>
+      </div>
+      <div class="hamburger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="/homepage.html">Inicio</a>
+      <a href="/Pages/tienda.html">Tienda</a>
+      <a href="/Pages/About.html">Nosotros</a>
+      <a href="/Pages/contacto.html">Contáctenos</a>
+      <div class="mobile-icons">
+        <a href="#"><i class="bi bi-cart"></i></a>
+        <a href="#"><i class="bi bi-bell"></i></a>
+        <a href="/Pages/Login.html"><i class="bi bi-person"></i></a>
+      </div>
+    </div>
+  </header>
+  <div class="success-container">
+  <div class="success-card">
+    <div class="success-icon">✔</div>
+    <h1>¡Pago Exitoso!</h1>
+    <p class="thanks">Gracias por tu compra, <strong id="cliente"></strong></p>
+    <div class="payment-info">
+      <p><span>ID de Pago:</span> <br><strong id="paymentId"></strong></p>
+      <p><span>ID del Pagador:</span> <br><strong id="payerId"></strong></p>
+    </div>
+    <p class="total">
+      Total pagado <br>
+      <span>$<span id="total"></span></span>
+    </p>
+    <div class="actions">
+      <button id="btnPdf" class="btn-outline">
+  <svg class="icon" viewBox="0 0 24 24">
+    <path d="M12 3v12"/>
+    <path d="M7 10l5 5 5-5"/>
+    <path d="M5 21h14"/>
+  </svg>
+  Descargar recibo
+</button>
+      <button onclick="window.location.href='/Pages/tienda.html'" class="btn-primary">
+  <svg class="icon" viewBox="0 0 24 24">
+    <path d="M15 18l-6-6 6-6"/>
+  </svg>
+  Volver a la tienda
+</button>
+    </div>
+  </div>
+</div>
+  <footer>
+    <div class="container">
+      <div class="footer-descripcion">
+        <img src="/img/Logo.png" alt="LogoBackToTheGame">
+        <p>Somos el mundo donde empieza el juego y nunca termina.</p>
+      </div>
+      <div class="container-columnas">
+        <nav class="footer-nav">
+          <h3>Corporativo</h3>
+          <ul>
+            <li><a href="/homepage.html">Inicio</a></li>
+            <li><a href="/Pages/About.html">Nosotros</a></li>
+            <li><a href="/Pages/tienda.html">Tienda</a></li>
+            <li><a href="/Pages/contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+        <hr />
+        <nav class="footer-nav">
+          <h3>Noticias</h3>
+          <ul>
+            <li><a href="">Próximos <br>
+                Lanzamientos</a></li>
+            <li><a href="">Destacados</a></li>
+            <li><a href="">Comentarios</a></li>
+          </ul>
+        </nav>
+        <hr />
+        <nav class="footer-nav">
+          <h3>Síguenos</h3>
+          <a href="https://github.com/salobando/BackToTheGame.git" class="icon-circle" aria-label="GitHub"><i
+              class="bi bi-github"></i></a>
+          <a href="#" class="icon-circle" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <br>
+          <a href="#" class="icon-circle" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="icon-circle" aria-label="Youtube"><i class="bi bi-youtube"></i></a>
+        </nav>
+      </div>
+      <div class="footer-copyright">
+        <p> © 2025 Back To The Game. Todos los derechos reservados</p>
+      </div>
+    </div>
+  </footer>
+  <!-- jsPDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="/JS/pago-exitoso.js"></script>
+</body>
+</html>
