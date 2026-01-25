@@ -239,26 +239,57 @@
     </section>
 
     <!-- ================= MODAL (SE MANTIENE IGUAL) ================= -->
-    <div id="modalCarrito" class="modal-overlay">
-      <div class="modal-content">
-        <span id="cerrarModal" class="close-btn">&times;</span>
+   <div id="modalCarrito" class="modal-overlay">
+  <div class="modal-content">
 
-        <h3>Producto agregado a tu Carrito</h3>
-
-        <div class="modal-prod">
-          <img id="modalImg" src="" alt="Producto" />
-          <div>
-            <h4 id="modalTitulo"></h4>
-            <p id="modalPrecio"></p>
-          </div>
-        </div>
-
-        <div class="modal-actions">
-          <button id="seguirComprando">Seguir comprando</button>
-          <a href="/Pages/CarritoNew.html" class="irCarrito">Ir al carrito</a>
-        </div>
-      </div>
+    <div class="modal-header">
+      <h3>🖥️ Carrito Retro</h3>
+      <span id="cerrarModal" class="close-btn">&times;</span>
     </div>
+<div id="modalProductos"></div>
+
+    <div class="modal-prod">
+      <img id="modalImg" src="" alt="Producto" />
+      <div class="modal-info">
+        <h4 id="modalTitulo"></h4>
+
+        <div class="modal-controls">
+          <button class="qty-btn" id="restar">−</button>
+          <span id="modalCantidad">1</span>
+          <button class="qty-btn" id="sumar">+</button>
+        </div>
+
+        <p id="modalPrecio"></p>
+      </div>
+
+      <button id="eliminarProd" class="delete-btn">✕</button>
+    </div>
+
+    <p id="modalSubtotal" class="modal-subtotal">Subtotal: $0</p>
+
+    <div class="modal-actions">
+      <button id="vaciarCarrito" class="btn-vaciar">🗑 Vaciar Carrito</button>
+      <button class="btn-seguir">
+  <svg viewBox="0 0 24 24">
+    <path d="M3 12h18M13 5l7 7-7 7"/>
+  </svg>
+  Seguir comprando
+</button>
+      <a href="CarritoNew.html" class="irCarrito">
+  <svg viewBox="0 0 24 24">
+    <path d="M6 6h15l-1.5 9h-12z"/>
+    <circle cx="9" cy="21" r="1.5"/>
+    <circle cx="18" cy="21" r="1.5"/>
+  </svg>
+  Ir al carrito
+</a>
+    </div>
+  </div>
+</div>
+
+
+
+
 
     <div class="mobile-menu" id="mobileMenu">
       <a href="/homepage.html">Inicio</a>
