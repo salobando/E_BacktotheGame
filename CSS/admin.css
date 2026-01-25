@@ -232,3 +232,12 @@
   background: linear-gradient(135deg, #17e733, #31e9b2);
  cursor: pointer;
 }
+
+.card-grafica{
+    background: #444643;
+    color: white;
+}
+
+#graficaProductos{
+    color: white;
+}

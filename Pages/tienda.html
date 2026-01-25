@@ -1,67 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tienda</title>
 
-    <link rel="stylesheet" href="/CSS/StyleTienda.css" />
-    <link rel="stylesheet" href="/CSS/Style.css" />
-    <link rel="stylesheet" href="/CSS/StyleFooter.css" />
-    <link rel="stylesheet" href="/CSS/StyleHeader.css" />
-    <link rel="icon" href="/img/Back_to_the_game-removebg-preview.ico" type="image/x-icon">
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;600&display=swap"
-      rel="stylesheet"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tienda</title>
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
-      rel="stylesheet"
-    />
-  </head>
+  <link rel="stylesheet" href="/CSS/StyleTienda.css" />
+  <link rel="stylesheet" href="/CSS/Style.css" />
+  <link rel="stylesheet" href="/CSS/StyleFooter.css" />
+  <link rel="stylesheet" href="/CSS/StyleHeader.css" />
+  <link rel="icon" href="/img/Back_to_the_game-removebg-preview.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;600&display=swap"
+    rel="stylesheet" />
 
-  <body>
-    <!-- ================= HEADER ================= -->
-    <header>
-      <div class="header-container">
-        <div class="logo-group">
-          <img src="/img/Logo.png" alt="LogoBackToTheGame" class="imgLogo" />
-          <div class="logo">Back to the game</div>
-        </div>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet" />
+</head>
 
-        <nav class="desktop-menu">
-          <a href="/homepage.html">Inicio</a>
-          <a href="/Pages/tienda.html" class="active">Tienda</a>
-          <a href="/Pages/About.html">Nosotros</a>
-          <a href="/Pages/contacto.html">Contáctenos</a>
-        </nav>
-
-        <div class="icons">
-          <a href="/Pages/CarritoNew.html" class="carrito-icono">
-            <i class="bi bi-cart"></i>
-            <span id="cart-count" class="cart-count">0</span>
-          </a>
-          
-          <a href="/Pages/Login.html"><i class="bi bi-person"></i></a>
-        </div>
-
-        <div class="hamburger" onclick="toggleMenu()">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
+<body>
+  <!-- ================= HEADER ================= -->
+  <header>
+    <div class="header-container">
+      <div class="logo-group">
+        <img src="/img/Logo.png" alt="LogoBackToTheGame" class="imgLogo" />
+        <div class="logo">Back to the game</div>
       </div>
 
-      <div class="mobile-menu" id="mobileMenu">
+      <nav class="desktop-menu">
         <a href="/homepage.html">Inicio</a>
-        <a href="/Pages/tienda.html">Tienda</a>
+        <a href="/Pages/tienda.html" class="active">Tienda</a>
         <a href="/Pages/About.html">Nosotros</a>
         <a href="/Pages/contacto.html">Contáctenos</a>
+      </nav>
+
+      <div class="icons">
+        <a href="/Pages/CarritoNew.html" class="carrito-icono">
+          <i class="bi bi-cart"></i>
+          <span id="cart-count" class="cart-count">0</span>
+        </a>
+
+        <a href="/Pages/Login.html"><i class="bi bi-person"></i></a>
+      </div>
+
+      <div class="hamburger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="/homepage.html">Inicio</a>
+      <a href="/Pages/tienda.html">Tienda</a>
+      <a href="/Pages/About.html">Nosotros</a>
+      <a href="/Pages/contacto.html">Contáctenos</a>
       </nav>
 
       <div class="icons">
@@ -72,300 +65,155 @@
         <a href="#"><i class="bi bi-bell"></i></a>
         <a href="/Pages/Login.html"><i class="bi bi-person"></i></a>
       </div>
-    </header>
+  </header>
 
-    <!-- ================= SECCIÓN TIENDA ================= -->
-    <section class="destacados-section">
-      <h2 class="title-destacados">Bienvenidos a nuestra tienda</h2>
+  <!-- ================= SECCIÓN TIENDA ================= -->
+  <section class="destacados-section">
+    
+    <div class="marcas">
+      <div class="row g-4 justify-content-center" >
 
-      <div class="cards-grid" id="consolas">
-        <!-- ======== PRODUCTOS ======== -->
-        <div class="card-compras animate-card">
-          <div class="img-box">
-            <img src="/IMG/CONSOLANITENDO.png" alt="ConsolaNintendo" />
-          </div>
-          <h3 class="title-card">
-            Nintendo Nes | cartuchos | años 80 | entretenimiento familiar
-          </h3>
-          <span class="precio-prod">$169.900</span>
-
-          <div class="btns">
-            <button type="button" class="btn add">Agregar</button>
+        <!-- CARD -->
+         <div class="col-md-4 d-flex justify-content-center">
+          <div class="game-card">
+            <img src="/img/marioNintendo.png" class="img-fluid main-img" alt="" style="width: 57%; height: 57%;">
+            <img src="/img/luigiNintendo.png" class="hover-img" alt="">
+            <div class="brand nintendo">Nintendo</div>
           </div>
         </div>
 
-        <div class="card-compras animate-card">
-          <div class="img-box">
-            <img src="/img/GameBoy.png" alt="GameBoy" />
-          </div>
-          <h3 class="title-card">
-            Nintendo GameBoy | Consola portatil | Cartuchos | Años 80.
-          </h3>
-          <span class="precio-prod">$120.000</span>
-
-          <div class="btns">
-            <button type="button" class="btn add">Agregar</button>
+        <div class="col-md-4 d-flex justify-content-center">
+          <div class="game-card">
+            <img src="/img/callofdutty.png" class="img-fluid main-img" alt="">
+            <img src="/img/minecrafxbox.png" class="hover-img" alt="">
+            <div class="brand xbox">XBOX</div>
           </div>
         </div>
 
-        <div class="card-compras animate-card">
-          <div class="img-box">
-            <img src="/img/Xboxnegro.png" alt="Xbox negra" />
+        <div class="col-md-4 d-flex justify-content-center">
+          <div class="game-card">
+            <img src="/img/contraPlayStation.jpg" class="img-fluid main-img" alt="">
+            <img src="/img/fifaPs.jpg" class="hover-img" alt="">
+            <div class="brand playstation">PlayStation</div>
           </div>
-          <h3 class="title-card">
-            Microsoft Xbox one | Consola de Videojuegos | Juegos Online
-          </h3>
-          <span class="precio-prod">$250.000</span>
+        </div>        
 
-          <div class="btns">
-            <button type="button" class="btn add">Agregar</button>
-          </div>
-        </div>
-
-        <div class="card-compras animate-card">
-          <div class="img-box">
-            <img src="/img/Maquina-removebg-preview.png" alt="Maquina arcade" />
-          </div>
-          <h3 class="title-card">
-            Arcade Bubble Bobble | Juego Arcade | Clasico retro | Multijugador
-          </h3>
-          <span class="precio-prod">$300.000</span>
-
-          <div class="btns">
-            <button type="button" class="btn add">Agregar</button>
-          </div>
-        </div>
-
-        <div class="card-compras animate-card">
-          <div class="img-box">
-            <img
-              src="/img/Playstation2-removebg-preview.png"
-              alt="ConsolaRemove"
-            />
-          </div>
-          <h3 class="title-card">
-            Sony | Playstation 2 | Disco HDD | CD | Guitar Hero | Adaptador de
-            red
-          </h3>
-          <span class="precio-prod">$169.900</span>
-          <div class="btns">
-            <button type="button" class="btn add">Agregar</button>
-          </div>
-        </div>
-
-        <div class="card-compras animate-card">
-          <div class="img-box">
-            <img src="/img/Playstation1.png" alt="Maquina arcade" />
-          </div>
-          <h3 class="title-card">
-            Sony | Playstation 1 | CD | 1era consola con graficos 3D | Juegos
-            Clasicos
-          </h3>
-          <span class="precio-prod">$300.000</span>
-
-          <div class="btns">
-            <button type="button" class="btn add">Agregar</button>
-          </div>
-        </div>
-
-        <div class="card-compras animate-card">
-          <div class="img-box">
-            <img
-              src="/img/Playstation3-removebg-preview.png"
-              alt="Maquina arcade"
-            />
-          </div>
-          <h3 class="title-card">
-            Sony | Playstation 3 | Blu-Ray disc | Retrocompatibilidad
-          </h3>
-          <span class="precio-prod">$300.000</span>
-
-          <div class="btns">
-            <button type="button" class="btn add">Agregar</button>
-          </div>
-        </div>
-
-        <div class="card-compras animate-card">
-          <div class="img-box">
-            <img src="/img/xbox.png" alt="Maquina arcade" />
-          </div>
-          <h3 class="title-card">
-            Xbox Series S | 120 FPS | Almacenamient expansible | Xbox Game Pass
-          </h3>
-          <span class="precio-prod">$300.000</span>
-
-          <div class="btns">
-            <button type="button" class="btn add">Agregar</button>
-          </div>
-        </div>
-
-        <div class="card-compras animate-card">
-          <div class="img-box">
-            <img src="/img/Atari.jpeg" alt="Maquina arcade" />
-          </div>
-          <h3 class="title-card">
-            Atari 2600 | Señal analogica | Cartuchos | sencillez pixelart |
-          </h3>
-          <span class="precio-prod">$300.000</span>
-
-          <div class="btns">
-            <button type="button" class="btn add">Agregar</button>
-          </div>
-        </div>
-
-        <div class="card-compras animate-card">
-          <div class="img-box">
-            <img
-              src="/img/Arcade_Street_fighter-removebg-preview.png"
-              alt="Maquina arcade"
-            />
-          </div>
-          <h3 class="title-card">
-            Street Fighter | Capcom | Botones de 6 golpes | Varios modos de
-            juego
-          </h3>
-          <span class="precio-prod">$300.000</span>
-
-          <div class="btns">
-            <button type="button" class="btn add">Agregar</button>
-          </div>
-        </div>
-
-        <!-- AGREGO LOS DEMÁS PRODUCTOS EXACTAMENTE COMO LOS TENÍAS -->
-        <!-- (mantengo imágenes, orden, nombres y botones) -->
-
-        <!-- Puedes dejar tus duplicados si quieres -->
       </div>
-    </section>
-
-    <!-- ================= MODAL (SE MANTIENE IGUAL) ================= -->
-   <div id="modalCarrito" class="modal-overlay">
-  <div class="modal-content">
-
-    <div class="modal-header">
-      <h3>🖥️ Carrito Retro</h3>
-      <span id="cerrarModal" class="close-btn">&times;</span>
-    </div>
-<div id="modalProductos"></div>
-
-    <div class="modal-prod">
-      <img id="modalImg" src="" alt="Producto" />
-      <div class="modal-info">
-        <h4 id="modalTitulo"></h4>
-
-        <div class="modal-controls">
-          <button class="qty-btn" id="restar">−</button>
-          <span id="modalCantidad">1</span>
-          <button class="qty-btn" id="sumar">+</button>
-        </div>
-
-        <p id="modalPrecio"></p>
-      </div>
-
-      <button id="eliminarProd" class="delete-btn">✕</button>
     </div>
 
-    <p id="modalSubtotal" class="modal-subtotal">Subtotal: $0</p>
+    <div class="cards-grid" id="consolas">
+      <!-- ======== PRODUCTOS ======== -->
 
-    <div class="modal-actions">
-      <button id="vaciarCarrito" class="btn-vaciar">🗑 Vaciar Carrito</button>
-      <button class="btn-seguir">
-  <svg viewBox="0 0 24 24">
-    <path d="M3 12h18M13 5l7 7-7 7"/>
-  </svg>
-  Seguir comprando
-</button>
-      <a href="CarritoNew.html" class="irCarrito">
-  <svg viewBox="0 0 24 24">
-    <path d="M6 6h15l-1.5 9h-12z"/>
-    <circle cx="9" cy="21" r="1.5"/>
-    <circle cx="18" cy="21" r="1.5"/>
-  </svg>
-  Ir al carrito
-</a>
+
+    </div>
+  </section>
+
+  <!-- ================= MODAL (SE MANTIENE IGUAL) ================= -->
+  <div id="modalCarrito" class="modal-overlay">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h3>🖥️ Carrito Retro</h3>
+        <span id="cerrarModal" class="close-btn">&times;</span>
+      </div>
+      <div id="modalProductos"></div>
+
+      <div class="modal-prod">
+        <img id="modalImg" src="" alt="Producto" />
+        <div class="modal-info">
+          <h4 id="modalTitulo"></h4>
+
+          <div class="modal-controls">
+            <button class="qty-btn" id="restar">−</button>
+            <span id="modalCantidad">1</span>
+            <button class="qty-btn" id="sumar">+</button>
+          </div>
+
+          <p id="modalPrecio"></p>
+        </div>
+
+        <button id="eliminarProd" class="delete-btn">✕</button>
+      </div>
+
+      <p id="modalSubtotal" class="modal-subtotal">Subtotal: $0</p>
+
+      <div class="modal-actions">
+        <button id="vaciarCarrito" class="btn-vaciar">🗑 Vaciar Carrito</button>
+        <button class="btn-seguir">
+          <svg viewBox="0 0 24 24">
+            <path d="M3 12h18M13 5l7 7-7 7" />
+          </svg>
+          Seguir comprando
+        </button>
+        <a href="CarritoNew.html" class="irCarrito">
+          <svg viewBox="0 0 24 24">
+            <path d="M6 6h15l-1.5 9h-12z" />
+            <circle cx="9" cy="21" r="1.5" />
+            <circle cx="18" cy="21" r="1.5" />
+          </svg>
+          Ir al carrito
+        </a>
+      </div>
     </div>
   </div>
-</div>
 
 
 
 
 
-    <div class="mobile-menu" id="mobileMenu">
-      <a href="/homepage.html">Inicio</a>
-      <a href="/Pages/tienda.html">Tienda</a>
-      <a href="/Pages/About.html">Nosotros</a>
-      <a href="/Pages/contacto.html">Contáctenos</a>
-      <div class="mobile-icons">
-        <a href="/Pages/CarritoNew.html"><i class="bi bi-cart"></i></a>
-        <a href="#"><i class="bi bi-bell"></i></a>
-        <a href="/Pages/registro.html"><i class="bi bi-person"></i></a>
-      </div>
-    </div>
-  </header>
+
 
 
   <!-- ================= FOOTER ================= -->
   <footer>
-      <div class="container">
-        <div class="footer-descripcion">
-          <img src="/img/Logo.png" alt="LogoBackToTheGame" />
-          <p>Somos el mundo donde empieza el juego y nunca termina.</p>
-        </div>
-        <div class="container-columnas">
-          <nav class="footer-nav">
-            <h3>Corporativo</h3>
-            <ul>
-              <li><a href="/homepage.html">Inicio</a></li>
-              <li><a href="/Pages/About.html">Nosotros</a></li>
-              <li><a href="/Pages/tienda.html">Tienda</a></li>
-              <li><a href="/Pages/contacto.html">Contacto</a></li>
-            </ul>
-          </nav>
-          <hr />
-          <nav class="footer-nav">
-            <h3>Noticias</h3>
-            <ul>
-              <li>
-                <a href=""
-                  >Próximos <br />
-                  Lanzamientos</a
-                >
-              </li>
-              <li><a href="">Destacados</a></li>
-              <li><a href="">Comentarios</a></li>
-            </ul>
-          </nav>
-          <hr />
-          <nav class="footer-nav">
-            <h3>Síguenos</h3>
-            <a
-              href="https://github.com/salobando/BackToTheGame.git"
-              class="icon-circle"
-              aria-label="GitHub"
-              ><i class="bi bi-github"></i
-            ></a>
-            <a href="#" class="icon-circle" aria-label="Facebook"
-              ><i class="bi bi-facebook"></i
-            ></a>
-            <br />
-            <a href="#" class="icon-circle" aria-label="Instagram"
-              ><i class="bi bi-instagram"></i
-            ></a>
-            <a href="#" class="icon-circle" aria-label="Youtube"
-              ><i class="bi bi-youtube"></i
-            ></a>
-          </nav>
-        </div>
-
-        <div class="footer-copyright">
-          <p>© 2025 Back To The Game. Todos los derechos reservados</p>
-        </div>
+    <div class="container">
+      <div class="footer-descripcion">
+        <img src="/img/Logo.png" alt="LogoBackToTheGame" />
+        <p>Somos el mundo donde empieza el juego y nunca termina.</p>
       </div>
-    </footer>
-    <script src="/JS/tienda.js"></script>
-    <script src="/JS/actualizarcarrito.js"></script>
-    <script src="/JS/scriptHeader.js"></script>
-    <script src="/JS/carrito.js"></script>
-  </body>
+      <div class="container-columnas">
+        <nav class="footer-nav">
+          <h3>Corporativo</h3>
+          <ul>
+            <li><a href="/homepage.html">Inicio</a></li>
+            <li><a href="/Pages/About.html">Nosotros</a></li>
+            <li><a href="/Pages/tienda.html">Tienda</a></li>
+            <li><a href="/Pages/contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+        <hr />
+        <nav class="footer-nav">
+          <h3>Noticias</h3>
+          <ul>
+            <li>
+              <a href="">Próximos <br />
+                Lanzamientos</a>
+            </li>
+            <li><a href="">Destacados</a></li>
+            <li><a href="">Comentarios</a></li>
+          </ul>
+        </nav>
+        <hr />
+        <nav class="footer-nav">
+          <h3>Síguenos</h3>
+          <a href="https://github.com/salobando/BackToTheGame.git" class="icon-circle" aria-label="GitHub"><i
+              class="bi bi-github"></i></a>
+          <a href="#" class="icon-circle" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <br />
+          <a href="#" class="icon-circle" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="icon-circle" aria-label="Youtube"><i class="bi bi-youtube"></i></a>
+        </nav>
+      </div>
+
+      <div class="footer-copyright">
+        <p>© 2025 Back To The Game. Todos los derechos reservados</p>
+      </div>
+    </div>
+  </footer>
+  <script src="/JS/tienda.js"></script>
+  <script src="/JS/actualizarcarrito.js"></script>
+  <script src="/JS/scriptHeader.js"></script>
+  <script src="/JS/carrito.js"></script>
+</body>
+
 </html>

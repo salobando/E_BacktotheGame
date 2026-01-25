@@ -41,15 +41,15 @@
 
 /* CARD */
 .card-compras {
-    background: rgba(33, 37, 41, 0.45);
+    background: rgba(50, 53, 58, 0.45);
     border-radius: 18px;
     padding: 18px;
     width: 250px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(104, 103, 103, 0.473);
     transition: transform 0.4s ease, box-shadow 0.4s ease;
-    box-shadow: 9px 11px 0px -4px rgba(59, 224, 143, 0.34);
+    /* box-shadow: 9px 11px 0px -4px rgba(59, 224, 143, 0.34);
     -webkit-box-shadow: 9px 11px 0px -4px rgba(59, 224, 143, 0.34);
-    -moz-box-shadow: 9px 11px 0px -4px rgba(59, 224, 143, 0.34);
+    -moz-box-shadow: 9px 11px 0px -4px rgba(59, 224, 143, 0.34); */
 }
 
 .card-compras:nth-child(1) {
@@ -102,7 +102,7 @@
 .img-box {
     width: 100%;
     aspect-ratio: 1 / 1;
-    background: #f3f3f3;
+    background: rgba(50, 53, 58, 0.45);
     border-radius: 12px;
     overflow: hidden;
     margin-bottom: 15px;
@@ -126,6 +126,7 @@
     font-size: 18px;
     font-weight: 600;
     animation: fadeIn 1.2s ease;
+    color: #fff;
 }
 
 .precio-prod {
@@ -488,11 +489,9 @@
 
 /*MODAL CONTENIDO*/
 .modal-content {
-    background: radial-gradient(
-        circle at top,
-        #1e293b 0%,
-        #0f172a 65%
-    );
+    background: radial-gradient(circle at top,
+            #1e293b 0%,
+            #0f172a 65%);
     color: #e5e7eb;
     width: 100%;
     max-width: 420px;
@@ -515,6 +514,7 @@
 .modal-content::-webkit-scrollbar {
     width: 6px;
 }
+
 .modal-content::-webkit-scrollbar-thumb {
     background: #2563eb;
     border-radius: 10px;
@@ -561,7 +561,7 @@
     border-radius: 14px;
     object-fit: cover;
     border: 2px solid #1f2937;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
 }
 
 /* ==INFO == */
@@ -699,13 +699,13 @@ a svg {
 .irCarrito {
     background: #16a34a;
     color: #ffffff;
-    box-shadow: 0 0 0 rgba(22,163,74,0);
+    box-shadow: 0 0 0 rgba(22, 163, 74, 0);
 }
 
 .irCarrito:hover {
     background: #15803d;
     transform: translateY(-2px);
-    box-shadow: 0 0 25px rgba(22,163,74,0.6);
+    box-shadow: 0 0 25px rgba(22, 163, 74, 0.6);
 }
 
 /* ==ANIMACIONES == */
@@ -714,6 +714,7 @@ a svg {
         opacity: 0;
         transform: translateY(10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -754,4 +755,70 @@ a svg {
 
 .carrito-icono {
     position: relative;
+}
+
+/*cards principales marcas*/
+.marcas {
+    padding-top: 5px 20px 0;
+}
+
+.game-card {
+    position: relative;
+    width: 200px;
+    height: 240px;
+    overflow: hidden;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.game-card:hover {
+    transform: scale(1.05);
+}
+
+.main-img {
+    border-radius: 15px;
+    width: 60%;
+    height: 60%;
+    object-fit: cover;
+}
+
+/* Imagen que aparece al lado */
+.hover-img {
+    position: absolute;
+    top: 50%;
+    right: -100px;
+    transform: translateY(-70%);
+    width: 50%;
+    height: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease, right 0.3s ease;
+    pointer-events: none;
+}
+
+.game-card:hover .hover-img {
+    opacity: 1;
+    right: -20px;
+}
+
+/* Marca inferior */
+.brand {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 6px 16px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.xbox {
+    background: #107c10;
+}
+
+.playstation {
+    background: #003087;
+}
+
+.nintendo {
+    background: #e60012;
 }

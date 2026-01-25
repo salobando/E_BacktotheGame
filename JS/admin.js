@@ -19,6 +19,7 @@ adminFormEdi.addEventListener("submit", function (e) {
 adminForm.addEventListener('submit', validationForm);
 
 cargarTotalesCards();
+cargarGrafica();
 
 function esSoloNumeros(valor) {
     return /^[0-9]+$/.test(valor);
@@ -364,5 +365,79 @@ function cargarTotalesCards() {
             document.getElementById("accesorios").textContent = total;
         });
 
+    fetch("http://localhost:8080/producto/contar/categoria/3")
+        .then(res => res.json())
+        .then(total => {
+            document.getElementById("videojuegos").textContent = total;
+        });
+
+    fetch("http://localhost:8080/producto/contar/categoria/4")
+        .then(res => res.json())
+        .then(total => {
+            document.getElementById("videojuegos").textContent = total;
+        });
+
 }
 
+
+function cargarGrafica() {
+    fetch("http://localhost:8080/orden/productosTop")
+        .then(response => response.json())
+        .then(data => {
+            console.log("Datos recibidos:", data);
+            // Extraer datos
+            const nombres = data.map(p => p.nombreProducto);
+            const cantidades = data.map(p => p.totalVendido);
+
+            // Crear gráfica
+            const ctx = document.getElementById("graficaProductos").getContext("2d");
+
+            new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: nombres,
+                    datasets: [{
+                        label: "Cantidad vendida",
+                        data: cantidades,
+                        backgroundColor: "rgba(25, 221, 100, 0.7)",
+                        borderColor: "rgb(54, 235, 69)",
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            ticks: {
+                                color: "#ffffff" // 👈 números eje Y
+                            },
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: "Unidades vendidas",
+                                color: "#ffffff"
+                            },
+                            grid: {
+                                color: "rgba(74, 247, 74, 0.1)"
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                color: "#ffffff" // 👈 números eje Y
+                            },
+                            title: {
+                                display: true,
+                                text: "Productos",
+                                color: "#ffffff"
+                            },
+                            grid: { color: "rgba(255,255,255,0.08)" }
+                        }
+                    }
+                }
+            });
+        })
+        .catch(error => {
+            console.error("Error al cargar la gráfica:", error);
+        });
+
+}

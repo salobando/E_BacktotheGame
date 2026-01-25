@@ -2,15 +2,15 @@
    Variables de colores
 =========================== */
 :root {
-  --bg-body: #0b0c10;
+  --bg-body: #000000;
   /* Fondo oscuro tipo terminal */
   --bg-card: #1f1f1f;
   /* Fondo de tarjetas */
-  --txt: #3be08f;
+  --txt: #25d366;
   /* Verde neón original */
-  --accent: #3be08f;
+  --accent: #25d366;
   /* Verde acento */
-  --secondary: #0f0f0f;
+  --secondary: #000000;
   /* Bordes y sombras */
   --red: #ff3333;
   /* Para eliminar / errores */
@@ -28,7 +28,7 @@
 }
 
 body {
-  background-color: #0b0c10;
+  background-color: #000000;
   color: var(--txt);
   font-family: "Montserrat", sans-serif;
   overflow-x: hidden;
@@ -56,7 +56,7 @@ body {
   font-size: 32px;
   font-weight: 700;
   color: var(--accent);
-  text-shadow: 0 0 6px var(--accent), 0 0 12px var(--accent);
+  
   margin-bottom: 20px;
 }
 
@@ -470,7 +470,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: #111;
+  
   overflow: hidden;
   z-index: -1;
 }
