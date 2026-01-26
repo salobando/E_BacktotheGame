@@ -30,7 +30,7 @@
     justify-content: center;
     align-items: center;
     /* Alinea el contenido arriba */
-   
+
 }
 
 
@@ -156,12 +156,11 @@
     ;
 }
 
-
-/* Tablets */
+/*Responsividad*/
 @media (max-width: 992px) {
     .contenedor-principal {
-        max-width: 90%;
         gap: 40px;
+        padding: 10px;
     }
 
     .contacto-titulo {
@@ -169,16 +168,11 @@
     }
 }
 
-/* Celulares */
+/* Celulares grandes */
 @media (max-width: 768px) {
     .contenedor-principal {
         flex-direction: column;
-        gap: 40px;
-        padding: 10px;
-    }
-
-    .seccion-formulario {
-        padding-right: 0;
+        gap: 30px;
     }
 
     .subtitulo {
@@ -187,8 +181,7 @@
     }
 
     .dato-item {
-        display: flex;
-        align-items: flex-start;
+        flex-direction: row;
         gap: 10px;
     }
 
@@ -198,16 +191,7 @@
 
     .contacto-titulo {
         font-size: 2.2em;
-        margin-top: 30px;
-    }
-
-    input,
-    textarea {
-        font-size: 1em;
-    }
-
-    .boton-enviar {
-        font-size: 1em;
+        margin-top: 20px;
     }
 }
 
@@ -226,6 +210,12 @@
     }
 
     .dato-item .valor {
+        font-size: 1em;
+    }
+
+    input,
+    textarea,
+    .boton-enviar {
         font-size: 1em;
     }
 }

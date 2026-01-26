@@ -141,6 +141,11 @@ header {
 }
 
 
+.mobile-menu.active {
+  display: flex;
+}
+
+
 @media (max-width: 1028px) {
 
   .desktop-menu,

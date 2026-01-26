@@ -4,7 +4,6 @@
     background: linear-gradient(rgba(0, 0, 0, 0.486),
             rgba(0, 0, 0, 0.6)),
         url("../img/fondologin.png") no-repeat center center / cover;
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -85,10 +84,36 @@
     color: #4CAF50;
 }
 
-/* responsive */
+@media (max-width: 768px) {
+    .seccion-formulario {
+        padding: 40px 30px;
+        /* Reduce padding en tablet */
+        width: 90%;
+    }
+
+    .contacto-titulo {
+        font-size: 28px;
+    }
+}
+
 @media (max-width: 480px) {
     .seccion-formulario {
+        padding: 30px 20px;
+        /* Menos padding en móviles */
         width: 100%;
-        padding: 35px 30px;
+    }
+
+    .contacto-titulo {
+        font-size: 24px;
+    }
+
+    .campo input {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .boton-enviar {
+        padding: 12px;
+        font-size: 16px;
     }
 }

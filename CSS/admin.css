@@ -144,7 +144,7 @@
     background: #343a40;
 }
 
-.botonesArriba{
+.botonesArriba {
     text-align: right;
     padding-right: 50px;
 }
@@ -155,14 +155,14 @@
     width: 15%;
 }
 
-#btnExportar{
+#btnExportar {
     background: #969796;
     border-color: #0b0b0b;
     height: 40px;
     width: 10%;
 }
 
-#btnEditar{
+#btnEditar {
     background: #00c853;
     border-color: #0b0b0b;
     height: 40px;
@@ -170,74 +170,154 @@
 }
 
 .btn-verde-claro {
-  background-color: #00c853 !important; 
-  color: #fff !important;
+    background-color: #00c853 !important;
+    color: #fff !important;
 }
 
 .btn-verde-claro:hover {
-  background-color: #75b88d !important;
+    background-color: #75b88d !important;
 }
 
 /* ===== TABLA ===== */
 .table-responsive {
-  border-radius: 20px;
-  padding: 30px;
+    border-radius: 20px;
+    padding: 30px;
 
 }
 
 .table {
-  margin-bottom: 0;
-  color: #e5e7ebb7;
+    margin-bottom: 0;
+    color: #e5e7ebb7;
 }
 
 .table thead {
-  background-color: #020617;
+    background-color: #020617;
 }
 
 .table thead th {
-  color: #36c96c;
-  text-transform: uppercase;
-  font-size: 0.85rem;
-  letter-spacing: 0.05em;
+    color: #36c96c;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
 }
 
 .table tbody tr {
-  background-color: #f8f9fa;
-  transition: background 0.2s ease;
+    background-color: #f8f9fa;
+    transition: background 0.2s ease;
 }
 
 .table tbody tr:hover {
-  background-color: #e2e6ea;
+    background-color: #e2e6ea;
 }
 
 .table td,
 .table th {
-  vertical-align: middle;
-  border-color: #1f2933;
+    vertical-align: middle;
+    border-color: #1f2933;
 }
 
 .grad-verde-claro {
-  background: linear-gradient(135deg, #ebaefa, #551175);  
-}
-.grad-verde-medio {
-  background: linear-gradient(135deg, #53c8f7, #085ec0);  
-}
-.grad-verde-oscuro {
-  background: linear-gradient(135deg, #f89cb8, #fc026a);
-}
-.grad-verde-azulado {
-  background: linear-gradient(135deg, #daf889, #daa104);
-}
-.grad-verde-elegante {
-  background: linear-gradient(135deg, #17e733, #31e9b2);
- cursor: pointer;
+    background: linear-gradient(135deg, #ebaefa, #551175);
 }
 
-.card-grafica{
+.grad-verde-medio {
+    background: linear-gradient(135deg, #53c8f7, #085ec0);
+}
+
+.grad-verde-oscuro {
+    background: linear-gradient(135deg, #f89cb8, #fc026a);
+}
+
+.grad-verde-azulado {
+    background: linear-gradient(135deg, #daf889, #daa104);
+}
+
+.grad-verde-elegante {
+    background: linear-gradient(135deg, #17e733, #31e9b2);
+    cursor: pointer;
+}
+
+.card-grafica {
     background: #444643;
     color: white;
 }
 
-#graficaProductos{
+#graficaProductos {
     color: white;
+}
+
+/* Tablets medianos */
+@media (max-width: 992px) {
+    .contenido {
+        padding: 20px 40px;
+    }
+
+    .row.row-cols-md-5.g-4 {
+        row-gap: 20px;
+        column-gap: 15px;
+    }
+}
+
+/* Tablets y móviles */
+@media (max-width: 768px) {
+
+    /* Cards dashboard adaptables */
+    .row.row-cols-md-5.g-4 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 15px;
+        column-gap: 10px;
+    }
+
+    /* Tabla */
+    .table-responsive {
+        padding: 10px;
+    }
+
+    .botonesArriba {
+        text-align: center;
+        padding-right: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #btnAgregar,
+    #btnExportar {
+        width: 100%;
+    }
+
+    /* Modal */
+    .modal-dialog {
+        max-width: 95%;
+        margin: 10px;
+    }
+
+    .modal-body .formulario input,
+    .modal-body .formulario textarea,
+    .modal-body .formulario select {
+        font-size: 14px;
+    }
+
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+    .row.row-cols-md-5.g-4 {
+        grid-template-columns: 1fr;
+    }
+
+    .cardAgregar {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .table-responsive {
+        padding: 5px;
+    }
+
+    #btnEditar {
+        width: 100%;
+        margin-bottom: 10px;
+    }
 }

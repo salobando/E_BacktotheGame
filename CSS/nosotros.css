@@ -1,7 +1,6 @@
 /* =======================================================
    ESTILOS DE QUIENES SOMOS 
    ======================================================= */
-
 .quiensomos p {
     flex-grow: 1;
     text-align: justify;
@@ -48,7 +47,6 @@
     padding: 20px 30px;
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    flex: 1 1 300px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     max-width: 500px;
 }
@@ -63,6 +61,7 @@
     margin-bottom: 15px;
     color: #000000;
 }
+
 
 /* Título arcade animado */
 .titulos-arcade {
@@ -158,4 +157,42 @@
 
 .foto-bajada {
     object-position: center 30%;
+}
+
+
+
+
+
+/* Tablets */
+@media (max-width: 992px) {
+    .row.g-4.justify-content-center {
+        row-gap: 40px;
+        padding: 10px;
+    }
+
+    .flip-card {
+        max-width: 260px;
+        height: 350px;
+    }
+
+}
+
+@media (max-width: 576px) {
+    .row.g-4.justify-content-center {
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+    }
+
+    .row.g-4.justify-content-center>[class*="col-"] {
+        width: 100%;
+        margin-bottom: 40px;
+    }
+
+    /* Card con altura fija */
+    .flip-card {
+        height: 300px;
+        margin: 0 auto;
+    }
 }
